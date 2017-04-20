@@ -1,0 +1,184 @@
+<section class="mainbar" ng-show="vm.permissao(6)" ng-init="estados=['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO']">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wblue">
+                    <div ht-widget-header icon="{{vm.icon}}" title="{{vm.title}}" subtitle="{{vm.subtitle}}"></div>
+                    <div class="widget-content">
+
+                        <uib-accordion close-others="true">
+                            <div uib-accordion-group class="panel-default" is-open="status.isOneOpen">
+                                <uib-accordion-heading>
+                                Cadastro da Empresa <i class="pull-right fa" ng-class="{'fa-chevron-down': status.isOneOpen, 'fa-chevron-right': !status.isOneOpen}"></i>
+                                </uib-accordion-heading>
+                                <form class="form-horizontal">
+                                    <div class="">
+                                        <div class="col-sm-8">
+                                            <div class="form-group">
+                                                <label for="nome" class="col-sm-2 control-label">Nome Empresa</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control"  ng-model="vm.empresa.nome" id="nome" tooltip-placement="top" tooltip="Nome da empresa" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="fantasia" class="col-sm-2 control-label">Fantasia</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control"  ng-model="vm.empresa.fantasia" id="fantasia" tooltip-placement="top" tooltip="Nome fantasia da empresa">
+                                                </div>
+                                            </div>                                          
+                                            <div class="form-group">
+                                                <label for="cpf_cnpj" class="col-sm-2 control-label">CPF/CNPJ</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control"  ng-model="vm.empresa.cpf_cnpj" id="cpf_cnpj" tooltip-placement="top" tooltip="CPF ou CNPJ da Empresa" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group" align="center">
+                                                <div ng-show="vm.uploader.progress" class="progress" style="margin: 0; padding: 0">
+                                                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': vm.uploader.progress + '%' }"></div>
+                                                </div>
+                                                <img src="{{vm.pathImg}}{{vm.empresa.logo?vm.empresa.logo:'noImg.jpg'}}" alt="" class="img-rounded" width="180px" >
+
+                                                <input type="file" class="btn btn-default btn-sm form-control" nv-file-select uploader="vm.uploader"/>
+
+                                                <!-- <button class="btn btn-primary btn-sm form-control" type="button" ng-click=""><i class="fa fa-file-image-o"></i> Carregar Img.</button> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <label for="endereco" class="col-sm-2 control-label">Telefones</label>
+                                                    <div class="col-sm-3">
+
+                                                        <input type="text" class="form-control"  ng-model="vm.empresa.tel1" id="tel1" tooltip-placement="top" tooltip="Telefone 1" placeholder="Telefone 1">
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <input type="text" class="form-control"  ng-model="vm.empresa.tel2" id="tel2" tooltip-placement="top" tooltip="Telefone 2" placeholder="Telefone 2">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" class="form-control"  ng-model="vm.empresa.cel" id="cel" tooltip-placement="top" tooltip="Celular" placeholder="Celular">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <label for="endereco" class="col-sm-2 control-label">Endereço</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control"  ng-model="vm.empresa.endereco" id="endereco" tooltip-placement="top" tooltip="Endereço da Empresa">
+                                                </div>
+  
+                                            </div>
+                                            <div class="form-group">
+
+                                                <div class="col-md-5">
+                                                    <label for="estado" class="col-sm-2 control-label">Estado UF</label>
+                                                    <div class="col-sm-10" ng-class="{'has-error':formEmp.estado.$invalid}">
+                                                        <select ng-options="estado for estado in estados" class="form-control"  ng-model="vm.empresa.estado" name="estado" tooltip-placement="top" uib-tooltip="Estado UF" required></select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <label for="cidade" class="col-sm-2 control-label">Cidade</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" class="form-control"  ng-model="vm.empresa.cidade" id="cidade" tooltip-placement="top" tooltip="Cidade da Empresa" >
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="responsavel" class="col-sm-2 control-label">Responsável</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control"  ng-model="vm.empresa.responsavel" id="cidade" tooltip-placement="top" tooltip="Responsável pela Empresa" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email" class="col-sm-2 control-label">E-mail</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control"  ng-model="vm.empresa.email" id="cidade" tooltip-placement="top" tooltip="Email para contato" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="slogan" class="col-sm-2 control-label">Slogan</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control"  ng-model="vm.empresa.slogan" id="cidade" tooltip-placement="top" tooltip="Slogan da empresa" >
+                                                </div>
+                                            </div>                                     
+                                            <div class="form-group">
+                                                <div class="col-sm-10 col-sm-offset-2">
+                                                    <button class="btn btn-primary" ng-click="vm.editEmpresa()">Salvar</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>                                
+                            </div>
+                            <div uib-accordion-group class="panel-default" is-open="status.isTwoOpen">
+                                <uib-accordion-heading>
+                                Cadastrar Lojas <i class="pull-right fa" ng-class="{'fa-chevron-down': status.isTwoOpen, 'fa-chevron-right': !status.isTwoOpen}"></i>
+                                </uib-accordion-heading>
+                                <button type="button" class="btn btn-primary" data-ng-click="vm.newLoja()" ><i class="fa fa-plus"></i> Nova Loja</button>
+                                <div class="table-responsive">
+                                    <table class="table table-striped" ng-show="vm.lojas.length > 0">
+                                        <thead>
+                                            <tr>
+                                                <th>Nome Loja</th>
+                                                <th>Endereço</th>
+                                                <th>Telefone</th>
+                                                <th>Funções</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="l in vm.lojas track by $index" >
+                                                <td>{{l.nome}}</td>
+                                                <td>{{l.endereco}}</td>
+                                                <td>{{l.tel}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary" data-ng-click="vm.editLoja(l)" title="Alterar"><i class="fa fa-edit" aria-hidden="true" ></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div uib-accordion-group class="panel-default" is-open="status.isThreeOpen">
+                                <uib-accordion-heading>
+                                Modelo do Contrato <i class="pull-right fa" ng-class="{'fa-chevron-down': status.isThreeOpen, 'fa-chevron-right': !status.isThreeOpen}"></i>
+                                </uib-accordion-heading>
+                                    <div class="col-sm-offset-2" style="width: 595px">
+                                        <textarea  ng-model="vm.modContrato"  ng-text-editor ></textarea>
+                                        <button class="btn btn-primary" ng-click="vm.editModContrato(vm.modContrato)">Salvar</button>
+                                    </div>
+                            </div>
+                            <div uib-accordion-group class="panel-default" is-open="status.isFourOpen">
+                                <uib-accordion-heading>
+                                Licença do Sistema<i class="pull-right fa" ng-class="{'fa-chevron-down': status.isFourOpen, 'fa-chevron-right': !status.isFourOpen}"></i>
+                                </uib-accordion-heading>
+                                <button type="button" class="btn btn-primary" data-ng-click="vm.novaLicenca()" ><i class="fa fa-dollar orange"></i> Valor da Licença</button>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            <tr ng-repeat="l in vm.licenca track by $index" class="orange">
+                                                <td><i class="fa fa-certificate"></i></td>
+                                                <td><b>{{l.plano}}</b></td>
+                                                <td><b>Ativado em : {{l.data_ativo | date:"dd/MM/yyyy"}}</b></td>
+                                                <td ng-hide="l.vitalicio"><b>Plano para {{l.dias_lic}} dias</b></td>
+                                                <td ng-hide="l.vitalicio"><b>Restam <span class="label label-default"> {{l.qt_dias}} </span> dias</b></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </uib-accordion>
+                    </div>
+                    <div class="widget-foot">
+                        <div class="col-sm-offset-2">
+                        </div> 
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+

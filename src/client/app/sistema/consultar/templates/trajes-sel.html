@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="alert" ng-click="vm.cancel()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="col-md-10">
+        <h4><i class="fa fa-check-square-o green" aria-hidden="true"></i><small> Trajes Selecionados</small></h4>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+        	<div class="form-group">
+        		<button class="btn btn-primary" ng-click="formTraje.$show()" ><i class="fa fa-edit" aria-hidden="true"></i> Negociar Valor</button>
+        	</div>
+        	<div class="table-responsive">
+	            <table class="table table-striped" ng-show="vm.trajes.length > 0">
+	                <tbody>
+	                    <tr ng-repeat="t in vm.trajes track by $index" >
+	                        <td><a href ng-click="vm.zoomImg(t)"><img src="{{vm.pathImg}}{{t.imagem?t.imagem:'noImg.jpg'}}" class="img-rounded" height="40px"></a></td>
+	                        <td>{{t.descricao}}</td>
+	                        <td>{{t.cor}}</td>
+	                        <td>{{t.tam}}</td>
+							<td>
+								<span editable-number="t.valor_traje" e-name="valor_traje" e-min="t.valor_min.toFixed(2)" e-form="formTraje" onbeforesave="vm.validarDesc(t,$data)" e-uib-tooltip="O valor minimo é {{t.valor_min.toFixed(2)}}">
+									{{t.valor_traje|currency:'R$'}}
+								</span>
+							</td>
+	                        <td><a href ng-click="vm.rem(t,$index)"><i  class="fa fa-trash red" aria-hidden="true"></i></a></td>
+	                    </tr>
+	                </tbody>
+	            </table>
+            </div>
+            <h4 class="blue pull-right"><strong>Total {{vm.soma(vm.trajes,'','valor_traje') | currency:'R$'}}</strong></h4>
+		    <form editable-form name="formTraje" ng-show="formTraje.$visible">
+		      <button type="submit" ng-disabled="formTraje.$waiting" class="btn btn-success"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+		        Salvar
+		      </button>
+		      <button type="button" ng-disabled="formTraje.$waiting" ng-click="formTraje.$cancel()" class="btn btn-default"><i class="fa fa-ban" aria-hidden="true"></i>
+		        Cancelar
+		      </button>
+		    </form>	            
+        </div>
+    </div>
+</div>
+<div class="modal-footer" align="center" ng-hide="formTraje.$visible">
+	<button ng-disabled="vm.trajes.length == 0" class="btn btn-primary btn-block" type="button" ng-click="vm.ok()">Iniciar Contrato da Reserva <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></button>
+</div>

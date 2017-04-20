@@ -1,0 +1,37 @@
+<div class="modal-header">
+    <h3 class="modal-title">Alterar a Senha</h3>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal">
+
+        <div class="form-group {{vm.senhaInvalida==true?'has-error':''}}">
+            <div class="col-sm-10">
+                <input type="password" class="form-control"  ng-model="vm.senha.oldsenha" id="oldsenha" placeholder="Senha Atual">
+                <span ng-show="vm.senhaInvalida" class="text-danger">Senha incorreta <i class="fa fa-exclamation"></i></span>                
+            </div>
+        </div>  
+        <div class="form-group">
+            <div class="col-sm-10">
+                <input type="password" class="form-control" ng-model="vm.senha.newsenha" id="newsenha" placeholder="Nova Senha">
+            </div>
+            <div class="col-sm-1">
+                <span ng-show="vm.senha.rsenha == vm.senha.newsenha && vm.senha.rsenha != ''" class="text-success"><i class="fa fa-check"></i></span>                
+            </div>
+
+        </div>    
+        <div class="form-group">
+            <div class="col-sm-10  ">
+                <input type="password" class="form-control" ng-model="vm.senha.rsenha" id="rsenha" placeholder="Repetir Senha">
+            </div>
+            <div class="col-sm-1">
+                <span ng-show="vm.senha.rsenha != vm.senha.newsenha && vm.senha.rsenha != ''" class="text-danger"><i class="fa fa-exclamation"></i></span>
+                <span ng-show="vm.senha.rsenha == vm.senha.newsenha && vm.senha.rsenha != ''" class="text-success"><i class="fa fa-check"></i></span>
+            </div>
+        </div>    
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-disabled="vm.senha.rsenha != vm.senha.newsenha || (vm.senha.newsenha == '')" ng-click="vm.validaSenha(vm.senha)">Salvar</button>
+    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancelar</button>
+</div>

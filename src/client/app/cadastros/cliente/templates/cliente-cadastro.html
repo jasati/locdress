@@ -1,0 +1,181 @@
+<script type="text/ng-template" id="nomeTemp.html">
+  <a>
+      <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+      <p><b>RG :</b> {{match.model.rg}} <b>CPF :</b> {{match.model.cpf}}</p>
+  </a>
+</script>
+<script type="text/ng-template" id="rgTemp.html">
+  <a>
+      <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+      <p><b>Nome :</b> {{match.model.nome_completo}} <b>CPF :</b> {{match.model.cpf}}</p>
+  </a>
+</script>
+<script type="text/ng-template" id="cpfTemp.html">
+  <a>
+      <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+      <p><b>Nome :</b> {{match.model.nome_completo}} <b>RG :</b> {{match.model.rg}}</p>
+  </a>
+</script>
+
+<div class="modal-header bblue">
+    <button type="button" class="close" data-dismiss="alert" ng-click="vm.cancel()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="col-md-10">
+        <h4 class="bblue h4"><i class="fa {{vm.icon}}" aria-hidden="true"></i> {{vm.title}}</h4>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" name="formCli" ng-submit="vm.ok(vm.cliente)" autocomplete="off" novalidate>
+
+                <div class="form-group">
+                    <label for="loja" class="col-md-2 control-label">Loja</label>
+                    <div class="col-md-10">
+                        <select ng-options="loja.id_loja as loja.nome for loja in vm.lojas" ng-model="vm.cliente.id_loja" class="form-control input-sm" placeholder="Loja do atendimento" id="loja"></select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nome" class="col-md-2 control-label">
+                        <span>Nome <i ng-show="formCli.nome.$invalid" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i></span>
+                    </label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control"  ng-model="vm.cliente.nome_completo" name="nome" tooltip-placement="top" uib-tooltip="Nome completo do cliente" uib-typeahead="cliente as cliente.nome_completo for cliente in vm.getCliCad($viewValue,'nome')" typeahead-on-select="vm.preeCampoSel($item)" typeahead-template-url="nomeTemp.html" typeahead-wait-ms="2" typeahead-min-length="3" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="apelido" class="col-md-2 control-label">Apelido</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control"  ng-model="vm.cliente.nome_reduzido" id="apelido" tooltip-placement="top" tooltip="Nome Reduzido do cliente">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="profissao" class="col-md-2 control-label">Profissão</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control"  ng-model="vm.cliente.profissao" id="profissao" tooltip-placement="top" tooltip="Profissão do cliente">
+                    </div>
+                </div>                
+
+                <div class="form-group">
+                    <label for="pai" class="col-md-2 control-label">Nome Pai</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control"  ng-model="vm.cliente.nome_pai" id="pai" tooltip-placement="top" uib-tooltip="Nome do pai do cliente">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mae" class="col-md-2 control-label">Nome Mãe</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control"  ng-model="vm.cliente.nome_mae" id="mae" tooltip-placement="top" uib-tooltip="Nome da mãe do cliente">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="data" class="col-md-2 control-label">Nascimento</label>
+                    <div class="col-md-6">
+                        <input type="date" class="form-control"  ng-model="vm.cliente.data_nascimento" id="data" tooltip-placement="top" uib-tooltip="data">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="rg" class="col-md-2 control-label">
+                        <span>RG <i ng-show="formCli.rg.$invalid" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i></span>
+                    </label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control"  ng-model="vm.cliente.rg" name="rg" tooltip-placement="top" uib-tooltip="Numero do Registro de Identidade" uib-typeahead="cliente as cliente.rg for cliente in vm.getCliCad($viewValue,'rg')" typeahead-on-select="vm.preeCampoSel($item)" typeahead-template-url="rgTemp.html" typeahead-wait-ms="2" typeahead-min-length="3" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cpf" class="col-md-2 control-label">
+                        <span >CPF <i ng-show="formCli.cpf.$invalid || !vm.cpfValido" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Cpf inválido!"></i></span>
+                    </label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control"  ng-model="vm.cliente.cpf" name="cpf" tooltip-placement="top" uib-tooltip="CPF" uib-typeahead="cliente as cliente.cpf for cliente in vm.getCliCad($viewValue,'cpf')" typeahead-on-select="vm.preeCampoSel($item)" typeahead-template-url="cpfTemp.html" typeahead-wait-ms="2" typeahead-min-length="3"  ui-mask="999.999.999-99" required ng-change="vm.validarCpf(vm.cliente.cpf)" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="estado" class="col-md-2 control-label">Estado Civil</label>
+                    <div class="col-md-6">
+                        <select ng-options="estado.desc as estado.desc for estado in vm.optEstCivil" ng-model="vm.cliente.estado_civil" class="form-control input-sm" placeholder="Estado Civil" id="estado"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tel1" class="col-md-2 control-label">Telefones</label>
+
+                    <div class="col-md-3">
+                        <input type="text" class="form-control"  ng-model="vm.cliente.tel1" id="tel1" tooltip-placement="top" uib-tooltip="Telefone Contato" placeholder="Telefone 1">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control"  ng-model="vm.cliente.cel1" name="cel1" tooltip-placement="top" uib-tooltip="Celular Contato 1" placeholder="Celular 1" required>
+                            <span class="input-group-addon" ng-show="formCli.cel1.$invalid"><i class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i>
+                            </span>                            
+                        </div>
+                        
+                    </div>
+
+                    <div class="col-md-3">
+                        <input type="text" class="form-control"  ng-model="vm.cliente.cel2" id="cel2" tooltip-placement="top" uib-tooltip="Celular Contato 2" placeholder="Celular 2">
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="col-md-2 control-label">E-mail</label>
+                    <div class="col-md-10">
+                        <input type="email" class="form-control"  ng-model="vm.cliente.email" id="email" tooltip-placement="top" tooltip="E-mail do cliente">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="endereco" class="col-md-2 control-label">
+                        <span >Endereço <i ng-show="formCli.endereco.$invalid" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i></span>                        
+                    </label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control"  ng-model="vm.cliente.endereco" name="endereco" tooltip-placement="top" tooltip="Endereço do cliente" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bairro" class="col-md-2 control-label">Bairro</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control"  ng-model="vm.cliente.bairro" id="bairro" tooltip-placement="top" tooltip="Bairro do cliente">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="complemento" class="col-md-2 control-label">Complemento</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control"  ng-model="vm.cliente.complemento" id="complemento" tooltip-placement="top" tooltip="Bairro do cliente">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cidade" class="col-md-2 control-label">
+                        <span >Cidade <i ng-show="formCli.cidade.$invalid" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i></span>
+                    </label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control"  ng-model="vm.cliente.cidade" name="cidade" tooltip-placement="top" tooltip="Cidade do cliente" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2">
+                        <button class="btn btn-primary" type="submit" ng-disabled="formCli.$invalid||!vm.cpfValido" >Salvar</button>
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    
+    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancelar</button>
+</div>

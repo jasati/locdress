@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./src/client/app/sistema/consultar/consulta.service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./src/client/app/sistema/consultar/consulta.service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">14.29% <small>(7 / 49)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">16.67% <small>(1 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">14.29% <small>(7 / 49)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../index.html">All files</a> &#187; <a href="index.html">./src/client/app/sistema/consultar/</a> &#187; consulta.service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*
+SELECT 
+i.id_item,
+i.id_empresa,
+i.id_categoria,
+i.id_subcategoria,
+i.descricao,
+i.status,
+i.ref,
+i.valor,
+i.per_desc,
+i.imagem,
+i.tamanho,
+i.cor,
+i.id_loja,
+r.data_alugar,
+r.data_entrega
+&nbsp;
+FROM itens i 
+LEFT JOIN reserva_itens ri ON i.id_item = ri.id_item
+LEFT JOIN reservas r ON ri.id_reserva = r.id_reserva
+&nbsp;
+SELECT 
+@LP:='2016-09-21',
+@EP:='2016-09-31',
+i.id_item,
+i.id_empresa,
+i.id_categoria,
+i.id_subcategoria,
+i.descricao,
+i.status,
+i.ref,
+i.valor,
+i.per_desc,
+i.imagem,
+i.tamanho,
+i.cor,
+i.id_loja,
+@select:=
+ (SELECT
+  CASE 
+    WHEN @LP &gt;= r.data_alugar and @LP &lt;= r.data_entrega THEN 'RL'
+    WHEN @EP &gt;= r.data_alugar and @EP &lt;= r.data_entrega THEN 'RE'
+    WHEN @LP &lt;= r.data_alugar and @EP &gt;= r.data_entrega THEN 'RM'  
+    ELSE 'L'
+  END   
+&nbsp;
+ FROM reserva_itens ri INNER JOIN reservas r ON ri.id_reserva = r.id_reserva
+ WHERE 
+  r.data_entrega &gt;= CURRENT_DATE() 
+ AND 
+  ri.id_item = i.id_item 
+ AND 
+   (
+       (r.data_alugar &lt;= @LP and r.data_entrega &gt;= @EP) 
+       OR
+       (r.data_entrega &gt;= @EP and r.data_alugar &lt;= @EP AND r.data_alugar &lt;= @EP) 
+       OR
+       (r.data_alugar &lt;= @LP and r.data_entrega &lt;= @EP AND r.data_entrega &gt;= @LP) 
+       OR
+       (r.data_alugar &gt;= @LP and r.data_entrega &lt;= @EP) 
+&nbsp;
+    ) 
+ )AS resul,
+case  
+ WHEN @select is NULL THEN 'L' ELSE @select
+END as situacao
+&nbsp;
+FROM itens i 
+&nbsp;
+ */
+&nbsp;
+(function() {
+    'use strict';
+    angular
+        .module('sis.consulta')
+        .factory('ConsultaService', ConsultaService);
+    ConsultaService.$inject = ['$q','dataservice','DataserviseProvider','UtilsFunctions'];
+    /* @ngInject */
+<span class="fstat-no" title="function not covered" >    function ConsultaService($q,dataservice,DataserviseProvider,UtilsFunctions) {</span>
+<span class="cstat-no" title="statement not covered" >        var campos = "i.id_item, i.id_empresa, i.id_categoria, i.id_subcategoria, i.descricao,"+</span>
+        " i.status, i.ref, i.valor, i.per_desc, g.imagem, i.tamanho, i.cor, i.id_loja, "+
+        "@select:= (SELECT CASE WHEN @LP &gt;= r.data_alugar and @LP &lt;= r.data_entrega THEN 'RL' "+
+        "WHEN @EP &gt;= r.data_alugar and @EP &lt;= r.data_entrega THEN 'RE' WHEN @LP &lt;= r.data_alugar and @EP &gt;= r.data_entrega THEN 'RM'"+
+        " ELSE 'L' END FROM reserva_itens ri INNER JOIN reservas r ON ri.id_reserva = r.id_reserva "+
+        "WHERE r.data_entrega &gt;= CURRENT_DATE() AND ri.id_item = i.id_item AND ((r.data_alugar &lt;= @LP"+
+        " and r.data_entrega &gt;= @EP) OR (r.data_entrega &gt;= @EP and r.data_alugar &lt;= @EP AND r.data_alugar &lt;= @EP) "+
+        "OR (r.data_alugar &lt;= @LP and r.data_entrega &lt;= @EP AND r.data_entrega &gt;= @LP) OR (r.data_alugar &gt;= @LP "+
+        "and r.data_entrega &lt;= @EP)))AS resul, case WHEN @select is NULL THEN 'L' ELSE @select END as situacao";
+<span class="cstat-no" title="statement not covered" >        var inner_join = {</span>
+            0:"",
+        };
+<span class="cstat-no" title="statement not covered" >        var left_join = {</span>
+            0:"galeria g on i.id_galeria = g.id_galeria",
+        };
+<span class="cstat-no" title="statement not covered" >        var camposInvalidos = [</span>
+            '', 
+&nbsp;
+        ];
+<span class="cstat-no" title="statement not covered" >        var orderBy = "descricao";</span>
+<span class="cstat-no" title="statement not covered" >        var userLogado = DataserviseProvider.userLogado.usuario;</span>
+<span class="cstat-no" title="statement not covered" >        var dadosEmp = DataserviseProvider.userLogado.empresa;</span>
+<span class="cstat-no" title="statement not covered" >        var consulta = [];</span>
+<span class="cstat-no" title="statement not covered" >        var service = {</span>
+            read         : read,
+            userLogado   : userLogado,
+            dadosEmp     : dadosEmp,
+            verificarPermissao : verificarPermissao,
+        };
+<span class="cstat-no" title="statement not covered" >        return service;</span>
+        ////////////////
+<span class="fstat-no" title="function not covered" >        function startDatasetDinamico() {</span>
+<span class="cstat-no" title="statement not covered" >            var dts = DataserviseProvider.getPrmWebService();</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'id_index_main','i.id_empresa');</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'valor_id_main',DataserviseProvider.indexGeral.id_emp);</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'modulo','itens i');</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'id_tabela','i.id_item');</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'left_join',left_join);</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'order by',orderBy);     </span>
+<span class="cstat-no" title="statement not covered" >            return dts;</span>
+        }        
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function read (prmConsulta,prmLimit) {</span>
+<span class="cstat-no" title="statement not covered" >            var msgErro = 'Falha na Consulta dos Trajes';</span>
+<span class="cstat-no" title="statement not covered" >            var servico = 'consulta';</span>
+<span class="cstat-no" title="statement not covered" >            var consulta = " and i.status = 1 ";</span>
+<span class="cstat-no" title="statement not covered" >            var cp = '';</span>
+<span class="cstat-no" title="statement not covered" >            var prmSql = "@LP:='', @EP:='',";/</span>/Locação pretendida  Entrega Pretendida
+<span class="cstat-no" title="statement not covered" >            if (prmConsulta.dtLP !== undefined &amp;&amp; prmConsulta.dtLP !== "" &amp;&amp; prmConsulta.dtEP !== undefined &amp;&amp; prmConsulta.dtEP !== ""){</span>
+<span class="cstat-no" title="statement not covered" >                prmSql = "@LP:='"+UtilsFunctions.formatData(prmConsulta.dtLP)+"', @EP:='"+UtilsFunctions.formatData(prmConsulta.dtEP)+"',";</span>
+<span class="cstat-no" title="statement not covered" >                cp = prmSql+campos;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (prmConsulta.id_item !== undefined &amp;&amp; prmConsulta.id_item !== "") {</span>
+<span class="cstat-no" title="statement not covered" >                    consulta += " and i.id_item = "+prmConsulta.id_item;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (prmConsulta.id_loja !== undefined &amp;&amp; prmConsulta.id_loja !== "") {</span>
+<span class="cstat-no" title="statement not covered" >                    consulta += " and i.id_loja = "+prmConsulta.id_loja;</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (prmConsulta.descricao !== undefined &amp;&amp; prmConsulta.descricao !== "") {</span>
+<span class="cstat-no" title="statement not covered" >                    consulta += " and i.descricao LIKE '%"+prmConsulta.descricao+"%'";</span>
+                }
+<span class="cstat-no" title="statement not covered" >                if (prmConsulta.ref !== undefined &amp;&amp; prmConsulta.ref !== "") {</span>
+<span class="cstat-no" title="statement not covered" >                    consulta += " and i.ref LIKE '%"+prmConsulta.ref+"%'";</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var dts = startDatasetDinamico();</span>
+<span class="cstat-no" title="statement not covered" >                DataserviseProvider.setDataset(dts,'campos',cp);</span>
+<span class="cstat-no" title="statement not covered" >                DataserviseProvider.setDataset(dts,'consulta',consulta);   </span>
+<span class="cstat-no" title="statement not covered" >                DataserviseProvider.setDataset(dts,'limit',prmLimit);          </span>
+<span class="cstat-no" title="statement not covered" >                return dataservice.dadosWeb(dts,servico,msgErro)</span>
+                	.then(<span class="fstat-no" title="function not covered" >function (data) {</span>
+<span class="cstat-no" title="statement not covered" >                    	return data;</span>
+               		 });
+            }
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function verificarPermissao(idMod) {</span>
+<span class="cstat-no" title="statement not covered" >            var modulos = DataserviseProvider.userLogado.modulos;</span>
+<span class="cstat-no" title="statement not covered" >            return UtilsFunctions.permissao(modulos,idMod);</span>
+        }
+&nbsp;
+&nbsp;
+    }
+})();</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 28 2016 10:22:56 GMT-0300 (Hora oficial do Brasil)</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

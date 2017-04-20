@@ -1,0 +1,115 @@
+<section class="mainbar" ng-show="vm.permissao(17)">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wblue">
+                    <div ht-widget-header icon="{{vm.icon}}" title="{{vm.title}}" subtitle="{{vm.subtitle}}"></div>
+                    <div class="widget-content user">
+                        <div class="navbar navbar-inverse">
+                            <div class="container-fluid">
+                                <div class="navbar-header navbar-inverse">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary navbar-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Sub-Menu" id="submenu">
+                                        <i class="fa fa-bars"></i>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button> 
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#" ng-click="vm.consultaTrajes()"><i class="fa fa-cubes"></i>  Consultar</a></li>
+                                    </ul> 
+                                    <button type="button" class="btn btn-primary navbar-btn" data-ng-click="vm.newRes()" ng-disabled="!vm.permissao(18)"><i class="fa fa-plus"></i> Nova Reserva</button>
+
+                                </div>                            
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+
+                                    <div class="navbar-btn">
+                                        <div class="col-md-8">
+                                            <div class="input-group input-group-sm">
+                                              <input type="text" class="form-control" placeholder="Consultar Cliente" ng-model="vm.consulta.cliente"/>
+                                              <div class="input-group-btn">
+                                                <button class="btn btn-default" type="button" ng-click="vm.pesquisa()" uib-tooltip="Mostrar opções de pesquisa"><i class="fa fa-caret-down"></i></button>
+                                                <button type="button" class="btn btn-primary" data-ng-click="vm.getRes()" placeholder="Consultar"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="navbar-btn">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                        </div>    
+                        <small><em>Exibindo reservas feitas de {{vm.convDate(vm.consulta.dt_res_ini) | date : "dd/MM/yyyy"}} até {{vm.convDate(vm.consulta.dt_res_fim) | date : "dd/MM/yyyy"}}</em></small>                        
+                        <div ng-hide="vm.reservas.length > 0"><h3 class="text-warning">Sem reservas para ser exibida.</h3></div>
+                        <table class="table table-condensed table-striped" ng-show="vm.reservas.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Nº</th>
+                                    <th>Data Contrato</th>
+                                    <th>Situação</th>
+                                    <th>Cliente</th>
+                                    <th>Responsável Reserva</th>
+                                    <th>Data Retirada</th>
+                                    <th>Data Devolução</th>
+                                    <th>Total Locação</th>
+                                    <th>Total Pago</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="r in vm.reservas track by r.id_reserva">
+                                    <td>{{r.id_reserva}}</td>
+                                    <td>{{vm.convDate(r.data_reserva)|date : 'dd/MM/yyyy'}}</td>
+                                    <td><span ng-class="{'label label-default':r.status===0,'label label-warning':r.status===1,'label label-success':r.status===2}">{{r.status===0?'Reservado':r.status===1?'Retirado':'Devolvido'}}</span><i class="fa fa-tag blue"></i><span ng-show="r.status===2"><br><small><i>Para : {{r.resp_dev}}</i></small></span></td>
+                                    <td>{{r.cliente}}</td>
+                                    <td>{{r.resp_alug}}</td>
+                                    <td>{{r.data_retirada | date : "dd/MM/yyyy"}}</td>
+                                    <td>{{r.data_devolucao | date : "dd/MM/yyyy"}}</td>
+                                    <td><b class="text-danger">{{r.total|currency:'R$'}}</b></td>
+                                    <td><b class="green">{{r.total_rec|currency:'R$'}}</b></td>
+                                    <td>
+                                        <button type="button" class="btn btn-info" data-ng-click="vm.retTrajesRes(r)" uib-tooltip="Retirar Trajes" ng-show="r.status===0"><i class="fa fa-upload"></i></button> 
+                                        <button type="button" class="btn btn-warning" data-ng-click="vm.devTrajes(r)" uib-tooltip="Receber Trajes" ng-show="r.status===1"><i class="fa fa-download"></i></button> 
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-ng-click="vm.editRes(r)" uib-tooltip="Alterar Reserva" ng-disabled="!vm.permissao(23)"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td>
+                                       <button type="button" class="btn btn-danger" data-ng-click="vm.deleteRes(r)" uib-tooltip="Excluir Reserva" ng-disabled="!vm.permissao(24)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h3 ng-show="vm.requisicoes.length > 0" class="text-info">Total de Entradas: <strong>{{vm.soma(vm.reservas,'','valor_entrada') | currency:'R$'}}</strong></h3>
+                    </div>
+                    <div class="widget-foot" align="center">
+                        <div>
+                            <ul uib-pagination  total-items="vm.totalReg" ng-model="vm.nPagina" max-size="5" class="pagination-sm" boundary-links="true" rotate="false" items-per-page="vm.totalRegPag" num-pages="numPages" ng-change="vm.setPage()"></ul>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5 col-sm-offset-3">
+                                <div class="input-group input-group-sm">
+                                  <span class="input-group-addon" id="basic-addon1" >Registros por Pagina</span>
+                                  <input type="text" class="form-control" ng-model="vm.totalRegPag">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button" ng-click="vm.getRes()">Ok!</button>
+                                  </span>                              
+                                </div> 
+                            </div>
+
+                        </div>                           
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

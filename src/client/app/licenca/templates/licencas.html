@@ -1,0 +1,98 @@
+<header class="clearfix">
+    <ht-top-nav navline="vm.navline" usuario="vm.usuario" logado="vm.logado" loja="vm.loja"></ht-top-nav>
+</header>
+<br>
+<div class="row">
+	<div class="container">
+		<div class="panel panel-danger">
+			<div class="panel-heading">
+				<h4 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Suas licenças estão vencidas!</h4>
+			</div>
+			<div class="panel-body">
+				<div class="col-sm-12">
+					<h3>{{vm.empresa.nome}}</h3>
+				</div>
+				<div class="col-md-8">
+			        <div class="form-group">
+			            <label for="fantasia">Nome</label>
+			            <span  class="form-control" tooltip-placement="top" uib-tooltip="Nome fantasia da empresa" >{{vm.empresa.fantasia}}</span>
+			        </div>
+		            <div class="form-group">
+		                <label for="cpf_cnpj">CPF/CNPJ</label>
+		                <span class="form-control" tooltip-placement="top" uib-tooltip="CPF ou CNPJ da Empresa">{{vm.empresa.cpf_cnpj}}</span>
+		            </div>
+		            <div class="form-group">
+		                <div class="row">
+		                    <div class="col-sm-5">
+		                        <label for="estado">Estado UF</label>
+		                        <span class="form-control" tooltip-placement="top" uib-tooltip="Estado UF">{{vm.empresa.estado}}</span>
+		                    </div>
+		                    <div class="col-sm-7">
+		                        <label for="cidade">Cidade</label>
+		                        <span class="form-control" tooltip-placement="top" uib-tooltip="Nome da cidade" >{{vm.empresa.cidade}}</span>
+		                    </div>
+		                </div>
+		            </div>
+		            <div class="form-group">
+		                <label for="endereco" >Endereço</label>
+		                <span class="form-control" tooltip-placement="top" uib-tooltip="Endereço da Empresa">{{vm.empresa.endereco}}</span>
+		            </div>
+
+		            <div class="form-group">
+		                <label for="responsavel">Nome do Responsável</label>
+		                <span class="form-control" tooltip-placement="top" uib-tooltip="Responsável pela Empresa">{{vm.empresa.responsavel}}</span>
+		            </div>
+
+		            <div class="form-group">
+		                <label for="email">E-mail</label>
+		                <span class="form-control" tooltip-placement="top" uib-tooltip="Email para contato">{{vm.empresa.email}}</span>
+		            </div>
+				</div>
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-sm-8">
+										<h4 class="text-info"><i class="fa fa-certificate"></i> Licenças</h4>
+									</div>
+								</div>
+							</div>
+							<div class="panel-body">
+								<form action="http://mucontratos.alan.dev/v1/licenca" method="post">
+									<input hidden type="text" name="hottok" value="testedelvalijdsfldsk54154645">
+									<button class="btn btn-success" type="submit"><i class="fa fa-ticket"></i> Ativar Licença</button>
+								</form>
+								<div class="table-responsive">
+									<table class="table">
+										<tbody>
+											<tr ng-repeat="l in vm.licencas">
+												<td>
+													<div align="center" class="bblue">
+														<p>Plano</p>
+														<p>{{l.plano}}</p>
+													</div>
+												</td>
+												<td>
+													<div>
+														<p>Valido por : <span class="badge">{{l.dias_lic}} Dias</span></p>
+														<p>Ativado em : <span class="label label-default">{{vm.convDate(l.data_ativo) | date : "dd/MM/yyyy"}}</span></p>
+													</div>
+												</td>
+												<td>
+													<p>Faltam : <span class="label label-default"> {{l.qt_dias}} Dias</span> </p>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+							    </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>

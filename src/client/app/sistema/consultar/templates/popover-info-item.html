@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="col-md-12">
+		<p>Está reservado nas seguites datas abaixo:</p>
+		<div class="list-group">
+			<a class="list-group-item" ng-repeat="tjr in vm.infoTjRes">
+				<h4 class="list-group-item-heading">
+				{{tjr.cliente}}
+				</h4>
+				<div class="col-md-2">
+					<i class="fa fa-calendar blue"></i>
+				</div>
+				<div class="col-md-4">
+					<p>Data Reservado</p>
+					<p>{{vm.convDate(tjr.data_reserva) | date : "dd/MM/yyyy HH:mm:ss"}}</p>
+				</div>
+				<div class="col-md-3">
+					<p>Data Locação</p>
+					<p>{{vm.convDate(tjr.data_alugar) | date : "dd/MM/yyyy"}}</p>
+				</div>
+				<div class="col-md-3">
+					<p>Data Entrega</p>
+					<p>{{vm.convDate(tjr.data_alugar) | date : "dd/MM/yyyy"}}</p>
+				</div>
+			</a>
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,79 @@
+<div class="col-md-12" ng-init="estados=['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO']">
+
+    <form class="form" name="formEmp" novalidate>
+        <div class="row">
+        	<div class="col-sm-12">
+        		<h3>Informe os dados da empresa</h3>
+        	</div>
+            <div class="col-sm-6">
+                <div class="form-group" ng-class="{'has-error':formEmp.nome.$invalid}">
+                    <label for="nome">Razão Social da Empresa</label>
+                    <input type="text" class="form-control"  ng-model="vm.empresa.nome" name="nome" tooltip-placement="top" uib-tooltip="Nome da empresa" required>
+                </div>
+                <div class="form-group" ng-class="{'has-error':formEmp.fantasia.$invalid}">
+                    <label for="fantasia">Nome</label>
+                    <input type="text" class="form-control"  ng-model="vm.empresa.fantasia" name="fantasia" tooltip-placement="top" uib-tooltip="Nome fantasia da empresa" required>
+                </div>
+                <div class="form-group" ng-class="{'has-error':formEmp.cpf_cnpj.$invalid}">
+                    <label for="cpf_cnpj">CPF/CNPJ</label>
+                    <input type="text" class="form-control"  ng-model="vm.empresa.cpf_cnpj" name="cpf_cnpj" tooltip-placement="top" uib-tooltip="CPF ou CNPJ da Empresa" required>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-5" ng-class="{'has-error':formEmp.estado.$invalid}">
+                            <label for="estado">Estado UF</label>
+                            <select ng-options="estado for estado in estados" class="form-control"  ng-model="vm.empresa.estado" name="estado" tooltip-placement="top" uib-tooltip="Estado UF" required></select>
+                        </div>
+                        <div class="col-sm-7" ng-class="{'has-error':formEmp.estado.$invalid}">
+                            <label for="cidade">Cidade</label>
+                            <input type="text" class="form-control"  ng-model="vm.empresa.cidade" name="cidade" tooltip-placement="top" uib-tooltip="Nome da cidade" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="endereco" >Endereço</label>
+                    <input type="text" class="form-control"  ng-model="vm.empresa.endereco" name="endereco" tooltip-placement="top" uib-tooltip="Endereço da Empresa">
+                </div>
+
+            </div>
+
+            <div class="col-sm-6"">
+                <div class="form-group" ng-class="{'has-error':formEmp.responsavel.$invalid}">
+                    <label for="responsavel">Nome do Responsável</label>
+                    <input type="text" class="form-control"  ng-model="vm.empresa.responsavel" name="responsavel" tooltip-placement="top" uib-tooltip="Responsável pela Empresa" required>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="tel1">Telefone 1</label>
+                            <input type="text" class="form-control col-sm-3"  ng-model="vm.empresa.tel1" id="tel1" tooltip-placement="top" uib-tooltip="Telefone 1 da sua empresa">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="tel1">Telefone 2</label>
+                            <input type="text" class="form-control col-md-3"  ng-model="vm.empresa.tel2" id="tel2" tooltip-placement="top" uib-tooltip="Telefone 1 da sua empresa">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tel1">Seu celular</label>
+                    <input type="text" class="form-control col-sm-3"  ng-model="vm.empresa.cel" id="cel" tooltip-placement="top" uib-tooltip="Celular" >
+                </div>
+
+                <div class="form-group" ng-class="{'has-error':formEmp.email.$invalid}">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="form-control"  ng-model="vm.empresa.email" name="email" tooltip-placement="top" uib-tooltip="Email para contato" required>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <button class="btn btn-primary btn-lg" ng-disabled="formEmp.$invalid||vm.salvando" ng-click="vm.callSalvarEmp(!formEmp.$invalid)"><i class="fa" ng-class="{'fa-floppy-o':!vm.salvando,'fa-spinner fa-pulse':vm.salvando}"></i> Salvar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+		

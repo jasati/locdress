@@ -1,0 +1,55 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="alert" ng-click="vm.cancel()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+</div>
+<div class="popover-html">
+
+    <form class="form-horizontal">
+
+        <div class="form-group">
+            <label for="n_doc" class="col-sm-3 control-label">Nº Documento</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control input-sm"  ng-model="vm.consulta.n_doc" id="n_doc" tooltip-placement="top" tooltip="Nº do Contrato da reserva">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="status" class="col-sm-3 control-label">Origem</label>
+            <div class="col-sm-5">
+                <select ng-options="origem.id as origem.desc for origem in vm.origem" ng-model="vm.consulta.origem" class="form-control input-sm" tooltip="Origem do Recebimento" id="status" ></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_tp" class="col-sm-3 control-label">Tipo Recebimento</label>
+            <div class="col-sm-5">
+                <select ng-options="mp.id_tp as mp.descricao for mp in vm.tipopgtos" ng-model="vm.consulta.id_tp" class="form-control input-sm" tooltip="Tipo de Pagamento que foi recebido" id="id_tp" ></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_reserva" class="col-sm-2 control-label">Data Recebimento</label>
+            <div class="col-sm-5">
+                <label for="id_reserva" class="col-sm-2 control-label">de</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control input-sm" uib-datepicker-popup ng-model="vm.consulta.data_rec_ini" tooltip-placement="top" uib-tooltip="Data Inicio do recebimento"/>
+                </div>
+            </div>
+
+            <div class="col-sm-5">
+                <label for="id_reserva" class="col-sm-2 control-label">Até</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control input-sm" uib-datepicker-popup ng-model="vm.consulta.data_rec_fim" tooltip-placement="top" uib-tooltip="Data Fim do recebimento"/>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+    
+<div class="modal-footer">
+    <button class="btn btn-default" type="button" ng-click="vm.limpar()"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button>
+    <button class="btn btn-primary" type="button" ng-click="vm.ok()"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button>
+</div>

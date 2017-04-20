@@ -1,0 +1,103 @@
+<section id="dashboard-view" class="mainbar">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2><i class="fa fa-dashboard"></i><b> Painel Informativo</b></h2>
+                </div>
+
+                <div class="col-md-12">
+                    <ul class="today-datas">
+                        <li class="bred" ng-show="vm.qtTrajesAjustar > 0">
+                            <a href ng-click="vm.getTrajes('aAjust',true)">
+                                <div class="pull-left"><i class="fa fa-cut"></i></div>
+                                <div class="datas-text pull-right">
+                                    <span class="bold">{{vm.qtTrajesAjustar}} Trajes</span> Para ser ajustado Hoje!
+                                </div>
+                            </a>
+                            <div class="clearfix"></div>
+                        </li>
+
+                        <li class="borange" ng-show="vm.qtTrajesRet > 0">
+                            <a href ng-click="vm.getTrajes('aRet',true)">
+                                <div class="pull-left"><i class="fa fa-upload"></i></div>
+                                <div class="datas-text pull-right">
+                                    <span class="bold">{{vm.qtTrajesRet}} Trajes</span> Para ser Retirado Hoje!
+                                </div>
+                            </a>
+                            <div class="clearfix"></div>
+                        </li>
+                        <li class="bviolet" ng-show="vm.qtTrajesNoDev > 0">
+                            <a href ng-click="vm.getTrajes('noDev',true)">
+                                <div class="pull-left"><i class="fa fa-download"></i></div>
+                                <div class="datas-text pull-right">
+                                    <span class="bold">{{vm.qtTrajesNoDev}} Trajes</span> Não Foram Devolvidos!
+                                </div>
+                            </a>
+                            <div class="clearfix"></div>
+                        </li>                        
+
+                    </ul>
+                </div>
+
+                
+                <div class="col-md-8">
+                    <h3>Período das informações</h3>
+                    <div class="col-md-4">
+                        <input type="date" class="form-control input-sm" uib-datepicker-popup ng-model="vm.chart.dataIni" tooltip-placement="top" tooltip="Data inicial do Movimento."/>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="date" class="form-control input-sm" uib-datepicker-popup ng-model="vm.chart.dataFim" tooltip-placement="top" tooltip="Data final do Movimento."/>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-default btn-sm" ng-click="vm.getDadosChart()"><i class="fa fa-refresh"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="widget wlightblue">
+                        <div ht-widget-header title=" Reservas" icon="{{vm.icon.reserva}}"
+                             allow-collapse="true" ></div>
+                        <div class="widget-content text-center text-info">
+                            <div ng-show="vm.chartReservas.data.length == 0"><h3 class="text-warning">Sem dados suficiente para gerar um gráfico</h3></div>
+                            <canvas id="bar" class="chart chart-bar" chart-data="vm.chartReservas.data" chart-labels="vm.chartReservas.labels" chart-series="vm.chartReservas.series" chart-legend="true" ng-show="vm.chartReservas.data.length > 0">
+                            </canvas>                            
+                        </div>
+<!--                         <div class="widget-foot">
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="widget wgreen">
+                        <div ht-widget-header title="Recebimentos" icon="{{vm.icon.recebimento}}"
+                             allow-collapse="true"></div>
+                        <div class="widget-content text-center text-info">
+                            <div ng-show="vm.chartRec.data.length == 0"><h3 class="text-warning">Sem dados suficiente para gerar um gráfico</h3></div>
+                            <canvas id="line" class="chart chart-line" chart-legend="true" 
+                              chart-data="vm.chartRec.data" chart-labels="vm.chartRec.labels" chart-series="vm.chartRec.series" ng-show="vm.chartRec.data.length > 0">
+                            </canvas> 
+                        </div>
+<!--                         <div class="widget-foot">
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                </div>
+                            </div>
+                        
+                            <div class="clearfix"></div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

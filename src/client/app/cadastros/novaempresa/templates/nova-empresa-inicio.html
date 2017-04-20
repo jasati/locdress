@@ -1,0 +1,60 @@
+<div class="jumbotron" style="background-color: initial;">
+	<div class="container">
+		<div ng-switch on="vm.newEmp">
+			<div ng-switch-when="true">
+				<div class="col-sm-12" style="margin-bottom: 30px">
+					<h1>Seja bem vindo!</h1>
+				</div>
+				<br>
+				<div class="col-sm-12" style="margin-bottom: 30px">
+					<div class="col-sm-3" >
+						<img src="images/jorge_alan.jpg" alt="Jorge Alan" class="img-circle" height="130">
+					</div>
+					<div class="col-sm-19">
+						<p><i>Olá, meu nome é Alan sou analista de sistemas e com a ajuda de pessoas como você conseguimos desenvolver esse App. A partir de agora vou lhe ajudar nas configurações iniciais para você poder começar a utilizar o app locDress como ferramenta de controle em seu negocio, alias! Nem só nesse inicio, mas em todo o sistema. Estou muito feliz :-) e espero superar suas expectativas! Vamos começar!!</i></p>
+					</div>
+				</div>
+				<div class="col-sm-12" style="margin-bottom: 20px">
+					<p>Como esse é o seu primeiro acesso ao sistema, vamos precisar cadastrar algumas informações básicas para inicializar o App para seu negocio, não se preocupe! só vai tomar 2 min. do seu precioso tempo!</p>
+				</div>
+				<div class="col-sm-12">
+					<div class="pull-left">
+						<button class="btn btn-primary btn-lg" type="button" ng-click="vm.pagSit()"> ver pagina sit </button>
+					</div>		
+					<div class="pull-right">
+						<button class="btn btn-primary btn-lg" type="button" ng-click="vm.avancar()"> Click aqui para começar! </button>
+					</div>
+				</div>
+			</div>
+			<div ng-switch-when="false">
+				<div class="col-sm-8">
+					<div class="col-sm-12" style="margin-bottom: 30px">
+						<h2 class="text-danger">O prazo para ativação do sistema foi expirado!</h2>
+					</div>
+					<div class="container">
+						<div class="col-sm-12" style="margin-bottom: 20px">
+							<p>Informe seu email para re-enviamos o link para ativação do sistema</p>
+						</div>
+						<form name="formEmail" novalidate>
+			                <div class="form-group">
+			                	<div class="">
+			                		<div class="">
+		                				<input type="email" name="email" class="form-control input-lg" placeholder="Seu e-mail" ng-model="email" required>
+		                			</div>
+		                		</div>
+		            		</div>
+
+		            		<div class="form-group">
+		            			<button class="btn btn-primary btn-lg" type="button" ng-disabled="formEmail.$invalid" ng-click="vm.loadEmpresa(email)"> Enviar o link de ativação </button>
+		            		</div>
+	            		</form>
+            		</div>
+
+				</div>
+				<div class="col-md-4">
+					<button class="btn btn-info btn-lg" type="button"  ng-click="vm.newEmp = true">Fazer novo cadastro </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

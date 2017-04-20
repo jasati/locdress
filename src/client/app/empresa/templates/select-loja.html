@@ -1,0 +1,27 @@
+<div class="modal-header bblue">
+    <button type="button" class="close" data-dismiss="alert" ng-click="vm.cancel()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+	<h5><i class="fa fa-check-circle" aria-hidden="true"></i> Selecionar Loja</h5>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-md-12">
+        	<div class="table-responsive">
+	            <table class="table table-striped" ng-show="vm.lojas.length > 0">
+	                <tbody>
+	                    <tr ng-repeat="l in vm.lojas track by $index" >
+	                        <td>{{l.nome}}</td>
+	                        <td>{{l.endereco}}</td>
+	                        <td>{{l.tel}}</td>
+	                        <td>
+	                        	<button type="button" class="btn btn-primary" data-ng-click="vm.ok(l)" title="Alterar"><i class="fa fa-check" aria-hidden="true" ></i></button>
+	                        </td>
+	                    </tr>
+	                </tbody>
+	            </table>
+            </div>
+
+		</div>
+	</div>
+</div>

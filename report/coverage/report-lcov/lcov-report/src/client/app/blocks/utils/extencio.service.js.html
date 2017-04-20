@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./src/client/app/blocks/utils/extencio.service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./src/client/app/blocks/utils/extencio.service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">14.81% <small>(8 / 54)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">14.29% <small>(1 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">14.81% <small>(8 / 54)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../index.html">All files</a> &#187; <a href="index.html">./src/client/app/blocks/utils/</a> &#187; extencio.service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+    'use strict';
+    angular
+        .module('blocks.utils')
+        .factory('Extencio', Extencio);
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function Extencio() {</span>
+<span class="cstat-no" title="statement not covered" >        var service = {</span>
+            porExtencio: porExtencio
+        };
+<span class="cstat-no" title="statement not covered" >        return service;</span>
+        ////////////////
+<span class="fstat-no" title="function not covered" >        function  porExtencio(valor) {</span>
+<span class="cstat-no" title="statement not covered" >			var palavras = {</span>
+				1   : 'um',
+				2   : 'dois',
+				3   : 'tres',
+				4   : 'quatro',
+				5   : 'cinco',
+				6   : 'seis',
+				7   : 'sete',
+				8   : 'oito',
+				9   : 'nove',
+				10  : 'dez',
+				11  : 'onze',
+				12  : 'doze',
+				13  : 'treze',
+				14  : 'quatorze',
+				15  : 'quinze',
+				16  : 'dezesseis',
+				17  : 'dezessete',
+				18  : 'dezoito',
+				19  : 'dezenove',
+				20  : 'vinte',
+				30  : 'trinta',
+				40  : 'quarenta',
+				50  : 'cinquenta',
+				60  : 'sessenta',
+				70  : 'setenta',
+				80  : 'oitenta',
+				90  : 'noventa',
+				100 : 'cento',
+				200 : 'duzentos',
+				300 : 'trezentos',
+				400 : 'quatrocentos',
+				500 : 'quinhentos',
+				600 : 'seicentos',
+				700 : 'setecentos',
+				800 : 'oitocentos',
+				900 : 'novecentos'
+			};
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			var valorObj = Number(valor);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			if (valorObj === isNaN) {</span>
+<span class="cstat-no" title="statement not covered" >				return console.error('Apenas números são permitidos.');</span>
+			} else {
+<span class="cstat-no" title="statement not covered" >				return humanize();</span>
+			}
+&nbsp;
+<span class="fstat-no" title="function not covered" >			function humanizedDezena(value) {</span>
+<span class="cstat-no" title="statement not covered" >				var parte = '';</span>
+<span class="cstat-no" title="statement not covered" >				if (value &lt;= 20 || (value % 10) === 0) {</span>
+<span class="cstat-no" title="statement not covered" >				  return palavras[parseInt(value)];</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				var parteUnidade = value % 10;</span>
+<span class="cstat-no" title="statement not covered" >				var parteDezena  = value - parteUnidade;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				var humanizedUnidade = palavras[parseInt(parteUnidade)];</span>
+<span class="cstat-no" title="statement not covered" >				var humanizedDezena  = palavras[parseInt(parteDezena)];</span>
+<span class="cstat-no" title="statement not covered" >				parte = humanizedDezena;</span>
+<span class="cstat-no" title="statement not covered" >				if (parteUnidade &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >					parte = parte + ' e ' + humanizedUnidade;</span>
+				}
+<span class="cstat-no" title="statement not covered" >				return parte;</span>
+			}
+&nbsp;
+<span class="fstat-no" title="function not covered" >			function humanizedCentena(value) {</span>
+<span class="cstat-no" title="statement not covered" >				var parte = '';</span>
+<span class="cstat-no" title="statement not covered" >				var parteDezena  = value % 100;</span>
+<span class="cstat-no" title="statement not covered" >				var parteCentena = value - parteDezena;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if (value === 100 &amp;&amp; parteDezena === 0) {</span>
+<span class="cstat-no" title="statement not covered" >					return 'cem';</span>
+				}
+<span class="cstat-no" title="statement not covered" >				parte = palavras[parseInt(parteCentena)];</span>
+<span class="cstat-no" title="statement not covered" >				if (parteDezena &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >					parte = parte + ' e ' + humanizedDezena(parteDezena);</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				return parte;</span>
+			}
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >			function convertToExtensive(value) {</span>
+<span class="cstat-no" title="statement not covered" >				value = parseInt(value);</span>
+<span class="cstat-no" title="statement not covered" >				var tamanho = (value + '').length;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if (tamanho &lt;= 2) {</span>
+<span class="cstat-no" title="statement not covered" >					return humanizedDezena(value);</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if (tamanho === 3) {</span>
+<span class="cstat-no" title="statement not covered" >					return humanizedCentena(value);</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if (tamanho &gt;= 4) {</span>
+<span class="cstat-no" title="statement not covered" >					var parteMilhar  = value / 1000;</span>
+<span class="cstat-no" title="statement not covered" >					var parteCentena = value % 1000;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >					var humanizedMilhar = (parteMilhar !== 1) ? (convertToExtensive(parteMilhar) + 'mil') : 'mil';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >					if (parteCentena &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >						return humanizedMilhar + ', ' + humanizedCentena(parteCentena);</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >					return humanizedMilhar;</span>
+				}
+			}
+&nbsp;
+<span class="fstat-no" title="function not covered" >			function humanize() {</span>
+<span class="cstat-no" title="statement not covered" >				var parteInteira = parseInt(valor);</span>
+<span class="cstat-no" title="statement not covered" >				var reais = (parteInteira &gt; 0) ? ((convertToExtensive(parteInteira) + ((parteInteira !== 1) ? ' reais' : ' real'))) : '';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				var parteFracionaria = Math.round(((valor % 1) * 100));</span>
+<span class="cstat-no" title="statement not covered" >				var cents = convertToExtensive(parteFracionaria) +  ' centavos';</span>
+<span class="cstat-no" title="statement not covered" >				var centavos = (parteFracionaria &gt; 0) ? ((parteInteira &gt; 0) ? ' e ' : '') + cents : '';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				return reais + centavos;</span>
+			}
+&nbsp;
+        }
+    }
+})();</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 28 2016 10:22:58 GMT-0300 (Hora oficial do Brasil)</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

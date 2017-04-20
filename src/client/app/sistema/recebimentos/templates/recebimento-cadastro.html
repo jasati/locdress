@@ -1,0 +1,75 @@
+<script type="text/ng-template" id="cliente.html">
+  <a>
+      <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+      <p><b>RG :</b> {{match.model.rg}} <b>CPF :</b> {{match.model.cpf}}</p>
+  </a>
+</script>
+
+<div class="modal-header bblue">
+    <button type="button" class="close" data-dismiss="alert" ng-click="vm.cancel()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="col-md-10">
+        <h5 class="bblue"><i class="fa {{vm.icon}}" aria-hidden="true"></i> {{vm.title}}</h5>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <form class="form-horizontal" name="reservaForm" ng-submit="vm.salvar()" autocomplete="off" novalidate>
+            <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                  <input type="date" class="form-control" uib-datepicker-popup ng-model="vm.recebimento.data_rec" uib-tooltip="Data do recebimento" required />
+                </div>  
+            </div>
+
+            <div class="form-group" ng-show="vm.recebimento.id_reserva">
+              <div class="input-group">
+                <span class="input-group-addon"> <i class="fa fa-user"></i> </span>
+                <span class="form-control" >{{vm.recebimento.cliente}}</span>
+              </div>
+            </div>
+
+            <div class="form-group" ng-hide="vm.recebimento.id_reserva">
+              <div class="input-group">
+                  <span class="input-group-addon"> <i class="fa fa-user"></i> </span>
+                  <input type="text" class="form-control"  ng-model="vm.recebimento.cliente" name="cliente" placeholder="Cliente" tooltip-placement="top" uib-tooltip="Nome do cliente para recebimento avulso" uib-typeahead="cliente as cliente.nome_completo for cliente in vm.getCliente($viewValue)" typeahead-on-select="vm.recebimento.id_cliente = $item.id_cliente" typeahead-template-url="cliente.html" typeahead-wait-ms="2" typeahead-min-length="3" typeahead-show-hint>
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" uib-tooltip="Cadastrar novo cliente" ng-click="vm.newCliente()"> <i class="fa fa-user-plus"></i> </button>
+                  </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                  <span class="input-group-addon"> <i class="fa fa-list-alt"></i> </span>
+                <select ng-options="mp.id_tp as mp.descricao for mp in vm.tipopgtos" ng-model="vm.recebimento.id_tp" class="form-control" uib-tooltip="Tipo de Pagamento" required></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-usd"></i></span>             
+                  <input type="number" class="form-control" name="valor" ng-model="vm.recebimento.valor" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" describedby="basic-addon1" uib-tooltip="Valor do Recebimento" placeholder="0,00"  required />
+              </div>
+            </div>
+
+            <div class="form-group" ng-show="vm.recebimento.id_tp > 1">
+              <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><i class="fa fa-barcode"></i></span>
+                  <input type="text" class="form-control" name="n_doc" ng-model="vm.recebimento.n_doc" uib-tooltip="Numero de identificação do Comprovante Cartão" placeholder="Nº Documento" />
+              </div>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" ng-model="vm.recebimento.obs" rows="5" uib-tooltip="Observações sobre o recebimento"></textarea>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit" uib-tooltip="Salvar Reserva" ng-disabled="reservaForm.$invalid"> <i class="fa fa-floppy-o"></i> Salvar</button>
+            </div>
+          </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer"  ng-show="vm.recebimento.id_rec">
+  <button class="btn btn-primary" type="button" uib-tooltip="Previsualizar Impressão" ng-click="vm.recibo()" ng-disabled="reservaForm.$invalid"> <i class="fa fa-print"></i> Recibo</button>
+  <button class="btn btn-default" type="button" uib-tooltip="Fechar janela" ng-click="vm.ok()"> <i class="fa fa-close"></i> Sair</button>  
+</div>

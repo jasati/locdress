@@ -1,0 +1,59 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="alert" ng-click="vm.cancel()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+</div>
+<div class="popover-html">
+
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="login" class="col-sm-3 control-label">Login</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control"  ng-model="vm.consulta.login" id="login" tooltip-placement="top" tooltip="Login de acesso ao sistema">
+            </div>
+        </div>     
+
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">E-mail</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control"  ng-model="vm.consulta.email" id="nome" tooltip-placement="top" tooltip="email do usuário">
+            </div>
+        </div>           
+
+
+<!--         <div class="form-group">
+            <label for="perfil" class="col-sm-3 control-label">Perfil</label>
+            <div class="col-sm-9">
+                <select ng-options="perfil.id_perfil as perfil.nome for perfil in vm.perfils" ng-model="vm.consulta.id_perfil" class="form-control input-sm" placeholder="Perfil do usuário" id="perfil" ></select>
+            </div>
+        </div>  -->
+
+        <div class="form-group">
+            <label for="status" class="col-sm-2 control-label">Status</label>
+            <div class="col-offset-3 col-sm-3">
+                <div class="radio">
+                  <label>Ativo</label>
+                    <input type="radio" class="form-control input-sm"  name="optionsRadios" data-ng-model="vm.consulta.status" value="1" checked>
+                </div>
+            </div>
+            <div class="col-offset-6 col-sm-3">
+                <div class="radio">
+                  <label>Inativo</label>
+                    <input type="radio" class="form-control input-sm"  name="optionsRadios" data-ng-model="vm.consulta.status" value="0">
+                </div>
+            </div>
+            <div class="col-offset-9 col-sm-3">
+                <div class="radio">
+                  <label>Todos</label>
+                    <input type="radio" class="form-control input-sm"  name="optionsRadios" data-ng-model="vm.consulta.status" value="" >
+                </div>  
+            </div>          
+        </div>        
+    </form>
+</div>
+    
+<div class="modal-footer">
+    <button class="btn btn-default" type="button" ng-click="vm.limpar()"><i class="fa fa-erase" aria-hidden="true"></i> Limpar Pesquisa</button>
+    <button class="btn btn-primary" type="button" ng-click="vm.ok()"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button>
+</div>

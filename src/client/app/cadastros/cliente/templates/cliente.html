@@ -1,0 +1,98 @@
+<section class="mainbar" ng-show="vm.permissao(13)">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wblue">
+                    <div ht-widget-header icon="{{vm.icon}}" title="{{vm.title}}" subtitle="{{vm.subtitle}}"></div>
+                    <div class="widget-content user">
+                        <div class="navbar navbar-inverse">
+                            <div class="container-fluid">
+                                <div class="navbar-header navbar-inverse">
+                                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                  </button>
+
+<!--                                 <button type="button" class="btn btn-primary navbar-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Sub-Cadastros">
+                                    <i class="fa fa-bars"></i>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button> 
+                                <ul class="dropdown-menu">
+                                    <li ng-show="vm.permissao(8)"><a href="#" ng-click="vm.cadCategoria()"><i class="fa fa-th-list"></i> Categorías</a></li>
+                                    <li ng-show="vm.permissao(9)"><a href="#" ng-click="vm.cadSubCategoria()"><i class="fa fa-list"></i> SubCategorías</a></li>
+                                    <li role="separator" class="divider"></li>
+                                </ul>  -->
+                                <button type="button" class="btn btn-primary navbar-btn" data-ng-click="vm.newCliente()" ng-disabled="!vm.permissao(14)"><i class="fa fa-plus"></i> Novo Cliente</button>
+
+                                </div>
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                                    <div class="navbar-btn">
+                                        <div class="col-md-8">
+                                            <div class="input-group input-group-sm">
+                                              <input type="text" class="form-control" placeholder="Consultar Cliente" ng-model="vm.consulta.nome"/>
+                                              <div class="input-group-btn">
+                                                <button class="btn btn-default" type="button" ng-click="vm.pesquisa()" uib-tooltip="Mostrar opções de pesquisa"><i class="fa fa-caret-down"></i></button>
+                                                <button type="button" class="btn btn-primary" data-ng-click="vm.getCliente()" placeholder="Consultar"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div ng-hide="vm.clientes.length > 0"><h3 class="text-warning">{{vm.title}} não encontrado!</h3></div>
+                        <table class="table table-condensed table-striped" ng-show="vm.clientes.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Nome Reduzido</th>
+                                    <th>RG</th>
+                                    <th>CPF</th>
+                                    <th>Estado Civil</th>
+                                    <th>Cidade</th>
+                                    <th>Celular 1</th>
+                                    <th>Funções</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="c in vm.clientes track by c.id_cliente">
+                                    <td>{{c.nome_completo}}</td>
+                                    <td>{{c.nome_reduzido}}</td>
+                                    <td>{{c.rg}}</td>
+                                    <td>{{c.cpf}}</td>
+                                    <td>{{c.estado_civil}}</td>
+                                    <td>{{c.cidade}}</td>
+                                    <td>{{c.cel1}}</td>
+                                    <td><button type="button" class="btn btn-primary" data-ng-click="vm.editCliente(c)" title="Alterar" ng-disabled="!vm.permissao(15)"><i class="fa fa-edit" aria-hidden="true" ></i></button>
+                                    <button type="button" class="btn btn-danger" data-ng-click="vm.deleteCliente(c)" title="Excluir" ng-disabled="!vm.permissao(16)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>                      
+                    </div>
+                    <div class="widget-foot" align="center">
+                        <div>
+                            <ul uib-pagination total-items="vm.totalReg" ng-model="vm.nPagina" max-size="5" class="pagination-sm" boundary-links="true" rotate="false" items-per-page="vm.totalRegPag" num-pages="numPages" ng-change="vm.setPage()">
+                            </ul>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5 col-sm-offset-3">
+                                <div class="input-group input-group-sm">
+                                  <span class="input-group-addon" id="basic-addon1" >Registros por Pagina</span>
+                                  <input type="text" class="form-control" ng-model="vm.totalRegPag">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button" ng-click="vm.getCliente()">Ok!</button>
+                                  </span>                              
+                                </div> 
+                            </div>
+
+                        </div>                           
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

@@ -1,0 +1,10 @@
+<div class="modal-header {{vm.corTitle}}">
+    <h3 class="modal-title">{{vm.title}}</h3>
+</div>
+<div class="modal-body">
+	<p>{{vm.subtitle}} <b>{{vm.destacar}}</b> ?</p>
+</div>
+<div class="modal-footer">
+    <button class="btn {{vm.corBtnClose}}" type="button" ng-click="vm.ok(vm.data)">{{vm.txtBtnClose}}</button>
+    <button class="btn {{vm.corBtnCancel}}" type="button" ng-click="vm.cancel()">{{vm.txtBtnCancel}}</button>
+</div>

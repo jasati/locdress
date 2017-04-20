@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./src/client/app/login/usuarioMenuTop.directive.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./src/client/app/login/usuarioMenuTop.directive.js</span></h1>
+    <h2>
+        Statements: <span class="metric">24.49% <small>(12 / 49)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">6.25% <small>(1 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">24.49% <small>(12 / 49)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> &#187; <a href="index.html">./src/client/app/login/</a> &#187; usuarioMenuTop.directive.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
+(function() {
+    'use strict';
+    angular
+        .module('app.login')
+        .directive('usuarioMenuTop', usuarioMenuTop);
+    usuarioMenuTop.$inject = ['$q','DataserviseProvider', '$cookies', '$uibModal', 'dataservice', 'UsuarioService'];
+    /* @ngInject */
+<span class="fstat-no" title="function not covered" >    function usuarioMenuTop ($q,DataserviseProvider, $cookies, $uibModal, dataservice, UsuarioService) {</span>
+        // Usage:
+        //
+        // Creates:
+        //
+<span class="cstat-no" title="statement not covered" >        var directive = {</span>
+            bindToController: true,
+            controller: UsuarioMenuTopController,
+            controllerAs: 'vm',
+            restrict: 'EA',
+            scope: {
+            	'usuario':'=',
+            	'logado': '=',
+                'loja': '='
+            },
+            templateUrl: 'app/login/usuario-menu-top.html'
+        };
+&nbsp;
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function UsuarioMenuTopController () {</span>
+<span class="cstat-no" title="statement not covered" >            var vm = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            vm.logoff = logoff;</span>
+<span class="cstat-no" title="statement not covered" >            vm.cadastroUsuarioLogado = cadastroUsuarioLogado;</span>
+<span class="cstat-no" title="statement not covered" >            vm.alterarSenha = alterarSenha;</span>
+<span class="cstat-no" title="statement not covered" >            vm.trocarLoja = trocarLoja;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            activate();</span>
+<span class="fstat-no" title="function not covered" >            function activate() {</span>
+<span class="cstat-no" title="statement not covered" >                var promises = [exibirLoja()];</span>
+<span class="cstat-no" title="statement not covered" >                $q.all(promises);</span>
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function exibirLoja() {</span>
+<span class="cstat-no" title="statement not covered" >                vm.loja = DataserviseProvider.userLogado.lojaAtual;</span>
+            }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function logoff () {</span>
+<span class="cstat-no" title="statement not covered" >                delete($cookies.nomeUser);</span>
+<span class="cstat-no" title="statement not covered" >                delete($cookies.idUser);</span>
+<span class="cstat-no" title="statement not covered" >                delete($cookies.idEmp);</span>
+<span class="cstat-no" title="statement not covered" >                DataserviseProvider.indexGeral.id_usuario = '';</span>
+<span class="cstat-no" title="statement not covered" >                DataserviseProvider.indexGeral.id_emp = '';</span>
+<span class="cstat-no" title="statement not covered" >                vm.logado = false;</span>
+<span class="cstat-no" title="statement not covered" >                vm.usuario = {};</span>
+<span class="cstat-no" title="statement not covered" >                location.reload();</span>
+&nbsp;
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function cadastroUsuarioLogado () {</span>
+<span class="cstat-no" title="statement not covered" >              UsuarioService.editPerfil(vm.usuario).then(<span class="fstat-no" title="function not covered" >function (save){</span></span>
+<span class="cstat-no" title="statement not covered" >                UsuarioService.update(save);</span>
+              });
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function alterarSenha () {</span>
+<span class="cstat-no" title="statement not covered" >                var modalInstance = $uibModal.open({</span>
+                  templateUrl: 'app/cadastros/usuario/templates/usuario-alterar-senha.html',
+                  controller: 'UsuarioModalController',
+                  controllerAs: 'vm',
+                  size: 'sm',
+                  backdrop:true,
+                  resolve: {
+                    Dados: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                      return {usuario:vm.usuario};</span>
+                    }
+                  }
+                });
+<span class="cstat-no" title="statement not covered" >	            modalInstance.result.then(<span class="fstat-no" title="function not covered" >function (save) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    UsuarioService.update(save);</span>
+	            });
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >            function trocarLoja() {</span>
+<span class="cstat-no" title="statement not covered" >                var modalInstance = $uibModal.open({</span>
+                  templateUrl: 'app/empresa/templates/select-loja.html',
+                  size: 'sm',
+                  backdrop:true,
+                  controller: <span class="fstat-no" title="function not covered" >function ($uibModalInstance,$scope,DataserviseProvider){</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    $scope.lojas = DataserviseProvider.userLogado.lojas;</span>
+<span class="cstat-no" title="statement not covered" >                    $scope.ok = <span class="fstat-no" title="function not covered" >function(loja){</span></span>
+<span class="cstat-no" title="statement not covered" >                        $uibModalInstance.close();</span>
+<span class="cstat-no" title="statement not covered" >                        DataserviseProvider.userLogado.lojaAtual = loja;</span>
+<span class="cstat-no" title="statement not covered" >                        vm.loja = loja;</span>
+                    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    $scope.cancel = <span class="fstat-no" title="function not covered" >function (){</span></span>
+<span class="cstat-no" title="statement not covered" >                        $uibModalInstance.dismiss();</span>
+                    };
+                  }
+&nbsp;
+                });
+            }
+&nbsp;
+<span class="fstat-no" title="function not covered" >	        function prmWeb() {          </span>
+<span class="cstat-no" title="statement not covered" >	            DataserviseProvider.configPrmWebService('id_index_main','id_emp');</span>
+<span class="cstat-no" title="statement not covered" >	            DataserviseProvider.configPrmWebService('valor_id_main','1');</span>
+<span class="cstat-no" title="statement not covered" >	            DataserviseProvider.configPrmWebService('modulo','usuarios');</span>
+<span class="cstat-no" title="statement not covered" >	            DataserviseProvider.configPrmWebService('id_tabela','id_usuario');              </span>
+	        }
+&nbsp;
+        }
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return directive;</span>
+    }
+})();</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 28 2016 10:22:56 GMT-0300 (Hora oficial do Brasil)</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
+</html>

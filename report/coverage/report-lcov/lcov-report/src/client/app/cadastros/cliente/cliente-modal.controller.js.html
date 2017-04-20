@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./src/client/app/cadastros/cliente/cliente-modal.controller.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./src/client/app/cadastros/cliente/cliente-modal.controller.js</span></h1>
+    <h2>
+        Statements: <span class="metric">35.71% <small>(10 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">12.5% <small>(1 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">35.71% <small>(10 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../index.html">All files</a> &#187; <a href="index.html">./src/client/app/cadastros/cliente/</a> &#187; cliente-modal.controller.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function(){
+    'use strict';
+&nbsp;
+    angular
+        .module('cad.cliente')
+        .controller('ClienteModalController', ClienteModalController);
+    ClienteModalController.$inject = ['$q','$filter','Data', 'config', 'logger', '$uibModalInstance', '$scope', '$uibModal', 'ClienteService'];
+    /* @ngInject */
+<span class="fstat-no" title="function not covered" >    function ClienteModalController($q,$filter,Data, config, logger, $uibModalInstance, $scope, $uibModal, ClienteService) {</span>
+<span class="cstat-no" title="statement not covered" >        var vm = this;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        vm.title = 'Cadastrar Cliente';</span>
+<span class="cstat-no" title="statement not covered" >        vm.icon = 'fa-group';        </span>
+<span class="cstat-no" title="statement not covered" >        vm.cliente = Data.cliente;</span>
+<span class="cstat-no" title="statement not covered" >        vm.getLojas = Data.lojas;</span>
+<span class="cstat-no" title="statement not covered" >        vm.optEstCivil = [</span>
+                {desc:"Solteiro(a)"},
+                {desc:"Casado(a)"},
+                {desc:"Divorciado(a)"},
+                {desc:"Viúvo(a)"},
+                {desc:"Separado(a)"},
+                {desc:"Companheiro(a)"}
+        ];
+<span class="cstat-no" title="statement not covered" >        vm.ok = ok;</span>
+<span class="cstat-no" title="statement not covered" >        vm.cancel = cancel;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        activite();</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function activite() {</span>
+<span class="cstat-no" title="statement not covered" >            var promises = [setDataEmi(),readLojas()];</span>
+<span class="cstat-no" title="statement not covered" >            return $q.all;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function setDataEmi() {</span>
+<span class="cstat-no" title="statement not covered" >            var dt = $filter('date')(vm.cliente.data_nascimento,'MM/dd/yyyy');</span>
+<span class="cstat-no" title="statement not covered" >            vm.cliente.data_nascimento = convDate(dt);</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function convDate (date) {</span>
+<span class="cstat-no" title="statement not covered" >          var dt = new Date(date);</span>
+<span class="cstat-no" title="statement not covered" >          return dt;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function readLojas(val) {</span>
+<span class="cstat-no" title="statement not covered" >            vm.lojas = vm.getLojas();</span>
+        }
+<span class="fstat-no" title="function not covered" >        function ok(data) {</span>
+<span class="cstat-no" title="statement not covered" >            $uibModalInstance.close(data);</span>
+        }
+<span class="fstat-no" title="function not covered" >        function cancel(){</span>
+<span class="cstat-no" title="statement not covered" >        	$uibModalInstance.dismiss('cancel');</span>
+        }
+    }
+})();</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 28 2016 10:22:58 GMT-0300 (Hora oficial do Brasil)</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

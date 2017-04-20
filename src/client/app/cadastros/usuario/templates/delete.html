@@ -1,0 +1,11 @@
+<div class="modal-header bred">
+    <h3 class="modal-title">Confirma Exclusão!</h3>
+</div>
+<div class="modal-body">
+    <p class="text-warning"> Confirma a exclusão do Usuário <b>{{vm.usuario.nome}}</b> ?</p>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-danger" type="button" ng-click="vm.ok(vm.usuario)">Confirmar</button>
+    <button class="btn btn-primary" type="button" ng-click="vm.cancel()">Cancelar</button>
+</div>

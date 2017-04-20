@@ -1,0 +1,42 @@
+<div class="row">
+	<div class="panel panel-default" style="margin: 0">
+		<div class="panel-heading">
+			<div class="row">
+			    <button type="button" class="close" data-dismiss="alert" ng-click="vm.ok()" >
+			      <i class="fa fa-times"></i>
+			    </button>
+			    <div class="col-md-8">
+			        <h6 ><i class="fa {{vm.icon}}" aria-hidden="true"></i> Compra nova licença</h6>
+			    </div>
+		    </div>
+		</div>
+		<div class="panel-body" style="background-color: #333">
+			<div class="row" >
+				<div class="col-xs-12">
+				    <div align="center" style="margin-bottom: 50px;">
+				    	<h1 class="orange">Escolha seu plano</h1>
+				    	<p class="text-muted"><i>Click em adiquirir plano para ser redirecionado a plataforma de pagamento</i></p>
+				    </div>
+				    <div class="col-xs-3 col-xs-offset-2" ng-repeat="p in vm.funcoes.planos | filter:{visivel:'1'}">
+				    	<div class="thumbnail">
+					    	<div align="center" style="margin-bottom: 30px;">
+					    		<h1>{{p.descricao}}</h1>
+					    		<h1>{{p.valor | currency:'R$'}}</h1>
+					    		<p><small class="label label-warning" ng-show="p.dias_lic == 365">{{(p.valor/12) | currency:'R$'}} /mês</small> <small class="label label-warning">{{p.valor/p.dias_lic | currency:'R$'}} /dia</small></p>
+					    		
+					    		<hr>
+					    	</div>
+					    	<div align="center">
+					    		<p>{{p.detalhes}}</p>
+					    		<br>
+					    		<div class="form-group">
+					    			<a href="{{p.link_checkout}}" target="_blank" class="btn btn-primary"> Adiquirir licença</a>
+					    		</div>
+					    	</div>
+				    	</div>
+				    </div>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>

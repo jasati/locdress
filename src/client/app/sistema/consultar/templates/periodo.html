@@ -1,0 +1,25 @@
+<div class="modal-header">
+	<h5><i class="fa {{vm.icon}} text-info" aria-hidden="true"></i> {{vm.title}}</h5>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-md-12">
+		<form>
+		    <div class="form-group">
+	            <input type="date" class="form-control input-lg" uib-datepicker-popup ng-model="vm.caledario.dtRetirada" tooltip-placement="top" uib-tooltip="Data da Retirada"/>
+		    </div>
+		    <div class="form-group">
+	            <input type="date" class="form-control input-lg" uib-datepicker-popup ng-model="vm.caledario.dtEvento" tooltip-placement="top" uib-tooltip="Data do Evento"/>
+		    </div>		    
+		    <div class="form-group">
+	            <input type="date" class="form-control input-lg" uib-datepicker-popup ng-model="vm.caledario.dtDevolucao" tooltip-placement="top" uib-tooltip="Data da Devolução"/>          
+		    </div>
+	    </form>	
+			
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" type="button" ng-click="vm.cancel()"><i class="fa fa-calendar-times-o" aria-hidden="true"></i> Cancelar</button>
+    <button class="btn btn-primary" type="button" ng-click="vm.ok()"><i class="fa fa-calendar-check-o" aria-hidden="true"></i> Confirmar Data</button>
+</div>

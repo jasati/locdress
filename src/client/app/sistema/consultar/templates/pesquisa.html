@@ -1,0 +1,32 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <p><i class="fa fa-search fa-2x" ></i></p>
+        <form>
+            <div class="form-group">
+                <input type="text" class="form-control input-sm"  ng-model="vm.consulta.ref" id="codigo" tooltip-placement="top" uib-tooltip="Código de referência do traje" placeholder="Referência">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control input-sm"  ng-model="vm.consulta.descricao" id="fornecedor" tooltip-placement="top" uib-tooltip="Descrição do Traje" placeholder="Descrição">
+            </div>            
+
+            <div class="form-group">
+                <select ng-options="sec.id_secretaria as sec.nome for sec in vm.secretarias" ng-model="vm.consulta.id_secretaria" class="form-control input-sm" tooltip-placement="top" uib-tooltip="Loja" id="categoria" ng-disabled="vm.consulta.estoque"></select>                
+            </div>
+
+            <div class="form-group">
+                <select ng-options="categoria.id_categoria as categoria.descricao for categoria in vm.categorias" ng-model="vm.consulta.id_categoria" class="form-control input-sm" tooltip-placement="top" uib-tooltip="Categoria do Traje"></select>
+            </div> 
+
+            <div class="form-group">
+                <select ng-options="subcategoria.id_subcat as subcategoria.descricao for subcategoria in vm.subcategorias | filter:{'id_categoria':vm.consulta.id_categoria}" ng-model="vm.consulta.id_subcategoria" class="form-control input-sm" tooltip-placement="top" uib-tooltip="Sub-Categoria do Traje"> </select>
+            </div>
+
+        </form>
+    </div>
+</div>
+    
+<div class="modal-footer">
+    <button class="btn btn-default" type="button" ng-click="vm.limpar()"><i class="fa fa-erase" aria-hidden="true"></i> Limpar Pesquisa</button>
+    <button class="btn btn-primary" type="button" ng-click="vm.ok()"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button>
+</div>

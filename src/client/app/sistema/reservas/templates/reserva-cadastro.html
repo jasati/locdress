@@ -1,0 +1,157 @@
+<script type="text/ng-template" id="cliente.html">
+  <a>
+      <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+      <p><b>RG :</b> {{match.model.rg}} <b>CPF :</b> {{match.model.cpf}}</p>
+  </a>
+</script>
+
+<div class="modal-header bblue">
+    <button type="button" class="close" data-dismiss="alert" ng-click="vm.ok()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="col-md-10">
+        <h4 class="bblue h4"><i class="fa {{vm.icon}}" aria-hidden="true"></i> {{vm.title}}</h4>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+	        <form class="form-horizontal" name="reservaForm" ng-submit="vm.salvar()" autocomplete="off" novalidate>
+
+	        	<div class="panel panel-default">
+	        		<div class="panel-body">
+	        		<p><b>Data Contrato :</b> <span class="pull-rigth">{{vm.reserva.data_reserva|date : "dd/MM/yyyy"}}</span></p>
+                		
+                		<div class="col-sm-4">
+                			<input type="date" class="form-control input-sm" uib-datepicker-popup ng-model="vm.reserva.data_retirada" tooltip-placement="top" uib-tooltip="Data da Retirada" disabled>
+                		</div>
+                		<div class="col-sm-4">
+                			<input type="date" class="form-control input-sm" uib-datepicker-popup ng-model="vm.reserva.data_evento" tooltip-placement="top" uib-tooltip="Data do Evento" >
+                		</div>
+                		<div class="col-sm-4">
+                			<input type="date" class="form-control input-sm" uib-datepicker-popup ng-model="vm.reserva.data_devolucao" tooltip-placement="top" uib-tooltip="Data da Devolução" disabled>
+                		</div>
+            		</div>
+
+	        	</div>
+
+	        	<div class="form-group">
+	                <label for="loja" class="col-md-2 control-label"> <b>Loja</b> </label>
+	                <div class="col-md-10">
+	                    <span class="form-control" >{{vm.loja.nome}}</span>
+	                </div>
+                </div>
+
+	        	<div class="form-group">
+	                <label for="loja" class="col-md-2 control-label"> <b>Responsável</b> </label>
+	                <div class="col-md-10">
+	                    <span class="form-control" >{{vm.reserva.resp_alug}}</span>
+	                </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cliente" class="col-md-2 control-label">
+                        <span> <b>Cliente</b> <i ng-show="reservaForm.cliente.$invalid||!vm.reserva.id_cliente" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i></span>
+                    </label>
+                    <div class="col-md-10">
+                    	<div class="input-group">
+	                        <input type="text" class="form-control"  ng-model="vm.reserva.cliente" name="cliente" tooltip-placement="top" uib-tooltip="Nome do cliente responsável" uib-typeahead="cliente as cliente.nome_completo for cliente in vm.getCliente($viewValue)" typeahead-on-select="vm.reserva.id_cliente = $item.id_cliente" typeahead-template-url="cliente.html" typeahead-wait-ms="2" typeahead-min-length="3" typeahead-show-hint required>
+	                        <span class="input-group-btn">
+	                        	<button class="btn btn-primary" type="button" uib-tooltip="Cadastrar novo cliente" ng-click="vm.newCliente()"> <i class="fa fa-external-link"></i> </button>
+	                        </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="obs" class="col-md-2 control-label"><b> Observações</b></label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" ng-model="vm.reserva.obs" rows="5"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-init="user.name='ana'">
+            		<div class="col-md-5">
+
+                        
+            		</div>
+                    <div class="col-md-7" align="rigth">
+                        <b>Total Reserva : </b> <span class="text-danger" style="font-size: 150%">{{vm.soma(vm.trajes,'','valor') | currency:'R$'}}</span>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                	<div class="col-md-3">
+	                	<button class="btn btn-primary" type="button" uib-tooltip="Salvar Reserva" ng-disabled="reservaForm.$invalid||!vm.reserva.id_cliente" ng-click="vm.salvar()"> <i class="fa fa-floppy-o"></i> Salvar</button>
+                	</div>
+                    <div class="col-md-9">
+                        <div ng-show="vm.reserva.id_reserva" ng-class="{'alert alert-danger':vm.reserva.status===1,'alert alert-warning':vm.reserva.status===0,'alert alert-success':vm.reserva.status===2}" role="alert" style="margin 0;padding:6px">
+                            <strong ng-show="vm.reserva.status===0">Reservado</strong>
+                            <strong ng-show="vm.reserva.status===1">Retirado</strong>
+                            <strong ng-show="vm.reserva.status===2">Devolvido</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+	        </form>
+            <div class="form-group" ng-show="vm.reserva.id_reserva">
+                <a href class="btn btn-default" editable-number="vm.reserva.valor_entrada" e-step="0.01" e-label=" Entrada" onaftersave="vm.regRec(0)" uib-tooltip="Registrar o recebimento da entrada"><i class="fa fa-money blue"> {{vm.reserva.id_rec_entrada?'Entrada Recebida':'Receber Entrada'}}</i>
+                    <span class="badge">{{vm.reserva.valor_entrada | currency:'R$'}}</span>
+                </a>
+            </div>
+            <div class="panel panel-primary" ng-show="vm.recebimentos.length > 0">
+                <div class="panel-heading"> <i class="fa fa-money"></i> Recebimentos</div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="width:15%">Data</th>
+                                    <th style="width:20%">Tipo Pgto.</th>
+                                    <th style="width:15%">R$ Valor</th>
+                                    <th style="width:20%">Nº Doc.</th>
+                                    <th style="width:30%">Observações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="r in vm.recebimentos track by $index">
+                                    <td>{{r.data_rec | date : "dd/MM/yyyy"}}</td>
+                                    <td>{{r.tipo_pagamento}}</td>
+                                    <td><span class="label label-default">{{r.valor|currency:'R$'}}</span></td>
+                                    <td>{{r.n_doc}}</td>
+                                    <td>{{r.obs}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="col-md-offset-6" ng-show="vm.recebimentos.length > 0">
+                            </span><b> Total Recebimentos : </b> <span class="text-primary" style="font-size: 150%">{{vm.soma(vm.recebimentos,'','valor') | currency:'R$'}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-danger" role="alert" ng-show="!vm.reserva.id_reserva">
+                <strong>Atenção!</strong> A reserva ainda não está salva.
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer" ng-show="vm.reserva.id_reserva">
+    <div class="btn-group"> 
+            <button class="btn btn-primary" type="button" uib-tooltip="Trajes do Contrato" ng-click="vm.viewTrajes()"> <i class="fa fa-street-view"></i> Trajes</button>
+    </div>
+    <div class="btn-group">
+            <button class="btn btn-primary" type="button" ng-click="vm.regRec(1)" uib-tooltip="Registrar Recebimentos"> <i class="fa fa-money"></i> Receber</button>
+    </div>
+
+    <div class="btn-group">
+	       <button class="btn btn-warning" type="button" ng-click="vm.printContrato()" uib-tooltip="Imprimir Contrato"> <i class="fa fa-print"></i> Contrato</button>
+    </div>
+    <div class="btn-group">
+           <button class="btn btn-warning" type="button" ng-click="vm.printTermo()" uib-tooltip="Termo de Responsabilidade"> <i class="fa fa-print"></i> Termo</button>
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-warning" ng-show="vm.reserva.status===2" ng-click="vm.printAtestDev()" uib-tooltip="Imprimir Atestado de Devolução"><i class="fa fa-print"></i> Devolução</button>        
+    </div>    
+</div>

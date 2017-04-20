@@ -1,0 +1,41 @@
+<div class="modal-header bblue">
+    <button type="button" class="close" data-dismiss="alert" ng-click="vm.cancel()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="col-md-10">
+        <h4><i class="fa fa-street-view" aria-hidden="true"></i>{{vm.traje.descricao}} <span class="label label-success"><b>{{vm.traje.valor|currency:'R$'}}</b></span><i class="fa fa-tag red"></i></h4>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <h4>{{vm.action=='create'?'Escolha a unidade que deseja reservar':'Está em modo consulta, não pode reservar'}}</h4>
+    	<div class="table-responsive">
+            <h4 ng-hide="vm.unidades.length > 0" class="text-warning">Não foi cadastrado unidades para esse traje.</h4>
+            <table class="table table-striped" ng-show="vm.unidades.length > 0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Qtde. Disponível</th>
+                        <th>Cor</th>
+                        <th>Tamanho</th>
+                        <th>Reservar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="u in vm.unidades track by $index">
+                        <td><a href ng-click="vm.zoomImg(u)" uib-tooltip="{{vm.showDataCompra(u)}}"><img src="{{vm.pathImg}}{{u.imagem?u.imagem:'noImg.jpg'}}" class="img-rounded" height="40px"></a></td>
+                        <td>
+                            <span ng-show="((u.qt - u.qt_reservado) > 0)"><b>{{u.qt - u.qt_reservado}}</b></span>
+                            <span ng-show="((u.qt - u.qt_reservado) <= 0)" class="label label-danger"><b>Indisponível</b></span>
+                        </td>
+                        <td>{{u.cor}}</td>
+                        <td>{{u.tam}}</td>
+                        <td>
+                        	<a ng-show="((u.qt - u.qt_reservado) > 0)&&vm.action=='create'" ng-click="vm.ok(u)" uib-tooltip="Adicionar traje para ser reservado"><i class="fa fa-check fa-2x green"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

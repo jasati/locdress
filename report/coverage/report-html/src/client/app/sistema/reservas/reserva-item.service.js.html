@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./src/client/app/sistema/reservas/reserva-item.service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./src/client/app/sistema/reservas/reserva-item.service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">14.1% <small>(11 / 78)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">7.14% <small>(1 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">14.1% <small>(11 / 78)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../index.html">All files</a> &#187; <a href="index.html">./src/client/app/sistema/reservas/</a> &#187; reserva-item.service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*
+&nbsp;
+SELECT 
+ri.id_ri,
+ri.id_reserva,
+ri.id_item,
+ri.valor,
+ri.desc,
+ri.inc_post_contrato,
+i.descricao,
+i.ref,
+i.imagem,
+r.data_reserva,
+r.data_alugar,
+r.data_entrega,
+c.nome_completo as cliente,
+c.cel1,
+u.nome as user_resp_alug
+&nbsp;
+FROM reserva_itens ri 
+INNER JOIN itens i ON ri.id_item = i.id_item
+INNER JOIN reservas r ON ri.id_reserva = r.id_reserva
+INNER JOIN clientes c ON r.id_cliente = c.id_cliente
+INNER JOIN usuarios u ON r.id_usu_rep_alug = u.id_usuario
+ */
+&nbsp;
+(function() {
+    'use strict';
+    angular
+        .module('sis.reserva')
+        .factory('ResItensService', ResItensService);
+    ResItensService.$inject = ['$q','dataservice','DataserviseProvider','UtilsFunctions'];
+    /* @ngInject */
+<span class="fstat-no" title="function not covered" >    function ResItensService($q,dataservice,DataserviseProvider,UtilsFunctions) {</span>
+<span class="cstat-no" title="statement not covered" >        var campos = " ri.id_ri, ri.id_reserva, ri.id_item, ri.valor, ri.desc, ri.inc_post_contrato, "+</span>
+        "i.descricao, i.ref, i.imagem, r.data_reserva, r.data_alugar, r.data_entrega, c.nome_completo as cliente, "+
+        "c.cel1, u.nome as user_resp_alug";
+<span class="cstat-no" title="statement not covered" >        var inner_join = {</span>
+            0:"itens i ON ri.id_item = i.id_item",
+            1:"reservas r ON ri.id_reserva = r.id_reserva",
+            2:"clientes c ON r.id_cliente = c.id_cliente",
+            3:"usuarios u ON r.id_usu_rep_alug = u.id_usuario",
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var camposInvalidos = [</span>
+            'descricao', 
+            'ref', 
+            'imagem', 
+            'data_reserva', 
+            'data_alugar', 
+            'data_entrega',
+            'cliente',
+            'cel1',
+            'user_resp_alug',
+        ];
+<span class="cstat-no" title="statement not covered" >        var userLogado = DataserviseProvider.userLogado.usuario;</span>
+<span class="cstat-no" title="statement not covered" >        var trajes = [];</span>
+<span class="cstat-no" title="statement not covered" >        var service = {</span>
+            load         : load,
+            read         : read,
+            create       : create,
+            update       : update,
+            deletar      : deletar,
+            userLogado   : userLogado,
+            novoItem     : novoItem
+        };
+<span class="cstat-no" title="statement not covered" >        return service;</span>
+        ////////////////
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function startDatasetDinamico() {</span>
+<span class="cstat-no" title="statement not covered" >            var dts = DataserviseProvider.getPrmWebService();</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'id_index_main','id_empresa');</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'valor_id_main',DataserviseProvider.indexGeral.id_emp);            </span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'modulo','reserva_itens');   </span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'id_tabela','id_ri');                     </span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'campos',campos);</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'inner_join',inner_join);</span>
+<span class="cstat-no" title="statement not covered" >            return dts;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function novoItem(id_requisicao,value) {</span>
+<span class="cstat-no" title="statement not covered" >            var item = {</span>
+                id_ri:null,
+                id_requisicao:id_requisicao,
+                id_item:value.id_item,
+                id_sdi:value.id_sdi,
+                qt:value.qt,
+                item:value.item,
+                marca:value.marca,
+                unidade:value.unidade,
+                valor:value.valor,
+                qt_sec:value.qt_sec,
+                qt_contrato:value.qt_contrato
+            };
+<span class="cstat-no" title="statement not covered" >            return item;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function load (id_ri) {</span>
+<span class="cstat-no" title="statement not covered" >            var msgErro = 'Falha na Consulta dos Itens da Requisição';</span>
+<span class="cstat-no" title="statement not covered" >            var servico = 'consulta';</span>
+<span class="cstat-no" title="statement not covered" >            var consulta = ' and id_ri = '+id_ri;</span>
+<span class="cstat-no" title="statement not covered" >            startDataset();</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dataset,'valor_id_main',id_requisicao);    </span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dataset,'consulta',consulta);    </span>
+<span class="cstat-no" title="statement not covered" >            return dataservice.dadosWeb(dataset,servico,msgErro)</span>
+                .then(<span class="fstat-no" title="function not covered" >function (itens) {</span>
+<span class="cstat-no" title="statement not covered" >                    return itens.reg[0];</span>
+                 });
+        }        
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function read (prmConsulta,prmLimit) {</span>
+<span class="cstat-no" title="statement not covered" >            var msgErro = 'Falha na Consulta dos Trajes da Reserva';</span>
+<span class="cstat-no" title="statement not covered" >            var servico = 'consulta';</span>
+<span class="cstat-no" title="statement not covered" >            var consulta = "";          </span>
+<span class="cstat-no" title="statement not covered" >            if (prmConsulta.id_ri !== undefined &amp;&amp; prmConsulta.id_ri !== "") {</span>
+<span class="cstat-no" title="statement not covered" >                consulta += " and ri.id_ri = "+prmConsulta.id_ri;</span>
+            }                        
+<span class="cstat-no" title="statement not covered" >            if (prmConsulta.id_item !== undefined &amp;&amp; prmConsulta.id_item !== "") {</span>
+<span class="cstat-no" title="statement not covered" >                consulta += " and ri.id_item = "+prmConsulta.id_item;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (prmConsulta.reservados) {</span>
+<span class="cstat-no" title="statement not covered" >                consulta += " and r.data_entrega &gt;= CURRENT_DATE() ";</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (prmConsulta.id_reserva !== undefined &amp;&amp; prmConsulta.id_reserva !== "") {</span>
+<span class="cstat-no" title="statement not covered" >                consulta += " and ri.id_reserva = "+prmConsulta.id_reserva;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var dts = startDatasetDinamico();</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'id_index_main','r.id_empresa');</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'modulo','reserva_itens ri');   </span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'id_tabela','ri.id_ri');                     </span>
+<span class="cstat-no" title="statement not covered" >            return dataservice.dadosWeb(dts,servico,msgErro)</span>
+            	.then(<span class="fstat-no" title="function not covered" >function (trajes) {</span>
+<span class="cstat-no" title="statement not covered" >                	return trajes;</span>
+           		 });
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function create (data_c) {</span>
+<span class="cstat-no" title="statement not covered" >            var msgErro = 'Falha na inclusão dos Itens da Requisição.';</span>
+<span class="cstat-no" title="statement not covered" >            var msgSucess = 'Inclusão realizada com sucesso!';</span>
+<span class="cstat-no" title="statement not covered" >            var action = 'novo';</span>
+<span class="cstat-no" title="statement not covered" >            for (var i = 0; i &lt; data_c.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                data_c[i] = UtilsFunctions.removeCamposInvalidos(data_c[i],camposInvalidos);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            startDataset();       </span>
+<span class="cstat-no" title="statement not covered" >	        DataserviseProvider.setDataset(dataset,'estrutura',data_c);</span>
+<span class="cstat-no" title="statement not covered" >	        return dataservice.dadosWeb(dataset,action,msgErro,msgSucess)</span>
+	        	.then(<span class="fstat-no" title="function not covered" >function (data_c_r){</span>
+<span class="cstat-no" title="statement not covered" >	        		return data_c_r;</span>
+	        	});
+        } 
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function update (data_u) {</span>
+<span class="cstat-no" title="statement not covered" >            var msgErro = 'Falha na Atualização dos Itens da Requisição.';</span>
+<span class="cstat-no" title="statement not covered" >            var msgSucess = 'Atualização realizada com sucesso!';</span>
+<span class="cstat-no" title="statement not covered" >            var action = 'editar';</span>
+<span class="cstat-no" title="statement not covered" >            var dts = startDatasetDinamico();</span>
+<span class="cstat-no" title="statement not covered" >            data_u = UtilsFunctions.removeCamposInvalidos(data_u,camposInvalidos);</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dts,'valor_id',data_u.id_ri);</span>
+<span class="cstat-no" title="statement not covered" >	        DataserviseProvider.setDataset(dts,'estrutura',data_u);</span>
+<span class="cstat-no" title="statement not covered" >	        return dataservice.dadosWeb(dts,action,msgErro,msgSucess)</span>
+	        	.then(<span class="fstat-no" title="function not covered" >function (data_u_r){</span>
+<span class="cstat-no" title="statement not covered" >	        		return data_u_r;</span>
+	        	});
+        }         
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function deletar (data_d) {</span>
+<span class="cstat-no" title="statement not covered" >            var msgErro = 'Falha na exclusão do Item da Requisição.';</span>
+<span class="cstat-no" title="statement not covered" >            var msgSucess = 'Exclusão realizada com sucesso!';</span>
+<span class="cstat-no" title="statement not covered" >            var action = 'delete';</span>
+<span class="cstat-no" title="statement not covered" >            startDataset();</span>
+<span class="cstat-no" title="statement not covered" >            DataserviseProvider.setDataset(dataset,'valor_id',data_d.id_ri);</span>
+<span class="cstat-no" title="statement not covered" >	        return dataservice.dadosWeb(dataset,action,msgErro,msgSucess)</span>
+	        	.then(<span class="fstat-no" title="function not covered" >function (data_d_r){</span>
+<span class="cstat-no" title="statement not covered" >	        		return data_d_r;</span>
+	        	});
+        }
+    }
+})();</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 28 2016 10:22:56 GMT-0300 (Hora oficial do Brasil)</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

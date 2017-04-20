@@ -1,0 +1,39 @@
+<div class="">
+    <div class="page-splash-message" style="margin-bottom: 10px;">
+        <img src="images/logo.png" width="20%">
+        <p><small>{{vm.login.appSubTitulo}}</small></p>
+    </div>
+    <div class="box-login">
+        <div class="col-sm-6 col-sm-offset-3">          
+                <form name="formLogin" novalidate>
+                    <div ng-show="!recSenha">
+                        <div class="form-group">
+                            <input type="email" id="username" name="login" class="form-control input-lg" placeholder="Seu Email" data-ng-model="vm.login.usuario.email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" id="password" name="senha" class="form-control input-lg" placeholder="Senha" data-ng-model="vm.login.usuario.senha" required>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block btn-lg" type="button" ng-click="vm.login.logar()" ng-disabled="formLogin.login.$invalid||formLogin.senha.$invalid">Acessar <i class="fa fa-cog fa-spin orange" ng-show="vm.login.usuario.logando"></i> </button>
+                        </div>
+                        <div class="form-group">
+                            <a href ng-click="recSenha=true" class="orange">Esqueci Minha Senha</a>
+                        </div>
+                    </div>
+                    <div ng-show="recSenha">
+                        <div class="form-group">
+                            <input type="email" id="username" name="email" class="form-control input-lg" placeholder="Informe seu email" data-ng-model="vm.login.usuario.email" required>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block btn-lg" type="button" ng-click="vm.login.recuperarSenha(vm.login.usuario.email)" ng-disabled="formLogin.email.$invalid">Enviar senha para email <i class="fa fa-cog fa-spin orange" ng-show="vm.login.usuario.rec"></i></button>
+                        </div>
+                        <div class="form-group">
+                            <a href ng-click="recSenha=false" class="orange">Voltar para login</a>
+                        </div>
+                    </div>
+               </form>
+        </div>
+    </div>    
+</div>

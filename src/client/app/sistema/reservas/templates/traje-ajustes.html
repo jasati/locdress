@@ -1,0 +1,24 @@
+<div class="modal-header bblue">
+    <button type="button" class="close" data-dismiss="alert" ng-click="vm.cancel()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="col-md-10">
+        <h5 class="bblue"><i class="fa {{vm.icon}}" aria-hidden="true"></i> {{vm.title}}</h5>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+        	<div class="form-group">
+        		<p class="text-info"><b>{{vm.traje.descricao}}</b></p>
+        	</div>
+            <div class="form-group">
+                <textarea class="form-control" ng-model="vm.traje.ajustes" rows="5"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-danger" ng-click="vm.remAjustes()"><i class="fa fa-ban"></i> Cancelar Ajustes</button>
+	<button type="button" class="btn btn-primary" ng-click="vm.ok()"><i class="fa fa-check"></i> Confirmar Ajustes</button>
+</div>

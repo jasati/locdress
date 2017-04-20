@@ -1,0 +1,33 @@
+
+
+<div class="row page-splash">
+	<div class="container">
+	    <div align="center" style="margin-top: 30px; margin-bottom: 20px; color: #f2f2f2;">
+	    	<img src="images/logo.png" height="100">
+	    	<p>Obtenha 100% de controle do seu negocio de aluguel e reservas de trajes.</p>
+	    </div>
+	    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+	    	<div class="box-login-inner">
+	    		<div align="center" >
+	    			<h2 class="red">Ative a sua conta.</h2>
+	    			<p style="color: #333333 !important;">Enviamos um email para ativação do cadastro. Abra o email e click no botão 'Ativar Cadastro'. Só falta um click para começar a controlar o seu negocio de aluguel e reservas de trajes.</p>
+	    		</div>
+
+
+			    <form class="form" name="formEmp" novalidate>
+			    	<p style="color: #333333 !important;">Não consegue achar o email? Podemos reenviá-lo.</p>
+	                <div class="form-group">
+	                	<div class="row">
+		                	<div class="col-md-8">
+		                		<input type="email" class="form-control"  ng-model="vm.funcoes.empresa.email" name="email" tooltip-placement="top" uib-tooltip="Seu email" placeholder="Seu email" required>
+		                	</div>
+		                	<div class="col-md-2">
+		                		<button class="btn btn-primary" ng-disabled="formEmp.$invalid" ng-click="vm.funcoes.reEnviarEmailGetResponse(vm.funcoes.empresa.email)"> Enviar email </button>
+		                	</div>
+	                	</div>
+	                </div>
+			    </form>
+	    	</div>
+	    </div>
+    </div>
+</div>

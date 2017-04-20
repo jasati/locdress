@@ -1,0 +1,51 @@
+<div class="modal-header bblue">
+    <h3 class="modal-title"><i class="fa fa-th-list"></i> {{vm.title}}</h3>
+</div>
+<div class="modal-body">
+<div ></div>
+<div class="col-md-12">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </span>  
+            <input type="text" class="form-control input-sm" placeholder="Localizar Categoria" ng-model="vm.descricao"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" ng-click="vm.addCategoria()"><i class="fa fa-plus" aria-hidden="true"></i> Nova Categoria</button>
+    </div>
+</div>
+
+<table class="table table-bordered table-condensed table-striped">
+    <tr style="font-weight: bold">
+      <td style="width:70%">Descrição da Categoria</td>
+      <td style="width:30%">Funções</td>
+    </tr> 
+    <tr data-ng-repeat="c in vm.categorias | filter:vm.descricao | orderBy:'descricao' | limitTo: offset - vm.categorias.length | limitTo:vm.totalRegPag">
+      <td>
+        <!-- editable username (text with validation) -->
+        <span editable-text="c.descricao" e-name="descicao" e-form="rowform" onbeforesave="" e-required>
+          {{c.descricao}}
+        </span>
+      </td>
+      <td style="white-space: nowrap">
+        <!-- form -->
+        <form editable-form name="rowform" onaftersave="vm.salvar(c)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="vm.addcat == c">
+          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary" title="Salvar"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default" title="Cancelar"><i class="fa fa-ban" aria-hidden="true"></i></button>
+        </form>
+        <div class="buttons" ng-show="!rowform.$visible">
+          <button class="btn btn-primary" ng-click="rowform.$show()" title="Alterar"><i class="fa fa-edit" aria-hidden="true"></i></button>
+          <button class="btn btn-danger" ng-click="vm.deletar(c,$index)" title="Excluir"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        </div>  
+      </td>
+    </tr>
+  </table>
+    <div style="align:center">
+        <ul uib-pagination total-items="vm.categorias.length" ng-model="vm.nPagina" max-size="5" class="pagination-sm" boundary-links="true" rotate="false" items-per-page="vm.totalRegPag" num-pages="numPages"></ul>
+    </div>  
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="vm.ok(vm.item)">Concluir</button>
+</div>

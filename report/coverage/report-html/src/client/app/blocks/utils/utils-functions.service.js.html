@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./src/client/app/blocks/utils/utils-functions.service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./src/client/app/blocks/utils/utils-functions.service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">17.39% <small>(12 / 69)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 24)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">9.09% <small>(1 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">17.39% <small>(12 / 69)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../index.html">All files</a> &#187; <a href="index.html">./src/client/app/blocks/utils/</a> &#187; utils-functions.service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+    'use strict';
+    angular
+        .module('blocks.utils')
+        .factory('UtilsFunctions', UtilsFunctions);
+    UtilsFunctions.$inject = ['$filter', 'Extencio','config'];
+    /* @ngInject */
+<span class="fstat-no" title="function not covered" >    function UtilsFunctions($filter, Extencio,config) {</span>
+<span class="cstat-no" title="statement not covered" >        var service = {</span>
+            formatData: formatData,
+            formatDataView : formatDataView,
+            removeCamposInvalidos:removeCamposInvalidos,
+            soma  : soma,
+            permissao : permissao,
+            copiarObjecto: copiarObjecto,
+            porExtencio:porExtencio,
+            where : where,
+        };
+<span class="cstat-no" title="statement not covered" >        return service;</span>
+        ////////////////
+<span class="fstat-no" title="function not covered" >        function formatData (data, hora) {</span>
+<span class="cstat-no" title="statement not covered" >            var d, m, y,hr='', dt;</span>
+<span class="cstat-no" title="statement not covered" >            if (hora) {</span>
+<span class="cstat-no" title="statement not covered" >                hr = hora;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            d = data.getDate();</span>
+<span class="cstat-no" title="statement not covered" >            m = data.getMonth()+1; </span>//janeiro = 0
+<span class="cstat-no" title="statement not covered" >            y = data.getFullYear();</span>
+<span class="cstat-no" title="statement not covered" >            if (hr !== '') {</span>
+<span class="cstat-no" title="statement not covered" >                dt = y+'-'+m+'-'+d+' '+hr;  </span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                dt = y+'-'+m+'-'+d;  </span>
+            }
+<span class="cstat-no" title="statement not covered" >            return dt;              </span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function formatDataView (data, hora) {</span>
+<span class="cstat-no" title="statement not covered" >            var d, m, y,hr='', dt;</span>
+<span class="cstat-no" title="statement not covered" >            if (hora) {</span>
+<span class="cstat-no" title="statement not covered" >                hr = hora;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            d = data.getDate();</span>
+<span class="cstat-no" title="statement not covered" >            m = data.getMonth()+1; </span>//janeiro = 0
+<span class="cstat-no" title="statement not covered" >            y = data.getFullYear();</span>
+<span class="cstat-no" title="statement not covered" >            if (hr !== '') {</span>
+<span class="cstat-no" title="statement not covered" >                dt = m+'/'+d+'/'+y+' '+hr;  </span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                dt = m+'/'+d+'/'+y;  </span>
+            }
+<span class="cstat-no" title="statement not covered" >            return dt;              </span>
+        }        
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function removeCamposInvalidos (dados,camposInv) {</span>
+<span class="cstat-no" title="statement not covered" >          for (var i = 0; i &lt; camposInv.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            delete dados[camposInv[i]];</span>
+          }
+<span class="cstat-no" title="statement not covered" >          return dados;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function soma(array,rowQt,rowValue) {</span>
+<span class="cstat-no" title="statement not covered" >            var total = 0;</span>
+<span class="cstat-no" title="statement not covered" >            angular.forEach(array, <span class="fstat-no" title="function not covered" >function(row, key){</span></span>
+<span class="cstat-no" title="statement not covered" >                if (rowQt!=='') {</span>
+<span class="cstat-no" title="statement not covered" >                    var valor = row[rowQt]*row[rowValue];</span>
+<span class="cstat-no" title="statement not covered" >                    total = total + valor;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    total = total + row[rowValue];</span>
+                }
+            });
+<span class="cstat-no" title="statement not covered" >            return total.toFixed(2);</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function permissao(arrayModUser,idModSis) {</span>
+<span class="cstat-no" title="statement not covered" >            if (config.modPerm) {//se o modulo de permissoes estiver habilitado</span>
+<span class="cstat-no" title="statement not covered" >                var p = [];</span>
+<span class="cstat-no" title="statement not covered" >                for (var i = 0; i &lt; arrayModUser.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (arrayModUser[i].id_modulo===idModSis) {</span>
+<span class="cstat-no" title="statement not covered" >                        p.push(arrayModUser[i]);</span>
+<span class="cstat-no" title="statement not covered" >                        break;</span>
+                    }
+                }
+<span class="cstat-no" title="statement not covered" >                if (p.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                    return true;</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    return false;</span>
+                }
+            } else {
+<span class="cstat-no" title="statement not covered" >                return true;/</span>/se nao estiver habilitado, permitir acesso livre
+            }
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function copiarObjecto(obj) {</span>
+<span class="cstat-no" title="statement not covered" >            if (obj === null || typeof obj !== 'object') {</span>
+<span class="cstat-no" title="statement not covered" >                return obj;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            var temp = obj.constructor();</span>
+<span class="cstat-no" title="statement not covered" >            for (var key in obj) {</span>
+<span class="cstat-no" title="statement not covered" >                temp[key] = copiarObjecto(obj[key]);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return temp;</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function porExtencio(valor) {</span>
+<span class="cstat-no" title="statement not covered" >            return Extencio.porExtencio(valor);</span>
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function where(array,field,filtro,all) {</span>
+<span class="cstat-no" title="statement not covered" >            var result = [];</span>
+<span class="cstat-no" title="statement not covered" >            for (var i = 0; i &lt; array.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                if (array[i][field] === filtro) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (all) {//todos os registro que encontrar</span>
+<span class="cstat-no" title="statement not covered" >                        result.push(array[i]);</span>
+                    }else{//somente o primeiro que encontrar
+<span class="cstat-no" title="statement not covered" >                        result = array[i];</span>
+<span class="cstat-no" title="statement not covered" >                        break;</span>
+                    }
+                }
+            }
+<span class="cstat-no" title="statement not covered" >            return result;</span>
+        }
+    }
+})();</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 28 2016 10:22:56 GMT-0300 (Hora oficial do Brasil)</div>
+</div>
+<script src="../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../sorter.js"></script>
+</body>
+</html>

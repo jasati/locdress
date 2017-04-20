@@ -1,0 +1,58 @@
+<div class="modal-header bblue">
+    <button type="button" class="close" data-dismiss="alert" ng-click="vm.cancel()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="col-md-10">
+        <h4 class="bblue h4"><i class="fa {{vm.icon}}" aria-hidden="true"></i> {{vm.title}}</h4>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+        	<h3>{{vm.descricao}}</h3>
+		    <div class="thumbnail">
+                <div ng-show="vm.uploader.progress" class="progress" style="margin: 0; padding: 0">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': vm.uploader.progress + '%' }"></div>
+                </div>
+                <a href ng-click="vm.zoomImg(vm.atrb)"> <img src="{{vm.pathImg}}{{(vm.atrb.imagem==undefined||vm.atrb.imagem== '')?'noImg.jpg':vm.atrb.imagem}}" alt="" class="img-rounded" height="140px" width="140px" ></a>
+
+                <input type="file" class="btn btn-default btn-sm form-control" nv-file-select uploader="vm.uploader"/>
+				<div class="caption">
+					<form class="form-horizontal" name="itemForm" ng-submit="vm.salvar(vm.atrb)" autocomplete="off" novalidate>
+	                    <div class="form-group">
+	                    	<div class="input-group">
+	                    		<span class="input-group-addon"><i ng-show="itemForm.qt.$invalid" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i><i class="fa fa-list-ol"></i></span>
+	                        	<input type="number" class="form-control"  ng-model="vm.atrb.qt" name="qt" placeholder="Quantidade" tooltip-placement="top" uib-tooltip="Quantidade disponível do traje" required>
+                        	</div>
+	                    	<div class="input-group">
+	                    		<span class="input-group-addon"><i ng-show="itemForm.tamanho.$invalid" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i><i class="fa fa-arrows"></i></span>
+	                        	<input type="text" class="form-control"  ng-model="vm.atrb.tam" name="tamanho" placeholder="Tamanho" tooltip-placement="top" uib-tooltip="Tamanho do traje" required>
+                        	</div>
+	                        <div class="input-group">
+	                        	<span class="input-group-addon"><i ng-show="itemForm.cor.$invalid" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i><i class="fa fa-paint-brush"></i></span>
+	                        	<input type="text" class="form-control"  ng-model="vm.atrb.cor" name="cor" placeholder="Cor" tooltip-placement="top" uib-tooltip="Cor do traje" required>
+                        	</div>
+	                        <div class="input-group">
+								<span class="input-group-addon">R$ </span>
+                                <input type="number" class="form-control"  ng-model="vm.atrb.custo" placeholder="Custo do Traje" tooltip-placement="top" uib-tooltip="Custo do traje" name="custo">
+                            </div>
+                            <div class="input-group">
+                            	<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            	<input type="date" class="form-control"  ng-model="vm.atrb.data_compra" name="data" tooltip-placement="top" uib-tooltip="Data do investimento no traje">
+                        	</div>
+                    		<div class="input-group">
+                    			<span class="input-group-addon">
+                            	<input type="checkbox"  data-ng-model="vm.atrb.status" ng-true-value="1" ng-false-value="0" tooltip-placement="top" uib-tooltip="Quando desmarcado, o traje não estará mais disponível para locação">
+                            	</span>
+                            	<span class="input-group-addon">Ativo</span>
+                    		</div>                        	
+	                    </div>
+	                    <div class="form-group">
+	                    	<button class="btn btn-primary" type="submit" ng-disabled="itemForm.$invalid"><i class="fa fa-floppy-o"></i> Salvar</button>
+	                    </div>
+					</form>
+				</div>
+		    </div>
+        </div>
+    </div>
+</div>

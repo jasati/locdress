@@ -1,0 +1,65 @@
+
+
+<div class="row page-off" ng-init="estados=['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO']">
+	<div class="container">
+	    <div align="center" style="margin-top: 30px; margin-bottom: 20px; color: #f2f2f2;">
+	    	<img src="images/logo.png" height="100">
+	    </div>
+	    <div class="col-md-6 col-md-offset-3">
+	    	<div class="box-login-inner">
+	    		<div align="center" >
+	    			<h2 class="red">Ative seu período de avaliação</h2>
+	    			<p>Preencha o formulário abaixo e click em "Ativar licença de avaliação".</p>
+	    		</div>
+
+			    <form class="form" name="formEmp" novalidate>
+			    	<h4>Dados pessoais</h4>
+
+	                <div class="form-group">
+	                    <input type="text" class="form-control"  ng-model="vm.funcoes.empresa.responsavel" name="responsavel" placeholder="Seu nome" tooltip-placement="top" uib-tooltip="Responsável pela Empresa" required>
+	                </div>
+
+	                <div class="form-group">
+	                    <input type="email" class="form-control"  ng-model="vm.funcoes.empresa.email" name="email" tooltip-placement="top" uib-tooltip="Email para contato" placeholder="E-mail" readonly>
+	                </div>
+
+	                <div class="form-group">
+	                    <input type="phone" class="form-control"  ng-model="vm.funcoes.empresa.cel" name="cel" tooltip-placement="top" uib-tooltip="Telefone ou celular" placeholder="Celular" >
+	                </div>
+
+	                <h4>Dados do negócio</h4>
+	                <small>Essas informações serão vistas nos cabeçarios e rodapés dos relatórios impressos</small>
+	                <div class="form-group">
+	                    <input type="text" class="form-control"  ng-model="vm.funcoes.empresa.nome" name="nome" tooltip-placement="top" placeholder="Nome da Loja" uib-tooltip="Nome da Loja" required>
+	                </div>
+	                <div class="form-group">
+	                    <input type="text" class="form-control"  ng-model="vm.funcoes.empresa.fantasia" name="nome" tooltip-placement="top" placeholder="Nome fantasia da loja" uib-tooltip="Nome fantazia">
+	                </div>
+	                <div class="form-group">
+	                    <input type="text" class="form-control"  ng-model="vm.funcoes.empresa.slogan" name="nome" tooltip-placement="top" placeholder="Slogan" uib-tooltip="Frase comercial do negócio">
+	                </div>
+	                <div class="form-group">
+	                    <input type="text" class="form-control"  ng-model="vm.funcoes.empresa.cpf_cnpj" id="cpf_cnpj" tooltip-placement="top" placeholder="CNPJ ou CPF" tooltip="CPF ou CNPJ da Empresa" required>
+	                </div>
+	                <div class="form-group">
+	                    <input type="text" class="form-control"  ng-model="vm.funcoes.empresa.endereco" id="endereco" tooltip-placement="top" placeholder="Endereço" tooltip="Endereço da Empresa">
+	                </div>
+	                <div class="form-group">
+	                	<div class="row">
+		                    <div class="col-md-5">
+								<select ng-options="estado for estado in estados" class="form-control"  ng-model="vm.funcoes.empresa.estado" name="estado" tooltip-placement="top" uib-tooltip="Estado UF" required></select>
+		                    </div>
+		                    <div class="col-md-7">
+		                    	<input type="text" class="form-control"  ng-model="vm.funcoes.empresa.cidade" id="cidade" tooltip-placement="top" placeholder="Cidade" tooltip="Cidade da Empresa" required>
+		                    </div>
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <button class="btn btn-success btn-lg btn-block" ng-disabled="formEmp.$invalid||vm.funcoes.salvando" ng-click="vm.funcoes.salvar(vm.funcoes.empresa)"><span class="fa-2x"> <i class="fa" ng-class="{'fa-certificate':!vm.funcoes.salvando,'fa-spinner fa-pulse':vm.funcoes.salvando}"></i> Ativar licença de avaliação</span></button>
+	                    <span><small>Essa licença tem validade de 15 dias.</small></span>
+	                </div>
+			    </form>
+	    	</div>
+	    </div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<section class="mainbar" ng-show="vm.permissao(19)">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wblue">
+                    <div ht-widget-header icon="{{vm.icon}}" title="{{vm.title}}" subtitle="{{vm.subtitle}}"></div>
+                    <div class="widget-content user">
+                        <div class="navbar navbar-inverse">
+                            <div class="container-fluid">
+                                <div class="navbar-header navbar-inverse">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+
+                                    <button type="button" class="btn btn-primary navbar-btn" data-ng-click="vm.newRec()" ng-disabled="!vm.permissao(20)"><i class="fa fa-plus"></i> Receber Avulso</button>
+
+                                </div>
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                                    <div class="navbar-btn">
+                                        <div class="col-md-8">
+                                            <div class="input-group input-group-sm">
+                                              <input type="text" class="form-control" placeholder="Consultar Cliente" ng-model="vm.consulta.cliente"/>
+                                              <div class="input-group-btn">
+                                                <button class="btn btn-default" type="button" ng-click="vm.pesquisa()" uib-tooltip="Mostrar opções de pesquisa"><i class="fa fa-caret-down"></i></button>
+                                                <button type="button" class="btn btn-primary" data-ng-click="vm.getRec()" placeholder="Consultar"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="navbar-btn">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <small><em>Exibindo recebimentos de {{vm.convDate(vm.consulta.data_rec_ini) | date : "dd/MM/yyyy"}} até {{vm.convDate(vm.consulta.data_rec_fim) | date : "dd/MM/yyyy"}}</em></small>
+                        <div ng-hide="vm.recebimentos.length > 0"><h3 class="text-warning">Sem recebimentos para ser exibido.</h3></div>
+                        <table class="table table-condensed table-striped" ng-show="vm.recebimentos.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Origem</th>
+                                    <th>Data</th>
+                                    <th>Pagamento</th>
+                                    <th>Nº Documento</th>
+                                    <th>Valor</th>
+                                    <th>Cliente</th>
+                                    <th>Observações</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="r in vm.recebimentos track by r.id_rec">
+                                    <td>{{r.id_reserva!=null?'Vinculado':'Avulso'}}</td>
+                                    <td>{{r.data_rec|date : "dd/MM/yyyy"}}</td>
+                                    <td>{{r.tipo_pagamento}}</td>
+                                    <td>{{r.n_doc}}</td>
+                                    <td><b class="green">{{r.valor|currency:'R$'}}</b></td>
+                                    <td>{{r.cliente}}</td>
+                                    <td>{{r.obs}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-ng-click="vm.editRec(r)" uib-tooltip="Alterar o Recebimento" ng-disabled="!vm.permissao(21)"><i class="fa fa-edit" aria-hidden="true"></i></button>
+                                    </td>
+                                    <td>
+                                       <button type="button" class="btn btn-danger" data-ng-click="vm.deleteRec(r)" uib-tooltip="Excluir o Recebimento" ng-disabled="!vm.permissao(22)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <h3 ng-show="vm.recebimentos.length > 0" class="text-info">Total Recebido: <strong>{{vm.soma(vm.recebimentos,'','valor') | currency:'R$'}}</strong></h3>
+                    </div>
+                    <div class="widget-foot" align="center">
+                        <div>
+                            <ul uib-pagination  total-items="vm.totalReg" ng-model="vm.nPagina" max-size="5" class="pagination-sm" boundary-links="true" rotate="false" items-per-page="vm.totalRegPag" num-pages="numPages" ng-change="vm.setPage()"></ul>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5 col-sm-offset-3">
+                                <div class="input-group input-group-sm">
+                                  <span class="input-group-addon" id="basic-addon1" >Registros por Pagina</span>
+                                  <input type="text" class="form-control" ng-model="vm.totalRegPag">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button" ng-click="vm.getRec()">Ok!</button>
+                                  </span>                              
+                                </div> 
+                            </div>
+
+                        </div>                           
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

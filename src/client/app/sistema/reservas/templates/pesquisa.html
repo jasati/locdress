@@ -1,0 +1,93 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="alert" ng-click="vm.cancel()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+</div>
+<div class="popover-html">
+
+    <form class="form-horizontal">
+
+        <div class="form-group">
+            
+        </div>
+
+        <div class="form-group">
+            <label for="id_reserva" class="col-sm-3 control-label">Nº Contrato</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control input-sm"  ng-model="vm.consulta.id_reserva" id="id_reserva" tooltip-placement="top" tooltip="Nº do Contrato da reserva">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="status" class="col-sm-3 control-label">Status</label>
+            <div class="col-sm-5">
+                <select ng-options="status.id as status.desc for status in vm.status" ng-model="vm.consulta.status" class="form-control input-sm" tooltip="Situação da Reserva" id="status" ></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_reserva" class="col-sm-3 control-label">Responsável reserva</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control input-sm"  ng-model="vm.consulta.resp_reserva" id="id_reserva" tooltip-placement="top" tooltip="Pessoa que fez a reserva">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_reserva" class="col-sm-2 control-label">Data Reservas</label>
+            <div class="col-sm-5">
+                <label for="id_reserva" class="col-sm-2 control-label">de</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control input-sm" uib-datepicker-popup ng-model="vm.consulta.dt_res_ini" tooltip-placement="top" uib-tooltip="Data Inicio da Reserva"/>
+                </div>
+            </div>
+
+            <div class="col-sm-5">
+                <label for="id_reserva" class="col-sm-2 control-label">Até</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control input-sm" uib-datepicker-popup ng-model="vm.consulta.dt_res_fim" tooltip-placement="top" uib-tooltip="Data Fim da Reserva"/>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="id_reserva" class="col-sm-2 control-label">Data Retirada</label>
+            <div class="col-sm-5">
+                <label for="id_reserva" class="col-sm-2 control-label">de</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control input-sm" uib-datepicker-popup ng-model="vm.consulta.dt_ret_ini" tooltip-placement="top" uib-tooltip="Data Inicio da Retirada"/>
+                </div>
+            </div>
+
+            <div class="col-sm-5">
+                <label for="id_reserva" class="col-sm-2 control-label">Até</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control input-sm" uib-datepicker-popup ng-model="vm.consulta.dt_ret_fim" tooltip-placement="top" uib-tooltip="Data Fim da Retirada"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_reserva" class="col-sm-2 control-label">Data Evento</label>
+            <div class="col-sm-5">
+                <label for="id_reserva" class="col-sm-2 control-label">de</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control input-sm" uib-datepicker-popup ng-model="vm.consulta.dt_eve_ini" tooltip-placement="top" uib-tooltip="Data Inicio do Evento"/>
+                </div>
+            </div>
+
+            <div class="col-sm-5">
+                <label for="id_reserva" class="col-sm-2 control-label">Até</label>
+                <div class="col-sm-10">
+                    <input type="date" class="form-control input-sm" uib-datepicker-popup ng-model="vm.consulta.dt_eve_fim" tooltip-placement="top" uib-tooltip="Data Fim do Evento"/>
+                </div>
+            </div>
+        </div>        
+    </form>
+</div>
+    
+<div class="modal-footer">
+    <button class="btn btn-default" type="button" ng-click="vm.limpar()"><i class="fa fa-eraser" aria-hidden="true"></i> Limpar</button>
+    <button class="btn btn-primary" type="button" ng-click="vm.ok()"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button>
+</div>

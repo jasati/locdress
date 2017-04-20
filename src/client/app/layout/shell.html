@@ -1,0 +1,38 @@
+<!-- <div>
+
+    <div ng-switch on="vm.logado">
+        <div ng-switch-when="true">
+            <header class="clearfix">
+                <ht-top-nav navline="vm.navline" usuario="vm.usuario" logado="vm.logado" loja="vm.loja"></ht-top-nav>
+            </header>
+            <section id="content" class="content">
+                <div ngplus-overlay
+                     ngplus-overlay-delay-in="50"
+                     ngplus-overlay-delay-out="700"
+                     ngplus-overlay-animation="dissolve-animation">
+                    <img src="images/busy.gif"/>
+
+                    <div class="page-spinner-message overlay-message">{{vm.busyMessage}}</div>
+                </div>            
+                <div ng-include="'app/layout/sidebar.html'"></div>
+                <div ui-view class="shuffle-animation"></div>
+            </section>
+        </div>
+        <div ng-switch-when="false">
+            <login usuario="vm.usuario" logado="vm.logado" navline="vm.navline" loja="vm.loja"></login>
+        </div>
+        <div ng-switch-default>
+            <h1>Nenhuma opcao</h1>
+        </div>
+    </div>
+</div> -->
+
+
+<header class="clearfix">
+    <ht-top-nav navline="vm.navline" usuario="vm.usuario" logado="vm.logado" loja="vm.loja"></ht-top-nav>
+</header>
+<section id="content" class="content">
+
+    <div ng-include="'app/layout/sidebar.html'"></div>
+    <div ui-view class="shuffle-animation"></div>
+</section>

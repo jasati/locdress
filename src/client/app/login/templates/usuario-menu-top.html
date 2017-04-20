@@ -1,0 +1,22 @@
+<ul class="nav navbar-nav navbar-right" style="margin-right: 5px">
+    <li>
+        <a href ng-click="vm.trocarLoja()" ><i class="fa fa-flag orange"></i> {{vm.loja.nome}}</a>
+    </li>        
+    <li class="dropdown"  dropdown>
+
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user orange"></i> {{vm.usuario.nome}} <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href ng-click="vm.cadastroUsuarioLogado()" ><i class="fa fa-newspaper-o"></i>Cadastro</a>
+            </li>
+            <li>
+                <a href ng-click="vm.alterarSenha()" ><i class="fa fa-key"></i>Trocar Senha</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="/" ng-click="vm.logoff()" ><i class="fa fa-sign-out orange"></i> Sair do Sistema</a>
+    </li>    
+</ul>

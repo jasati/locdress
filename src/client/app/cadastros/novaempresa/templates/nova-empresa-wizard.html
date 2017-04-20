@@ -1,0 +1,51 @@
+<style type="text/css">
+	body{
+		padding: 0;
+	}
+</style>
+<div class="col-md-12" style="margin: 0; padding: 0;">
+	<div class="panel panel-default" style="margin: 0; padding: 0">
+
+		<div class="panel-body">
+			<div class="col-md-12">
+				<wizard on-finish="vm.ok()" hide-indicators="true" indicators-position="top"> 
+				    <wz-step wz-title="Bem vindo">
+				    	<div class="col-md-12" style="min-height: 400px">
+		    				<div ng-include="'app/cadastros/novaempresa/templates/nova-empresa-inicio.html'"></div>
+				    	</div>
+				    </wz-step>
+				    <wz-step wz-title="Dados da empresa">
+				    	<div class="col-md-12" style="min-height: 400px">
+				    		<div ng-include="'app/cadastros/novaempresa/templates/nova-empresa.html'"></div>
+				    	</div>
+
+<!-- 			        	<div class="col-md-12">
+			        		<hr>
+		        			<button class="btn btn-primary btn-lg pull-right" ng-disabled="!vm.empresa.id_empresa" type="button" ng-click="" wz-next><span>Dados para acessar o sistema</span> <i class="fa fa-arrow-right"></i></button>
+			        	</div> -->
+				    </wz-step>
+
+				    <wz-step wz-title="Dados para acesso ao sistema" >
+				    	<div class="col-md-12" style="min-height: 400px">
+				    		<div ng-include="'app/cadastros/novaempresa/templates/nova-empresa-login.html'"></div>
+				    	</div>
+<!-- 			        	<div class="col-md-12">
+			        		<hr>
+		        			<button class="btn btn-success btn-lg pull-right" ng-disabled="!vm.usuario.id_usuario" type="button"  wz-next><span> Concluir</span> <i class="fa fa-check-o"></i></button>
+			        	</div> -->
+				    </wz-step>
+				    <wz-step wz-title="Situacao" >
+				    	<div class="col-md-12" style="min-height: 400px">
+				    	<div ng-include="'app/cadastros/novaempresa/templates/nova-empresa-sit.html'"></div>
+				    	</div>
+				    </wz-step>
+				    <wz-step wz-title="Concluido" >
+				    	<div class="col-md-12" style="min-height: 400px">
+				    	<div ng-include="'app/cadastros/novaempresa/templates/nova-empresa-concluido.html'"></div>
+				    	</div>
+				    </wz-step>
+				</wizard>
+			</div>
+		</div>
+	</div>
+</div>

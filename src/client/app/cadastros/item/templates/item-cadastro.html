@@ -1,0 +1,145 @@
+<script type="text/ng-template" id="descTemp.html">
+  <a>
+      <span ng-bind-html="match.label | uibTypeaheadHighlight:query"></span>
+      <p><i class="fa fa-tag text-default"></i> {{match.model.ref}}</p>
+  </a>
+</script>
+<div class="modal-header bblue">
+    <button type="button" class="close" data-dismiss="alert" ng-click="vm.ok()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="col-md-10">
+        <h4 class="bblue h4"><i class="fa {{vm.icon}}" aria-hidden="true"></i> {{vm.title}}</h4>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" name="itemForm" ng-submit="vm.salvar(vm.item)" autocomplete="off" novalidate>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="loja" class="col-md-2 control-label">Loja</label>
+                        <div class="col-md-10">
+                            <select ng-options="loja.id_loja as  loja.nome for loja in vm.lojas" ng-model="vm.item.id_loja" class="form-control input-sm" uib-tooltip="Loja em que o traje faz parte do estoque" id="loja"></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoria" class="col-md-2 control-label">
+                            <span>Categoría <i ng-show="itemForm.categoria.$invalid" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i></span>
+                        </label>
+                        <div class="col-md-10">
+                            <select ng-options="categoria.id_categoria as categoria.descricao for categoria in vm.categorias" ng-model="vm.item.id_categoria" class="form-control input-sm" uib-tooltip="Categoria do traje" name="categoria" required></select>
+                        </div>
+                    </div> 
+
+                    <div class="form-group">
+                        <label for="subcategoria" class="col-md-2 control-label">
+                            <span>Subcategoría <i ng-show="itemForm.subcategoria.$invalid" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i></span>
+                        </label>
+                        <div class="col-sm-10">
+                            <select ng-options="subcategoria.id_subcat as subcategoria.descricao for subcategoria in vm.subcategorias | filter:{'id_categoria':vm.item.id_categoria}" ng-model="vm.item.id_subcategoria" class="form-control input-sm" uib-tooltip="Sub-Categoría do traje" name="subcategoria" required></select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ref" class="col-md-2 control-label">Referência 
+                        </label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control"  ng-model="vm.item.ref" name="ref" tooltip-placement="top" uib-tooltip="Referência para identificação do traje">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" align="center">
+                    <div ng-show="vm.uploader.progress" class="progress" style="margin: 0; padding: 0">
+                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': vm.uploader.progress + '%' }"></div>
+                    </div>
+                    <a href ng-click="vm.zoomImg(vm.item)"> <img src="{{vm.pathImg}}{{(vm.item.imagem==undefined||vm.item.imagem== '')?'noImg.jpg':vm.item.imagem}}" alt="" class="img-rounded" height="140px" ></a>
+
+                    <input type="file" class="btn btn-default btn-sm form-control" nv-file-select uploader="vm.uploader"/>
+
+                    <!-- <button class="btn btn-primary btn-sm form-control" type="button" ng-click=""><i class="fa fa-file-image-o"></i> Carregar Img.</button> -->
+                </div>
+                <div class="col-md-12" >
+
+                    <div class="form-group">
+                        <label for="descricao" class="col-md-2 control-label">
+                            <span>Descrição <i ng-show="itemForm.descricao.$invalid" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i></span>
+                        </label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control"  ng-model="vm.item.descricao" name="descricao" tooltip-placement="top" uib-tooltip="Descrição do traje que será exibido" uib-typeahead="traje as traje.descricao for traje in vm.getTrajeCad($viewValue)" typeahead-on-select="vm.item = $item;vm.aterarAction('edit')" typeahead-template-url="descTemp.html" typeahead-wait-ms="2" typeahead-min-length="3" required>
+                        </div>
+                    </div>  
+                    <div class="form-group">
+                        <label for="valor" class="col-md-2 control-label">
+                            Valor Locação 
+                        </label>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">R$ <i ng-show="itemForm.valor.$invalid" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i></span>
+                                <input type="number" class="form-control"  ng-model="vm.item.valor" name="valor" placeholder="Valor" tooltip-placement="top" uib-tooltip="Valor da Locação do traje" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">% <i ng-show="itemForm.desc.$invalid" class="fa fa-exclamation-circle text-danger" tooltip-placement="top" uib-tooltip="Preencha esse campo"></i></span>
+                                <input type="number" class="form-control"  ng-model="vm.item.per_desc" id="desc" placeholder="Desconto Max." tooltip-placement="top" uib-tooltip="Percentual Máximo de desconto" name="desc" required>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status" class="col-md-2 control-label">Ativo</label>
+                        <div class="col-md-10">  
+                            <input type="checkbox"  data-ng-model="vm.item.status" ng-true-value="1" ng-false-value="0" tooltip-placement="top" uib-tooltip="Quando desmarcado, o traje não estará mais disponível para locação"> 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="">
+                            <button class="btn btn-primary" type="submit" ng-disabled="itemForm.$invalid" ><i class="fa fa-floppy-o"></i> Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-12">
+            <hr>
+            <div class="">
+                <button class="btn btn-primary" type="button" ng-click="vm.novoAtrb()" ng-disabled="!vm.item.id_item" uib-tooltip="Adicionar unidades do estoque"> <i class="fa fa-plus"></i> Nova Unidade</button>
+                <div class="table-responsive">
+                    <h3 ng-show="vm.atrbs.length === 0" class="text-warning">Sem unidades cadastradas</h3>
+                    <table class="table table-striped" ng-show="vm.atrbs.length > 0">
+                        <thead>
+                            <tr>
+                                <th><i class="fa fa-file-image-o"></i></th>    
+                                <th>Tamanho</th>
+                                <th>Cor</th>
+                                <th>Quantidade</th>
+                                <th>R$ Custo</th>
+                                <th>Status</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="t in vm.atrbs track by $index">
+                                <td><a href ng-click="vm.zoomImg(t)"><img src="{{vm.pathImg}}{{t.imagem?t.imagem:'noImg.jpg'}}" class="img-rounded" height="40px"></a></td>
+                                <td>{{t.tam}}</td>
+                                <td>{{t.cor}}</td>
+                                <td>{{t.qt}}</td>
+                                <td>{{t.custo|currency:'R$'}}</td>
+                                <td>{{t.status == 1 ? 'Ativo' : 'Inativo'}}</td>
+                                <td><a href ng-click="vm.editAtrb(t)" uib-tooltip="Alterar"><i class="fa fa-edit"></i></a></td>
+                                <td><a href ng-click="vm.deleteAtrb(t)" uib-tooltip="Excluir"> <i class="fa fa-trash"></i> </a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancelar</button>
+</div>

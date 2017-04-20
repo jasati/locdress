@@ -1,0 +1,115 @@
+<section class="mainbar" ng-show="vm.permissao(1)">
+    <section class="matter">
+        <div class="container">
+            <div class="row">
+                <div class="widget wblue">
+                    <div ht-widget-header icon="{{vm.icon}}" title="{{vm.title}}" subtitle="{{vm.subtitle}}"></div>
+                    <div class="widget-content user">
+                        <div class="navbar navbar-inverse">
+                            <div class="container-fluid">
+                                <div class="navbar-header navbar-inverse">
+                                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                  </button>
+                                    <button type="button" class="btn btn-primary navbar-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Sub-Cadastros">
+                                        <i class="fa fa-bars"></i>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button> 
+                                    <ul class="dropdown-menu">
+                                        <li ng-show="vm.permissao(5)"><a href="#" ng-click="vm.cadPerfil()"><i class="fa fa-vcard"></i>Configurar Perfil dos Usuários</a></li>
+                                    </ul> 
+                                    <button type="button" class="btn btn-primary navbar-btn" data-ng-click="vm.newUsuario()" ng-disabled="!vm.permissao(2)"><i class="fa fa-plus" ></i> Novo Usuário</button>
+                                </div>                            
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                                        <div class="navbar-btn">
+                                            <div class="col-md-8">
+                                                <div class="input-group input-group-sm">
+                                                  <input type="text" class="form-control" placeholder="Consultar Nome do Usuário" ng-model="vm.consulta.nome"/>
+                                                  <div class="input-group-btn">
+                                                    <button class="btn btn-default" type="button" ng-click="vm.pesquisa()" uib-tooltip="Mostrar opções de pesquisa"><i class="fa fa-caret-down"></i></button>
+                                                    <button type="button" class="btn btn-primary" data-ng-click="vm.getUsuario()" placeholder="Consultar"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button>
+
+                                                  </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>                                
+
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                        
+                        <table class="table table-condensed table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Perfil</th>
+                                    <th>Status</th>
+                                    <th>funções</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="u in vm.usuarios track by u.id_usuario">
+                                    <td>{{u.nome}}</td>
+                                    <td>{{u.email}}</td>
+                                    <td>{{u.perfil}}</td>
+                                    <td>{{u.status == 1 ? 'Ativo' : 'Inativo'}}</td>
+                                    <td><button type="button" class="btn btn-primary" data-ng-click="vm.editUsuario(u)" ng-disabled="!vm.permissao(3)"><i class="fa fa-edit" aria-hidden="true" ></i></button>
+                                    <button type="button" class="btn btn-danger" data-ng-click="vm.deleteUsuario(u)" ng-disabled="!vm.permissao(4)"><i class="fa fa-trash" aria-hidden="true"></button></td>
+                                </tr>
+                            </tbody>
+                        </table>                      
+                    </div>
+                    <div class="widget-foot" align="center">
+                        <div>
+                            <ul uib-pagination total-items="vm.totalReg" ng-model="vm.nPagina" max-size="5" class="pagination-sm" boundary-links="true" rotate="false" items-per-page="vm.totalRegPag" num-pages="numPages" ng-change="vm.setPage()"></ul>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5 col-sm-offset-3">
+                                <div class="input-group input-group-sm">
+                                  <span class="input-group-addon" id="basic-addon1" >Registros por Pagina</span>
+                                  <input type="text" class="form-control" ng-model="vm.totalRegPag">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button" ng-click="vm.getUsuario()">Ok!</button>
+                                  </span>                              
+                                </div> 
+                            </div>
+                        </div>                           
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<!-- Fomulario modal de cadastro -->
+<script type="text/ng-template" id="cadastro.html">
+
+
+
+</script>
+
+
+<!-- formulario modal com mensagem de exclusão -->
+
+<script type="text/ng-template" id="delete.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Confirmar Exclusão</h3>
+    </div>
+    <div class="modal-body">
+        <p class="text-warning"> Confirma a exclusão do usuario {{vm.usuario.nome}} ?</p>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-danger" type="button" ng-click="vm.ok(vm.usuario)">Confirmar</button>
+        <button class="btn btn-primary" type="button" ng-click="vm.cancel()">Cancelar</button>
+    </div>
+</script>

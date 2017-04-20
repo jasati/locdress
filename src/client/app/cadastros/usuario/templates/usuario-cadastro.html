@@ -1,0 +1,82 @@
+<div class="modal-header bblue">
+    <button type="button" class="close" data-dismiss="alert" ng-click="vm.cancel()" >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="col-md-10">
+        <h4 class="bblue h4"><i class="fa {{vm.icon}}" aria-hidden="true"></i> {{vm.title}}</h4>
+    </div>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" name="formUser" novalidate>
+
+        <div class="form-group">
+            <label for="loja" class="col-md-2 control-label">Loja</label>
+            <div class="col-md-10">
+                <select ng-options="loja.id_loja as  loja.nome for loja in vm.lojas" ng-model="vm.usuario.id_loja" class="form-control input-sm" placeholder="Loja em que o usuário colabora" id="loja"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nome" class="col-sm-2 control-label">Nome</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control"  ng-model="vm.usuario.nome" id="nome">
+            </div>
+        </div> 
+        <div class="form-group">
+            <label for="login" class="col-sm-2 control-label">Login</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control"  ng-model="vm.usuario.login" id="login">
+            </div>
+        </div>          
+        <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="vm.usuario.email" id="email">
+            </div>
+        </div>
+
+<!--         <div class="form-group">
+            <label for="nivel" class="col-sm-2 control-label">Nível</label>
+            <div class="col-sm-8">
+                <select ng-options="nivel.valor as  nivel.descricao for nivel in vm.optnivel" ng-model="vm.usuario.nivel" class="form-control input-sm" name="nivel"></select>
+            </div>
+        </div>  -->
+
+        <div class="form-group">
+            <label for="perfil" class="col-sm-2 control-label">Perfíl</label>
+            <div class="col-sm-8">
+                <div class="input-group">
+                <select ng-options="perfil.id_perfil as  perfil.nome for perfil in vm.perfils" ng-model="vm.usuario.id_perfil" class="form-control input-sm" name="perfil" ng-change="vm.getModPerfil(vm.usuario.id_perfil)"></select>
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" uib-tooltip="Visulizar modulos do perfil" ng-click="vm.isCollapsed = !vm.isCollapsed"><i class="fa fa-eye" ng-show="!vm.isCollapsed"></i><i class="fa fa-eye-slash" ng-show="vm.isCollapsed"></i></button> 
+                  </span>                
+                </div>
+            </div>           
+        </div>  
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-8">
+                <div uib-collapse="!vm.isCollapsed">
+                    <ul class="list-group" >
+                      <span class="list-group-item active">
+                        <h6 class="list-group-item-heading">Modulos do Perfil</h6>
+                      </span>  
+                      <li class="list-group-item list-group-item-info" ng-repeat="mod in vm.modPerfils">{{mod.modulo}}</li>
+                    </ul>
+                </div>                 
+            </div>
+        </div>
+               
+
+        <div class="form-group">
+            <label for="status" class="col-sm-2 control-label">Ativo</label>
+            <div class="col-sm-10">
+                <div class="col-sm-2">  
+                    <input type="checkbox"  data-ng-model="vm.usuario.status" ng-true-value="1" ng-false-value="0"> 
+                </div>
+            </div>
+        </div> 
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-disabled="formUser.$invalid" ng-click="vm.salvar(vm.usuario)">Salvar</button>
+    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancelar</button>
+</div>

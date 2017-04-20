@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+        .ng-hide { display: none!important; }
+    </style>
+    <title ng-bind="title">LocDress - Sistema Para Locação de Trajes</title>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <base href="/">
+
+    <!-- build:css styles/lib.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
+    <link rel="stylesheet" href="/bower_components/angular-chart.js/dist/angular-chart.css" />
+    <link rel="stylesheet" href="/bower_components/angular-aside/dist/css/angular-aside.css" />
+    <link rel="stylesheet" href="/bower_components/angular-xeditable/dist/css/xeditable.css" />
+    <link rel="stylesheet" href="/bower_components/jqueryte/dist/jquery-te-1.4.0.css" />
+    <link rel="stylesheet" href="/bower_components/angular-wizard/dist/angular-wizard.min.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/app.css -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/.tmp/styles.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+</head>
+<body>
+    <div>
+
+        <div ui-view >
+
+        </div>
+        <div id="splash-page" ng-show="showSplash">
+            <div class="page-splash">
+                <div class="page-splash-message">
+                    <img src="images/logo.png" width="40%">
+                </div>
+                <div class="progress progress-striped progress-bar-striped active page-progress-bar">
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+        <section id="content" class="content">
+            <div ngplus-overlay
+                 ngplus-overlay-delay-in="50"
+                 ngplus-overlay-delay-out="700"
+                 ngplus-overlay-animation="dissolve-animation">
+                 <div ng-include="'app/layout/busy.html'"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- build:js js/lib.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/bower_components/extras.angular.plus/ngplus-overlay.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/bower_components/toastr/toastr.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="/bower_components/angular-file-upload/dist/angular-file-upload.min.js"></script>
+    <script src="/bower_components/Chart.js/Chart.js"></script>
+    <script src="/bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="/bower_components/angular-aside/dist/js/angular-aside.js"></script>
+    <script src="/bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="/bower_components/jqueryte/dist/jquery-te-1.4.0.min.js"></script>
+    <script src="/bower_components/angular-wizard/dist/angular-wizard.min.js"></script>
+    <script src="/bower_components/angular-ui-mask/dist/mask.js"></script>
+    <script src="/bower_components/angular-mailchimp-subscribe/mailchimp.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js js/app.js -->
+    <!-- inject:js -->
+    <script src="/src/client/app/app.module.js"></script>
+    <script src="/src/client/app/blocks/exception/exception.module.js"></script>
+    <script src="/src/client/app/blocks/logger/logger.module.js"></script>
+    <script src="/src/client/app/blocks/router/router.module.js"></script>
+    <script src="/src/client/app/blocks/utils/utils.module.js"></script>
+    <script src="/src/client/app/cadastros/cadastro.module.js"></script>
+    <script src="/src/client/app/cadastros/categorias/categoria.module.js"></script>
+    <script src="/src/client/app/cadastros/cliente/cliente.module.js"></script>
+    <script src="/src/client/app/cadastros/item/atrb/item-atrb.module.js"></script>
+    <script src="/src/client/app/cadastros/item/item.module.js"></script>
+    <script src="/src/client/app/cadastros/modulossys/modulos.module.js"></script>
+    <script src="/src/client/app/cadastros/novaempresa/novaempresa.module.js"></script>
+    <script src="/src/client/app/cadastros/perfil/perfil.module.js"></script>
+    <script src="/src/client/app/cadastros/subcategorias/subcategoria.module.js"></script>
+    <script src="/src/client/app/cadastros/unidademedida/unidade.module.js"></script>
+    <script src="/src/client/app/cadastros/usuario/usuario.module.js"></script>
+    <script src="/src/client/app/core/core.module.js"></script>
+    <script src="/src/client/app/dashboard/dashboard.module.js"></script>
+    <script src="/src/client/app/empresa/empresa.module.js"></script>
+    <script src="/src/client/app/layout/layout.module.js"></script>
+    <script src="/src/client/app/licenca/licencas.module.js"></script>
+    <script src="/src/client/app/login/login.module.js"></script>
+    <script src="/src/client/app/registrar/registrar.module.js"></script>
+    <script src="/src/client/app/sistema/consultar/consulta.module.js"></script>
+    <script src="/src/client/app/sistema/recebimentos/recebimentos.module.js"></script>
+    <script src="/src/client/app/sistema/reservas/reserva.module.js"></script>
+    <script src="/src/client/app/sistema/sistema.module.js"></script>
+    <script src="/src/client/app/widgets/widgets.module.js"></script>
+    <script src="/src/client/app/blocks/exception/exception-handler.provider.js"></script>
+    <script src="/src/client/app/blocks/exception/exception.js"></script>
+    <script src="/src/client/app/blocks/logger/logger.js"></script>
+    <script src="/src/client/app/blocks/router/router-helper.provider.js"></script>
+    <script src="/src/client/app/blocks/utils/extencio.service.js"></script>
+    <script src="/src/client/app/blocks/utils/ultils-textEditor.directive.js"></script>
+    <script src="/src/client/app/blocks/utils/utils-functions.service.js"></script>
+    <script src="/src/client/app/blocks/utils/utils-keypress.directive.js"></script>
+    <script src="/src/client/app/cadastros/categorias/categoria-modal.controller.js"></script>
+    <script src="/src/client/app/cadastros/categorias/categoria.service.js"></script>
+    <script src="/src/client/app/cadastros/cliente/cliente-modal.controller.js"></script>
+    <script src="/src/client/app/cadastros/cliente/cliente.controller.js"></script>
+    <script src="/src/client/app/cadastros/cliente/cliente.route.js"></script>
+    <script src="/src/client/app/cadastros/cliente/cliente.service.js"></script>
+    <script src="/src/client/app/cadastros/item/atrb/item-atrb.controller.js"></script>
+    <script src="/src/client/app/cadastros/item/atrb/item-atrb.service.js"></script>
+    <script src="/src/client/app/cadastros/item/item-modal.controller.js"></script>
+    <script src="/src/client/app/cadastros/item/item-sel-modal.controller.js"></script>
+    <script src="/src/client/app/cadastros/item/item.controller.js"></script>
+    <script src="/src/client/app/cadastros/item/item.route.js"></script>
+    <script src="/src/client/app/cadastros/item/item.service.js"></script>
+    <script src="/src/client/app/cadastros/item/zoom-img.contrller.js"></script>
+    <script src="/src/client/app/cadastros/modulossys/modulos-modal.controller.js"></script>
+    <script src="/src/client/app/cadastros/modulossys/modulos.service.js"></script>
+    <script src="/src/client/app/cadastros/novaempresa/novaempresa.controller.js"></script>
+    <script src="/src/client/app/cadastros/novaempresa/novaempresa.route.js"></script>
+    <script src="/src/client/app/cadastros/perfil/mod-perfil.service.js"></script>
+    <script src="/src/client/app/cadastros/perfil/perfil-mod-modal.controller.js"></script>
+    <script src="/src/client/app/cadastros/perfil/perfil-modal.controller.js"></script>
+    <script src="/src/client/app/cadastros/perfil/perfil.service.js"></script>
+    <script src="/src/client/app/cadastros/subcategorias/subcategoria-modal.controller.js"></script>
+    <script src="/src/client/app/cadastros/subcategorias/subcategoria.service.js"></script>
+    <script src="/src/client/app/cadastros/unidademedida/unidade-modal.controller.js"></script>
+    <script src="/src/client/app/cadastros/unidademedida/unidade.service.js"></script>
+    <script src="/src/client/app/cadastros/usuario/usuario-modal.controller.js"></script>
+    <script src="/src/client/app/cadastros/usuario/usuario-modal.service.js"></script>
+    <script src="/src/client/app/cadastros/usuario/usuario.controller.js"></script>
+    <script src="/src/client/app/cadastros/usuario/usuario.route.js"></script>
+    <script src="/src/client/app/cadastros/usuario/usuario.service.js"></script>
+    <script src="/src/client/app/core/config.js"></script>
+    <script src="/src/client/app/core/constants.js"></script>
+    <script src="/src/client/app/core/core.route.js"></script>
+    <script src="/src/client/app/core/dataservice.js"></script>
+    <script src="/src/client/app/core/dataservise.provider.js"></script>
+    <script src="/src/client/app/core/focus.directive.js"></script>
+    <script src="/src/client/app/core/mailchimp.provider.js"></script>
+    <script src="/src/client/app/dashboard/dashboard.controller.js"></script>
+    <script src="/src/client/app/dashboard/dashboard.route.js"></script>
+    <script src="/src/client/app/empresa/empresa.controller.js"></script>
+    <script src="/src/client/app/empresa/empresa.route.js"></script>
+    <script src="/src/client/app/empresa/empresa.service.js"></script>
+    <script src="/src/client/app/empresa/lojas.service.js"></script>
+    <script src="/src/client/app/empresa/mod-contrato.service.js"></script>
+    <script src="/src/client/app/layout/ht-sidebar.directive.js"></script>
+    <script src="/src/client/app/layout/ht-top-nav.directive.js"></script>
+    <script src="/src/client/app/layout/shell.controller.js"></script>
+    <script src="/src/client/app/layout/shell.route.js"></script>
+    <script src="/src/client/app/layout/sidebar.controller.js"></script>
+    <script src="/src/client/app/layout/start.controller.js"></script>
+    <script src="/src/client/app/licenca/licenca-funcoes.service.js"></script>
+    <script src="/src/client/app/licenca/licenca.controller.js"></script>
+    <script src="/src/client/app/licenca/licencas.route.js"></script>
+    <script src="/src/client/app/licenca/licencas.service.js"></script>
+    <script src="/src/client/app/licenca/planos-licenca.service.js"></script>
+    <script src="/src/client/app/login/login-funcoes.service.js"></script>
+    <script src="/src/client/app/login/login.controller.js"></script>
+    <script src="/src/client/app/login/login.route.js"></script>
+    <script src="/src/client/app/login/usuarioMenuTop.directive.js"></script>
+    <script src="/src/client/app/registrar/reg-aguardando.controller.js"></script>
+    <script src="/src/client/app/registrar/reg-confirmar.controller.js"></script>
+    <script src="/src/client/app/registrar/registrar-funcoes.service.js"></script>
+    <script src="/src/client/app/registrar/registrar.controller.js"></script>
+    <script src="/src/client/app/registrar/registrar.route.js"></script>
+    <script src="/src/client/app/registrar/registrar.service.js"></script>
+    <script src="/src/client/app/sistema/consultar/consulta.controller.js"></script>
+    <script src="/src/client/app/sistema/consultar/consulta.service.js"></script>
+    <script src="/src/client/app/sistema/consultar/periodo.controller.js"></script>
+    <script src="/src/client/app/sistema/consultar/pesquisa.controller.js"></script>
+    <script src="/src/client/app/sistema/recebimentos/recebimento-print-modal.controller.js"></script>
+    <script src="/src/client/app/sistema/recebimentos/recebimentos-modal.controller.js"></script>
+    <script src="/src/client/app/sistema/recebimentos/recebimentos-report.service.js"></script>
+    <script src="/src/client/app/sistema/recebimentos/recebimentos.controller.js"></script>
+    <script src="/src/client/app/sistema/recebimentos/recebimentos.route.js"></script>
+    <script src="/src/client/app/sistema/recebimentos/recebimentos.service.js"></script>
+    <script src="/src/client/app/sistema/recebimentos/tipopgto.service.js"></script>
+    <script src="/src/client/app/sistema/reservas/reserva-contrato.service.js"></script>
+    <script src="/src/client/app/sistema/reservas/reserva-item.service.js"></script>
+    <script src="/src/client/app/sistema/reservas/reserva-itens-modal.controller.js"></script>
+    <script src="/src/client/app/sistema/reservas/reserva-modal.controller.js"></script>
+    <script src="/src/client/app/sistema/reservas/reserva-print-modal.controller.js"></script>
+    <script src="/src/client/app/sistema/reservas/reserva-report.service.js"></script>
+    <script src="/src/client/app/sistema/reservas/reserva.controller.js"></script>
+    <script src="/src/client/app/sistema/reservas/reserva.route.js"></script>
+    <script src="/src/client/app/sistema/reservas/reserva.service.js"></script>
+    <script src="/src/client/app/widgets/ht-img-person.directive.js"></script>
+    <script src="/src/client/app/widgets/ht-widget-header.directive.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:templates:js -->
+    <!-- endinject -->
+    <!-- endbuild -->
+</body>
+</html>
