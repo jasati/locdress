@@ -36,7 +36,7 @@
         }        
     };
     var config = {
-        versao        :'0.0.5',
+        versao        :'0.0.7',
         appErrorPrefix: '[Ops! Dados Não Processados] ',
         appTitle      : 'LocDress',
         appSubtitle   : 'Sistema para Locação e Controle de Trajes',

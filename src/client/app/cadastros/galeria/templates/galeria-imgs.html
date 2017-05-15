@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="galeria col-md-12">
+		<div style="margin-top: 30px">
+			<div ng-hide="vm.galeria.length > 0" class="alert alert-warning col-md-10 col-md-offset-1" role="alert"> <p> <i class="fa fa-exclamation-triangle fa-2x"></i> Ainda não foi adicionado imagens na galeria.</p></div>		
+		</div>
+
+		<div ng-repeat="i in vm.galeria" class="col-md-2">
+			<div class="img-thumb" >
+				<button type="button" ng-show="vm.btnDel" ng-click="vm.deleteImagem(i)" class="close" tooltip-placement="left" uib-tooltip="Excluir a Imagem da galeria"><span>&times;</span></button>
+				<img src="{{vm.urlImagem+i.imagem}}" class="img-responsive img-thumbnail" ng-click="vm.selecionarImagem(i)" uib-tooltip="Duplo click para adicionar essa imagem" ng-dblclick="vm.ok()" ng-class="{'img-sel':vm.imgSel == i.id_galeria}"  />
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+<div class="row">
+	<div class="widget-foot" align="center">
+	    
+	    <div>
+	        <ul uib-pagination total-items="vm.totalReg" ng-model="vm.nPagina" max-size="5" class="pagination-sm" boundary-links="true" rotate="false" items-per-page="vm.totalRegPag" num-pages="numPages" ng-change="vm.setPage()"></ul>
+	    </div>
+	    <div>
+	    <div class="col-sm-5 col-sm-offset-3">
+	        <div class="input-group input-group-sm">
+	          <span class="input-group-addon" id="basic-addon1" >Registros por Pagina</span>
+	          <input type="text" class="form-control" ng-model="vm.totalRegPag">
+	          <span class="input-group-btn">
+	            <button class="btn btn-primary" type="button" ng-click="vm.getGaleria()">Ok!</button>
+	          </span>                              
+	        </div> 
+	    </div>
+	    </div>
+	    <div class="clearfix"></div>
+	</div>	
+</div>         

@@ -4,9 +4,9 @@
     angular
         .module('cad.item')
         .controller('ItemModalController', ItemModalController);
-    ItemModalController.$inject = ['$q', 'Data', 'config', 'logger', '$uibModalInstance', '$scope', '$uibModal', 'ItemService', 'ItemAtrbService'];
+    ItemModalController.$inject = ['$q', 'Data', 'config', 'logger', '$uibModalInstance', '$scope', '$uibModal', 'ItemService', 'ItemAtrbService', 'GaleriaService'];
     /* @ngInject */
-    function ItemModalController($q, Data, config, logger, $uibModalInstance, $scope, $uibModal, ItemService, ItemAtrbService) {
+    function ItemModalController($q, Data, config, logger, $uibModalInstance, $scope, $uibModal, ItemService, ItemAtrbService, GaleriaService) {
         var vm = this;
         var action = Data.action;
         vm.uploader = ItemService.upload();
@@ -38,6 +38,7 @@
         vm.deleteAtrb = deleteAtrb;
         vm.salvar = salvar;
         vm.aterarAction = aterarAction;
+        vm.addImagem = addImagem;
 
         vm.ok = ok;
         vm.cancel = cancel;
@@ -102,6 +103,13 @@
                 logger.error(response.msg);
             }
         };
+
+        function addImagem() {
+            GaleriaService.showGaleria().then(function (data) {
+                vm.item.id_galeria = data.id_galeria;
+                vm.item.imagem = data.imagem;
+            });
+        }
 
         function getTrajeCad(traje) {
             var consulta = {

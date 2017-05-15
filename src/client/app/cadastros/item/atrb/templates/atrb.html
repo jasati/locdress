@@ -11,12 +11,13 @@
         <div class="col-md-12">
         	<h3>{{vm.descricao}}</h3>
 		    <div class="thumbnail">
-                <div ng-show="vm.uploader.progress" class="progress" style="margin: 0; padding: 0">
+<!--                 <div ng-show="vm.uploader.progress" class="progress" style="margin: 0; padding: 0">
                     <div class="progress-bar" role="progressbar" ng-style="{ 'width': vm.uploader.progress + '%' }"></div>
-                </div>
+                </div> -->
                 <a href ng-click="vm.zoomImg(vm.atrb)"> <img src="{{vm.pathImg}}{{(vm.atrb.imagem==undefined||vm.atrb.imagem== '')?'noImg.jpg':vm.atrb.imagem}}" alt="" class="img-rounded" height="140px" width="140px" ></a>
 
-                <input type="file" class="btn btn-default btn-sm form-control" nv-file-select uploader="vm.uploader"/>
+                <!-- <input type="file" class="btn btn-default btn-sm form-control" nv-file-select uploader="vm.uploader"/> -->
+                <button class="btn btn-primary btn-sm form-control" type="button" ng-click="vm.addImagem()"><i class="fa fa-file-image-o"></i> Carregar Img.</button>
 				<div class="caption">
 					<form class="form-horizontal" name="itemForm" ng-submit="vm.salvar(vm.atrb)" autocomplete="off" novalidate>
 	                    <div class="form-group">

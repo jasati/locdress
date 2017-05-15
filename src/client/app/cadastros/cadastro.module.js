@@ -10,6 +10,7 @@
 	        'cad.perfil',
 	        'cad.cliente',
 	        'cad.itemAtrb',
-	        'app.novaempresa'
+	        'app.novaempresa',
+	        'app.galeria'
         ]);
 })();

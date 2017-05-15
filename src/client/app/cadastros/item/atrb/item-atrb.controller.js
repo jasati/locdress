@@ -5,9 +5,9 @@
         .module('cad.itemAtrb')
         .controller('ItemAtrbController', ItemAtrbController);
 
-    ItemAtrbController.$inject = ['Data','config','$q','$filter', '$uibModal','$uibModalInstance', 'logger', 'ItemAtrbService','ItemService', 'routerHelper'];
+    ItemAtrbController.$inject = ['Data','config','$q','$filter', '$uibModal','$uibModalInstance', 'logger', 'ItemAtrbService','ItemService', 'routerHelper','GaleriaService'];
     /* @ngInject */
-    function ItemAtrbController(Data,config,$q,$filter, $uibModal, $uibModalInstance, logger, ItemAtrbService,ItemService, routerHelper) {
+    function ItemAtrbController(Data,config,$q,$filter, $uibModal, $uibModalInstance, logger, ItemAtrbService,ItemService, routerHelper,GaleriaService) {
         var vm = this;
         vm.uploader = ItemService.upload();
         vm.uploader.filters.push({
@@ -28,6 +28,7 @@
         vm.editAtrb = editAtrb;
         vm.newAtrb = newAtrb;
         vm.zoomImg = zoomImg;
+        vm.addImagem = addImagem;
         vm.salvar = salvar;
         vm.cancel = cancel;
         vm.ok = ok;
@@ -97,6 +98,13 @@
                 logger.error(response.msg);
             }
         };
+
+        function addImagem() {
+            GaleriaService.showGaleria().then(function (data) {
+                vm.atrb.id_galeria = data.id_galeria;
+                vm.atrb.imagem = data.imagem;
+            });
+        }        
 
         function salvar(data) {
           if (vm.action === 'new') {

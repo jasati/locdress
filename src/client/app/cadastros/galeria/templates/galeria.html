@@ -1,0 +1,33 @@
+
+        <div class="modal-header bblue">
+            <button type="button" class="close" data-dismiss="alert" ng-click="vm.cancel()" >
+              <i class="fa fa-times"></i>
+            </button>
+            <h4 class="bblue h4"><i class="fa fa-file-image-o" aria-hidden="true"></i> Galeria</h4>
+        </div>
+        <div class="modal-body">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <uib-tabset>
+                        <uib-tab>
+                            <uib-tab-heading ng-click="vm.getGaleria()">
+                                <i class="fa fa-file-image-o"></i> Imagens da Galeria
+                            </uib-tab-heading>
+
+                            <div data-ng-include="'app/cadastros/galeria/templates/galeria-imgs.html'" ></div>
+
+                        </uib-tab>
+                        <uib-tab>
+                            <uib-tab-heading >
+                                <i class="fa fa-cloud-upload"></i> Incluir Novas Imagens
+                            </uib-tab-heading>
+
+                            <div data-ng-include="'app/cadastros/galeria/templates/galeria-upload.html'"></div>
+                        </uib-tab>
+
+                    </uib-tabset>                            
+                </div>
+            </div>
+        </div>
+

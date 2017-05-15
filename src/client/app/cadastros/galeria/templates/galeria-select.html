@@ -1,0 +1,10 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{vm.title}}</h3>
+</div>
+<div class="modal-body">
+    <div ng-include="'app/galeria/galeria-imgs.html'" scope="vm.galeria" onload=""></div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-disabled="vm.imgSel == 0" ng-click="vm.ok()">Confirmar</button>
+    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancelar</button>
+</div>
