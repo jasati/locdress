@@ -5,9 +5,9 @@
         .module('app.empresa')
         .controller('EmpresaController', EmpresaController);
 
-    EmpresaController.$inject = ['$q', 'logger', 'EmpresaService', 'routerHelper','LojasService','ModContratoService','$uibModal','config','LicencasService'];
+    EmpresaController.$inject = ['$q', 'logger', 'EmpresaService', 'routerHelper','LojasService','ModContratoService','$uibModal','config','LicencasService','DataserviseProvider','LicencaFuncService'];
     /* @ngInject */
-    function EmpresaController($q, logger, EmpresaService, routerHelper, LojasService,ModContratoService,$uibModal,config,LicencasService) {
+    function EmpresaController($q, logger, EmpresaService, routerHelper, LojasService,ModContratoService,$uibModal,config,LicencasService,DataserviseProvider,LicencaFuncService) {
         var vm = this;
 
         vm.title = 'Configurações';
@@ -76,113 +76,87 @@
             };
             LicencasService.read(data).then(function (resp) {
                 vm.licenca = resp.reg;
+                vm.validade = DataserviseProvider.indexGeral.validade_licenca;
             });
         }
 
         function novaLicenca() {
-            var modalInstance = $uibModal.open({
-              templateUrl: 'app/licenca/templates/licenca-paga-modal.html',
-              controller: controllModel,
-              controllerAs: 'vm',              
-              size: 'lg',
-              backdrop:true,
-            });
-            controllModel.$inject = ['$uibModalInstance','LicencaFuncService'];
-            function controllModel($uibModalInstance,LicencaFuncService){
-                var vm = this;
-                vm.icon = 'fa-shopping-cart'
-
-                vm.modal = true;
-
-                vm.ok = ok;
-                vm.cancel = cancel;
-                vm.funcoes = new LicencaFuncService.funcoes();
-                activate();
-
-                function activate() {
-                    var promises = [
-                        vm.funcoes.loadEmpresa(),
-                        vm.funcoes.getPlanos(),
-                    ]
-                    $q.all(promises);
-                }
-
-                function ok(loja){
-                    $uibModalInstance.close();
-                };
-
-                function cancel(){
-                    $uibModalInstance.dismiss();
-                };
-            }
-            modalInstance.result.then(function () {
-                getLicenca();
-            });
+            var licenca = new LicencaFuncService.funcoes();
+            licenca.novaLicenca();
         }
 
         function newLoja() {
-            var modalInstance = $uibModal.open({
-              templateUrl: 'app/empresa/templates/cadastro-loja.html',
-              controller: controllModel,
-              controllerAs: 'vm',
-              size: '',
-              backdrop:true
-            });
-            controllModel.$inject = ['$uibModalInstance'];
-            function controllModel($uibModalInstance){
-                var vm = this;
+            if (vm.validade > 0) {
+                var modalInstance = $uibModal.open({
+                  templateUrl: 'app/empresa/templates/cadastro-loja.html',
+                  controller: controllModel,
+                  controllerAs: 'vm',
+                  size: '',
+                  backdrop:true
+                });
+                controllModel.$inject = ['$uibModalInstance'];
+                function controllModel($uibModalInstance){
+                    var vm = this;
 
-                vm.ok = ok;
-                vm.cancel = cancel;
+                    vm.ok = ok;
+                    vm.cancel = cancel;
 
-                function ok(loja){
-                    $uibModalInstance.close();
-                    LojasService.create(loja).then(function(){
-                        getLojas();
-                    });
-                };
+                    function ok(loja){
+                        $uibModalInstance.close();
+                        LojasService.create(loja).then(function(){
+                            getLojas();
+                        });
+                    };
 
-                function cancel(){
-                    $uibModalInstance.dismiss();
-                };
+                    function cancel(){
+                        $uibModalInstance.dismiss();
+                    };
+                }
+            } else {
+                novaLicenca();
             }
         }
 
         function editLoja(l) {
-            var data = {
-                loja:l,
-            };
-            var modalInstance = $uibModal.open({
-              templateUrl: 'app/empresa/templates/cadastro-loja.html',
-              controller: controllModel,
-              controllerAs: 'vm',              
-              size: '',
-              backdrop:true,
-              resolve: {
-                Data: function () {
-                  return data;
+            if (vm.validade > 0) {
+                var data = {
+                    loja:l,
+                };
+                var modalInstance = $uibModal.open({
+                  templateUrl: 'app/empresa/templates/cadastro-loja.html',
+                  controller: controllModel,
+                  controllerAs: 'vm',              
+                  size: '',
+                  backdrop:true,
+                  resolve: {
+                    Data: function () {
+                      return data;
+                    }
+                  }
+                });
+                controllModel.$inject = ['Data','$uibModalInstance'];
+                function controllModel(Data,$uibModalInstance){
+                    var vm = this;
+
+                    vm.loja = Data.loja;
+                    vm.ok = ok;
+                    vm.cancel = cancel;
+
+                    function ok(loja){
+                        $uibModalInstance.close();
+                        LojasService.update(loja).then(function(){
+                            getLojas();
+                        });
+                    };
+
+                    function cancel(){
+                        $uibModalInstance.dismiss();
+                    };
                 }
-              }
-            });
-            controllModel.$inject = ['Data','$uibModalInstance'];
-            function controllModel(Data,$uibModalInstance){
-                var vm = this;
+            } else {
+                novaLicenca();
+            }
 
-                vm.loja = Data.loja;
-                vm.ok = ok;
-                vm.cancel = cancel;
-
-                function ok(loja){
-                    $uibModalInstance.close();
-                    LojasService.update(loja).then(function(){
-                        getLojas();
-                    });
-                };
-
-                function cancel(){
-                    $uibModalInstance.dismiss();
-                };
-              }
         }
 
         function editEmpresa() {

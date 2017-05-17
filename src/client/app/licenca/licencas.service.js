@@ -44,7 +44,7 @@
             var servico = 'consulta';
             var consulta = "";
             if (prmConsulta.valido) {
-                consulta =+ " and CASE WHEN (p.dias_lic - (CURRENT_DATE() - el.data_ativo)) >= 0 THEN (p.dias_lic - (CURRENT_DATE() - el.data_ativo)) ELSE 0 END >= 0"
+                consulta += " and CASE WHEN (p.dias_lic - (CURRENT_DATE() - el.data_ativo)) >= 0 THEN (p.dias_lic - (CURRENT_DATE() - el.data_ativo)) ELSE 0 END >= 0"
             }
             var dts = startDatasetDinamico();
             DataserviseProvider.setDataset(dts,'id_index_main','el.id_empresa');            

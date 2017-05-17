@@ -11,7 +11,7 @@
         toastr.options.timeOut = 4000;
         toastr.options.positionClass = 'toast-bottom-right';
     }
-    var prmAmbiente = 2;//0:local 1:teste 2:producao
+    var prmAmbiente = 0;//0:local 1:teste 2:producao
     var ambiente = {
         0:{//local
             api:"http://mucontratos.alan.dev/v1/",
@@ -36,7 +36,7 @@
         }        
     };
     var config = {
-        versao        :'0.0.7',
+        versao        :'0.0.8',
         appErrorPrefix: '[Ops! Dados Não Processados] ',
         appTitle      : 'LocDress',
         appSubtitle   : 'Sistema para Locação e Controle de Trajes',

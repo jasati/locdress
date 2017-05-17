@@ -3,9 +3,9 @@
     angular
         .module('app.licenca')
         .service('LicencaFuncService', LicencaFuncService);
-    LicencaFuncService.$inject = ['$state','$q','LicencasService','PlanosService','EmpresaService','UtilsFunctions','DataserviseProvider'];
+    LicencaFuncService.$inject = ['$state','$q','$uibModal','LicencasService','PlanosService','EmpresaService','UtilsFunctions','DataserviseProvider'];
     /* @ngInject */
-    function LicencaFuncService($state,$q,LicencasService,PlanosService,EmpresaService,UtilsFunctions,DataserviseProvider) {
+    function LicencaFuncService($state,$q,$uibModal,LicencasService,PlanosService,EmpresaService,UtilsFunctions,DataserviseProvider) {
         this.funcoes = funcoes;
         ////////////////
         function funcoes() {
@@ -15,6 +15,7 @@
 	        vm.planos = [];
 	        vm.empresa = {};
 	        vm.salvando = false;
+	        vm.validade = DataserviseProvider.indexGeral.validade_licenca;
 
 	        vm.convDate = function (date) {
 	          var dt = new Date(date);
@@ -23,6 +24,22 @@
 
 	        vm.loadEmpresa = function () {
 	        	vm.empresa = DataserviseProvider.userLogado.empresa;
+	        }
+
+	        vm.getLicenca = function () {
+	            var data = {
+	                valido:true,
+	            };
+	            LicencasService.read(data).then(function (resp) {
+	                vm.licenca = resp.reg;
+	            });
+	        }
+
+	        vm.getValidade = function () {
+	        	LicencasService.readValidade().then(function (lic) {
+	        		vm.validade = lic.reg[0].dias_restante;
+	        		DataserviseProvider.indexGeral.validade_licenca = lic.reg[0].dias_restante;
+	        	});
 	        }
 
 	        vm.salvar = function (empresa) {
@@ -61,6 +78,52 @@
 	        	PlanosService.read().then(function (respPlano) {
 	        		vm.planos = respPlano.reg;
 	        	});
+	        }
+
+	        vm.novaLicenca = function() {
+	            var modalInstance = $uibModal.open({
+	              templateUrl: 'app/licenca/templates/licenca-paga-modal.html',
+	              controller: controllModel,
+	              controllerAs: 'vm',
+	              size: 'lg',
+	              backdrop:'static',
+	              resolve: {
+	                Data: function () {
+	                  return vm;
+	                }
+	              }	              
+	            });
+	            controllModel.$inject = ['Data','$uibModalInstance','LicencaFuncService'];
+	            function controllModel(Data,$uibModalInstance,LicencaFuncService){
+	                var vm = this;
+	                vm.icon = 'fa-certificate'
+
+	                vm.modal = true;
+
+	                vm.ok = ok;
+	                vm.cancel = cancel;
+	                vm.funcoes = Data;
+	                activate();
+
+	                function activate() {
+	                    var promises = [
+	                        vm.funcoes.loadEmpresa(),
+	                        vm.funcoes.getPlanos(),
+	                    ]
+	                    $q.all(promises);
+	                }
+
+	                function ok(loja){
+	                    $uibModalInstance.close();
+	                };
+
+	                function cancel(){
+	                    $uibModalInstance.dismiss();
+	                };
+	            }
+	            modalInstance.result.then(function () {
+	                vm.getValidade();
+	            });
 	        }
         }
     }

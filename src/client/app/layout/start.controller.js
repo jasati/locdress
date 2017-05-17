@@ -16,7 +16,7 @@
         function activate() {
             hideSplash();
             if ($stateParams.register) {
-                $state.go('registrar');
+                $state.go('registrar',{email:$stateParams.email});
             } else if ($stateParams.confirm) {
                 $state.go('confirmareg',{confirm:$stateParams.confirm,idemp:$stateParams.idemp});
             } else {

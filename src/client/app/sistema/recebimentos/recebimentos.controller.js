@@ -5,9 +5,9 @@
         .module('sis.rec')
         .controller('RecController', RecController);
 
-    RecController.$inject = ['$q', '$uibModal', 'logger', 'RecService', 'routerHelper', 'UtilsFunctions'];
+    RecController.$inject = ['$q', '$uibModal', 'logger', 'RecService', 'routerHelper', 'UtilsFunctions','DataserviseProvider','LicencaFuncService'];
     /* @ngInject */
-    function RecController($q, $uibModal, logger, RecService, routerHelper, UtilsFunctions) {
+    function RecController($q, $uibModal, logger, RecService, routerHelper, UtilsFunctions,DataserviseProvider,LicencaFuncService) {
         var vm = this;
 
         vm.title = 'Receber Valores';
@@ -23,7 +23,7 @@
           data_rec_fim:null,
           avancado:false
         };
-
+        vm.validadeLic = DataserviseProvider.indexGeral.validade_licenca;
         vm.permissao = RecService.verificarPermissao;
         vm.soma = UtilsFunctions.soma;
         vm.getRec = getRec;
@@ -54,6 +54,11 @@
           });
         }
 
+        function novaLicenca() {
+            var licenca = new LicencaFuncService.funcoes();
+            licenca.novaLicenca();
+        }
+
         function getRec() {
             RecService.read(vm.consulta,getLimite()).then(function(data){
               vm.recebimentos = data.reg;
@@ -81,58 +86,68 @@
         }
 
         function newRec() {
-          if (vm.permissao(6)) {
-            var dt = new Date();
-            var rec = {
-              id_empresa: 0,
-              id_loja: RecService.dadosLogin.lojaAtual.id_loja,
-              data_rec: dt,
-            }
-            var data = {
-              recebimento:rec,
-              action:'create',
-            };
-            var modalInstance = $uibModal.open({
-              templateUrl: 'app/sistema/recebimentos/templates/recebimento-cadastro.html',
-              controller: 'RecModalController',
-              controllerAs: 'vm',
-              size: '',
-              backdrop:'static',
-              resolve: {
-                Data: function () {
-                  return data;
-                }
+          if (vm.validadeLic > 0) {
+            if (vm.permissao(6)) {
+              var dt = new Date();
+              var rec = {
+                id_empresa: 0,
+                id_loja: RecService.dadosLogin.lojaAtual.id_loja,
+                data_rec: dt,
               }
-            });
-            
-            modalInstance.result.then(function (save) {
-              getRec();
-            });
+              var data = {
+                recebimento:rec,
+                action:'create',
+              };
+              var modalInstance = $uibModal.open({
+                templateUrl: 'app/sistema/recebimentos/templates/recebimento-cadastro.html',
+                controller: 'RecModalController',
+                controllerAs: 'vm',
+                size: '',
+                backdrop:'static',
+                resolve: {
+                  Data: function () {
+                    return data;
+                  }
+                }
+              });
+              
+              modalInstance.result.then(function (save) {
+                getRec();
+              });
+            }
+          } else {
+            novaLicenca();
           }
+
         }   
 
         function editRec(index) {
-          if (vm.permissao(7)) {
-            var data = {
-              recebimento:index,
-              action:'update',
-            };
-            var modalInstance = $uibModal.open({
-              templateUrl: 'app/sistema/recebimentos/templates/recebimento-cadastro.html',
-              controller: 'RecModalController',
-              controllerAs: 'vm',
-              size: '',
-              backdrop:'static',
-              resolve: {
-                Data: function () {
-                  return data;
+          if (vm.validadeLic > 0) {
+            if (vm.permissao(7)) {
+              var data = {
+                recebimento:index,
+                action:'update',
+              };
+              var modalInstance = $uibModal.open({
+                templateUrl: 'app/sistema/recebimentos/templates/recebimento-cadastro.html',
+                controller: 'RecModalController',
+                controllerAs: 'vm',
+                size: '',
+                backdrop:'static',
+                resolve: {
+                  Data: function () {
+                    return data;
+                  }
                 }
-              }
-            });
-            modalInstance.result.then(function (save) {
-                getRec();
-            });
+              });
+              modalInstance.result.then(function (save) {
+                  getRec();
+              });
+            }
+          } else {
+            novaLicenca();
           }
+
         }
 
         function deleteRec(index) {

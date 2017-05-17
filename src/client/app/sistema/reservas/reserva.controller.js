@@ -5,14 +5,15 @@
         .module('sis.reserva')
         .controller('ReservaController', ReservaController);
 
-    ReservaController.$inject = ['$q','$filter', '$uibModal', 'logger', 'ReservaService', 'routerHelper','UtilsFunctions', 'ResItensService'];
+    ReservaController.$inject = ['$q','$filter', '$uibModal', 'logger', 'ReservaService', 'routerHelper','UtilsFunctions', 'ResItensService','DataserviseProvider','LicencaFuncService'];
     /* @ngInject */
-    function ReservaController($q,$filter, $uibModal, logger, ReservaService, routerHelper,UtilsFunctions, ResItensService) {
+    function ReservaController($q,$filter, $uibModal, logger, ReservaService, routerHelper,UtilsFunctions, ResItensService,DataserviseProvider,LicencaFuncService) {
         var vm = this;
         vm.title = 'Reservas de Trajes';
         vm.icon = 'fa-calendar-check-o';
         vm.subtitle = 'Inicie o processo de locação de trajes aqui.';
         vm.reservas = [];
+        vm.validadeLic = DataserviseProvider.indexGeral.validade_licenca;
         vm.id_usuario = ReservaService.userLogado.id_usuario;
         vm.consulta = {
           id_reserva:"",
@@ -69,6 +70,11 @@
           });
         }
 
+        function novaLicenca() {
+            var licenca = new LicencaFuncService.funcoes();
+            licenca.novaLicenca();
+        }        
+
         function convDate (date) {
           var dt = new Date(date);
           return dt;
@@ -122,32 +128,15 @@
 
 
         function newRes() {
-          var data = {
-            action:'create',
-          }
-          var modalConsulta = $uibModal.open({
-            templateUrl: 'app/sistema/consultar/templates/consulta.html',
-            controller: 'ConsultaController',
-            controllerAs: 'vm',
-            size: 'lg',
-            backdrop:'static',
-            resolve: {
-              Data: function () {
-                return data;
-              }
-            }
-          });
-          modalConsulta.result.then(function (res) {
+          if (vm.validadeLic > 0) {
             var data = {
-              reserva:res.reserva,
-              reservaItens:res.reservaItens,
               action:'create',
-            };
-            var novaReserva = $uibModal.open({
-              templateUrl:'app/sistema/reservas/templates/reserva-cadastro.html',
-              controller:'ResModalController',
-              controllerAs:'vm',
-              size:'',
+            }
+            var modalConsulta = $uibModal.open({
+              templateUrl: 'app/sistema/consultar/templates/consulta.html',
+              controller: 'ConsultaController',
+              controllerAs: 'vm',
+              size: 'lg',
               backdrop:'static',
               resolve: {
                 Data: function () {
@@ -155,11 +144,33 @@
                 }
               }
             });
-            novaReserva.result.then(function () {
-              getRes();
-            });
+            modalConsulta.result.then(function (res) {
+              var data = {
+                reserva:res.reserva,
+                reservaItens:res.reservaItens,
+                action:'create',
+              };
+              var novaReserva = $uibModal.open({
+                templateUrl:'app/sistema/reservas/templates/reserva-cadastro.html',
+                controller:'ResModalController',
+                controllerAs:'vm',
+                size:'',
+                backdrop:'static',
+                resolve: {
+                  Data: function () {
+                    return data;
+                  }
+                }
+              });
+              novaReserva.result.then(function () {
+                getRes();
+              });
 
-          });
+            });
+          } else {
+            novaLicenca();
+          }
+
         } 
 
         function consultaTrajes() {
@@ -182,26 +193,31 @@
 
 
         function editRes(index) {
-          var data = {
-              reserva:index,
-              action:'update',            
-          };
-          var modalReserva = $uibModal.open({
-            templateUrl: 'app/sistema/reservas/templates/reserva-cadastro.html',
-            controller: 'ResModalController',
-            controllerAs: 'vm',
-            size: '',
-            backdrop:'static',
-            resolve: {
-              Data: function () {
-                return data;
+          if (vm.validadeLic > 0) {
+            var data = {
+                reserva:index,
+                action:'update',            
+            };
+            var modalReserva = $uibModal.open({
+              templateUrl: 'app/sistema/reservas/templates/reserva-cadastro.html',
+              controller: 'ResModalController',
+              controllerAs: 'vm',
+              size: '',
+              backdrop:'static',
+              resolve: {
+                Data: function () {
+                  return data;
+                }
               }
-            }
-          });
-          
-          modalReserva.result.then(function (save) {
-            getRes();
-          });
+            });
+            
+            modalReserva.result.then(function (save) {
+              getRes();
+            });
+          } else {
+            novaLicenca();
+          }
+
 
         }
 
@@ -254,101 +270,107 @@
         }
 
         function retTrajesRes(reserva) {
-          var data = {
-            reserva:reserva,
-          };
-          var modalRetirar = $uibModal.open({
-            templateUrl: 'app/sistema/reservas/templates/reserva-retirar.html',
-            controller: controllModal,
-            controllerAs: 'vm',
-            size: '',
-            backdrop:'static',
-            resolve: {
-              Data: function () {
-                return data;
+          if (vm.validadeLic > 0) {
+            var data = {
+              reserva:reserva,
+            };
+            var modalRetirar = $uibModal.open({
+              templateUrl: 'app/sistema/reservas/templates/reserva-retirar.html',
+              controller: controllModal,
+              controllerAs: 'vm',
+              size: '',
+              backdrop:'static',
+              resolve: {
+                Data: function () {
+                  return data;
+                }
               }
-            }
-          });
-          controllModal.$inject = ['$uibModalInstance','Data','UsuarioService','ResItensService','config','ItemService'];
-          function controllModal($uibModalInstance,Data,UsuarioService,ResItensService,config,ItemService) {
-            var vm = this;
-            vm.title = 'Retirar Trajes Reservado';
-            vm.icon = 'fa-upload';              
-            vm.reserva = Data.reserva;
-            vm.pathImg = config.urlImagem;
-            vm.zoomImg  = ItemService.zoomImg;
-            vm.ok = ok;
-            vm.cancel = cancel;
-            vm.receber = receber;
+            });
+            controllModal.$inject = ['$uibModalInstance','Data','UsuarioService','ResItensService','config','ItemService'];
+            function controllModal($uibModalInstance,Data,UsuarioService,ResItensService,config,ItemService) {
+              var vm = this;
+              vm.title = 'Retirar Trajes Reservado';
+              vm.icon = 'fa-upload';              
+              vm.reserva = Data.reserva;
+              vm.pathImg = config.urlImagem;
+              vm.zoomImg  = ItemService.zoomImg;
+              vm.ok = ok;
+              vm.cancel = cancel;
+              vm.receber = receber;
 
 
-            activate();
+              activate();
 
-            function activate() {
-                var promises = [getUsuarios(),getTrages()];
-                return $q.all(promises);
-            }
+              function activate() {
+                  var promises = [getUsuarios(),getTrages()];
+                  return $q.all(promises);
+              }
 
-            function getUsuarios() {
-              UsuarioService.read().then(function(result) {
-                vm.usuarios = result.reg;
-              });
-            }
+              function getUsuarios() {
+                UsuarioService.read().then(function(result) {
+                  vm.usuarios = result.reg;
+                });
+              }
 
-              function receber() {
-                var dt = new Date();
-                var rec = {
-                    id_loja:vm.reserva.id_loja,
-                    id_reserva:vm.reserva.id_reserva,
-                    cliente:vm.reserva.cliente,
-                    data_rec:dt,
-                };
-                var data = {
-                  action:'create',
-                  recebimento:rec,
-                };
-                var modalRecebimento = $uibModal.open({
-                  templateUrl: 'app/sistema/recebimentos/templates/recebimento-cadastro.html',
-                  controller: 'RecModalController',
-                  controllerAs: 'vm',
-                  size: '',
-                  backdrop:'static',
-                  resolve: {
-                    Data: function () {
-                      return data;
+                function receber() {
+                  var dt = new Date();
+                  var rec = {
+                      id_loja:vm.reserva.id_loja,
+                      id_reserva:vm.reserva.id_reserva,
+                      cliente:vm.reserva.cliente,
+                      data_rec:dt,
+                  };
+                  var data = {
+                    action:'create',
+                    recebimento:rec,
+                  };
+                  var modalRecebimento = $uibModal.open({
+                    templateUrl: 'app/sistema/recebimentos/templates/recebimento-cadastro.html',
+                    controller: 'RecModalController',
+                    controllerAs: 'vm',
+                    size: '',
+                    backdrop:'static',
+                    resolve: {
+                      Data: function () {
+                        return data;
+                      }
                     }
+                  });
+                  modalRecebimento.result.then(function (rec) {
+                    vm.reserva.total_rec+=rec.valor;
+                  });
+                }            
+
+              function getTrages() {
+                var prm = {
+                    id_reserva:vm.reserva.id_reserva,
+                }
+                ResItensService.read(prm).then(function (res) {
+                    vm.trajes = res.reg;
+                });
+              }
+
+              function ok() {
+                vm.reserva.status = 1;//retirado
+                ReservaService.update(vm.reserva).then(function(data){
+                  if (data.status === "ok") {
+                    $uibModalInstance.close();
                   }
                 });
-                modalRecebimento.result.then(function (rec) {
-                  vm.reserva.total_rec+=rec.valor;
-                });
-              }            
-
-            function getTrages() {
-              var prm = {
-                  id_reserva:vm.reserva.id_reserva,
               }
-              ResItensService.read(prm).then(function (res) {
-                  vm.trajes = res.reg;
-              });
-            }
 
-            function ok() {
-              vm.reserva.status = 1;//retirado
-              ReservaService.update(vm.reserva).then(function(data){
-                if (data.status === "ok") {
-                  $uibModalInstance.close();
-                }
-              });
+              function cancel() {
+                $uibModalInstance.dismiss('cancel');
+              }            
             }
-
-            function cancel() {
-              $uibModalInstance.dismiss('cancel');
-            }            
+          } else {
+            novaLicenca();
           }
+
         }
 
         function devTrajes(reserva) {
+          if (vm.validadeLic > 0) {
             var data = {
               reserva:reserva,
             };
@@ -473,6 +495,9 @@
                 $uibModalInstance.dismiss('cancel');
               }
             }
+          } else{
+            novaLicenca();
+          }
         }
 
 

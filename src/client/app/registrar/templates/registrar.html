@@ -4,38 +4,35 @@
 	<div class="container">
 	    <div align="center" style="margin-top: 30px; margin-bottom: 20px; color: #f2f2f2;">
 	    	<img src="images/logo.png" height="100">
-	    	<p>Organize e controle todas as etapas da locação e reserva de trajes.</p>
+	    	<p>Organize suas informações, controle todas as etapas da locação e reserva de trajes e monitore online.</p>
 	    </div>
 	    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
 	    	<div class="box-login-inner">
 	    		<div align="center" >
-	    			<h3 style="color: #333333 !important;"><b>Comece agora seu período de avaliação de 15 dias, sem compromisso!</b></h3>
+	    			<h3 style="color: #333333 !important;"><b>Cadastre-se para ter acesso ao sistema</b></h3>
 	    		</div>
 	    		
 			    <form class="form" name="formEmp" novalidate>
 
 	                <div class="form-group">
-	                    <input type="text" class="form-control"  ng-model="registro.nome" name="nome" tooltip-placement="top" placeholder="Nome da Loja" uib-tooltip="Nome da Loja" required>
+	                    <input type="text" class="form-control"  ng-model="vm.registro.nome" name="nome" tooltip-placement="top" placeholder="Nome da Loja" uib-tooltip="Nome da Loja" required>
 	                </div>
 
 	                <div class="form-group">
-	                    <input type="text" class="form-control"  ng-model="registro.responsavel" name="responsavel" placeholder="Seu nome" tooltip-placement="top" uib-tooltip="Responsável pela Empresa" required>
+	                    <input type="text" class="form-control"  ng-model="vm.registro.responsavel" name="responsavel" placeholder="Seu nome" tooltip-placement="top" uib-tooltip="Seu nome" required>
+	                </div>
+	                <strong>Dados para acesso ao sistema</strong>
+	                <hr>
+	                <div class="form-group">
+	                    <input type="email" class="form-control"  ng-model="vm.registro.email" name="email" tooltip-placement="top" uib-tooltip="Email para realizar o login no sistema" placeholder="E-mail" required readonly>
 	                </div>
 
 	                <div class="form-group">
-	                    <input type="email" class="form-control"  ng-model="registro.email" name="email" tooltip-placement="top" uib-tooltip="Email para contato" placeholder="E-mail" required>
+	                    <input type="password" class="form-control"  ng-model="vm.registro.senha" name="senha" tooltip-placement="top" uib-tooltip="Senha para acessar o sistema"  placeholder="Senha" required>
 	                </div>
 
 	                <div class="form-group">
-	                    <input type="phone" class="form-control"  ng-model="registro.cel" name="cel" tooltip-placement="top" uib-tooltip="Telefone ou celular" placeholder="Telefone" >
-	                </div>
-
-	                <div class="form-group">
-	                    <input type="password" class="form-control"  ng-model="registro.senha" name="senha" tooltip-placement="top" uib-tooltip="Senha para acessar o sistema"  placeholder="Senha" required>
-	                </div>
-
-	                <div class="form-group">
-	                    <button class="btn btn-success btn-lg btn-block" ng-disabled="formEmp.$invalid||vm.funcoes.salvando" ng-click="vm.funcoes.registrar(registro,!formEmp.$invalid)"><span class="fa-2x"> <i class="fa" ng-class="{'fa-floppy-o':!vm.funcoes.salvando,'fa-spinner fa-pulse':vm.funcoes.salvando}"></i> Criar Conta</span></button>
+	                    <button class="btn btn-success btn-lg btn-block" ng-hide="formEmp.$invalid||vm.funcoes.salvando" ng-click="vm.funcoes.registrar(vm.registro,!formEmp.$invalid)"><span class="fa-2x">Confirmar <i class="fa" ng-class="{'fa-check':!vm.funcoes.salvando,'fa-spinner fa-pulse':vm.funcoes.salvando}"></i></span></button>
 	                </div>
 			    </form>
 	    	</div>

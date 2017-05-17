@@ -16,7 +16,7 @@
             {
                 state: 'registrar',
                 config: {
-                    url: '/registrar',
+                    url: '/registrar?email',
                     templateUrl: 'app/registrar/templates/registrar.html',
                     controller: 'RegistrarController',
                     controllerAs: 'vm',

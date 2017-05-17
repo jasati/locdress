@@ -5,9 +5,9 @@
         .module('cad.cliente')
         .controller('ClienteController', ClienteController);
 
-    ClienteController.$inject = ['$q', '$uibModal', 'logger', 'ClienteService', 'routerHelper'];
+    ClienteController.$inject = ['$q', '$uibModal', 'logger', 'ClienteService', 'routerHelper','LicencaFuncService','DataserviseProvider'];
     /* @ngInject */
-    function ClienteController($q, $uibModal, logger, ClienteService, routerHelper) {
+    function ClienteController($q, $uibModal, logger, ClienteService, routerHelper,LicencaFuncService,DataserviseProvider) {
         var vm = this;
 
         vm.title = 'Cadastro de Clientes';
@@ -16,6 +16,7 @@
         vm.clientes = [];
         vm.lojas = ClienteService.getLojas;
         vm.consulta = {nome:"",codigo:"",apelido:"",id_loja:"",avancado:false};
+        vm.validadeLic = DataserviseProvider.indexGeral.validade_licenca;
 
         vm.permissao = ClienteService.verificarPermissao;
         vm.getCliente = getCliente;
@@ -32,6 +33,10 @@
         vm.inicio = 0;
 
         activate();
+        function novaLicenca() {
+            var licenca = new LicencaFuncService.funcoes();
+            licenca.novaLicenca();
+        }
 
         function activate() {
           $q.all([vm.permissao(5)]).then(function(data){
@@ -61,58 +66,68 @@
         }
 
         function newCliente() {
-          if (vm.permissao(6)) {
-            var cliente = {};
-            cliente.id_empresa = 0;
-            cliente.id_loja = ClienteService.getLoja.lojaAtual.id_loja;
-            var data = {
-              cliente:cliente,
-              lojas:vm.lojas,
-              action:'create',
-            };
-            var modalInstance = $uibModal.open({
-              templateUrl: 'app/cadastros/cliente/templates/cliente-cadastro.html',
-              controller: 'ClienteModalController',
-              controllerAs: 'vm',
-              size: '',
-              backdrop:'static',
-              resolve: {
-                Data: function () {
-                  return data;
+          if (vm.validadeLic > 0) {
+            if (vm.permissao(6)) {
+              var cliente = {};
+              cliente.id_empresa = 0;
+              cliente.id_loja = ClienteService.getLoja.lojaAtual.id_loja;
+              var data = {
+                cliente:cliente,
+                lojas:vm.lojas,
+                action:'create',
+              };
+              var modalInstance = $uibModal.open({
+                templateUrl: 'app/cadastros/cliente/templates/cliente-cadastro.html',
+                controller: 'ClienteModalController',
+                controllerAs: 'vm',
+                size: '',
+                backdrop:'static',
+                resolve: {
+                  Data: function () {
+                    return data;
+                  }
                 }
-              }
-            });
-            
-            modalInstance.result.then(function (save) {
-              getCliente();
-            });
+              });
+              
+              modalInstance.result.then(function (save) {
+                getCliente();
+              });
+            }
+          } else {
+            novaLicenca();
           }
+
         }   
 
         function editCliente(index) {
-          if (vm.permissao(7)) {
-            var data = {
-              cliente:index,
-              lojas:vm.lojas,
-              action:'update',
-            };
-            var modalInstance = $uibModal.open({
-              templateUrl: 'app/cadastros/cliente/templates/cliente-cadastro.html',
-              controller: 'ClienteModalController',
-              controllerAs: 'vm',
-              size: '',
-              backdrop:'static',
-              resolve: {
-                Data: function () {
-                  return data;
+          if (vm.validadeLic > 0) {
+            if (vm.permissao(7)) {
+              var data = {
+                cliente:index,
+                lojas:vm.lojas,
+                action:'update',
+              };
+              var modalInstance = $uibModal.open({
+                templateUrl: 'app/cadastros/cliente/templates/cliente-cadastro.html',
+                controller: 'ClienteModalController',
+                controllerAs: 'vm',
+                size: '',
+                backdrop:'static',
+                resolve: {
+                  Data: function () {
+                    return data;
+                  }
                 }
-              }
-            });
+              });
 
-            modalInstance.result.then(function (save) {
-                getCliente();
-            });
+              modalInstance.result.then(function (save) {
+                  getCliente();
+              });
+            }
+          } else {
+            novaLicenca();
           }
+
         }
 
 

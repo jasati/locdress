@@ -26,7 +26,7 @@
             {
                 state: 'start',
                 config: {
-                    url: '/?register?confirm?idemp',
+                    url: '/?register?email',
                     controller: 'StartController',
                     controllerAs: 'vm',
                     title: 'start',

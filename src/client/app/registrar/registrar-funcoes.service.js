@@ -29,54 +29,96 @@
 				//$state.go('aguardconfirm');
         	}
 
+        	// vm.registrar = function (registro,valid) {empresa
+        	// 	if (valid) {
+        	// 		vm.salvando = true;
+	        // 		if (vm..id_empresa) {
+	        // 			if (vm.usuario.id_usuario) {
+	        // 				newContato();
+	        // 			}
+	        // 		} else {
+	        // 			vm.empresa = {
+		       //              nome:registro.nome,
+		       //              responsavel:registro.responsavel,
+		       //              email:registro.email,
+		       //              cel:registro.cel,
+		       //              status:1
+	        // 			};
+	        // 			vm.usuario = {
+		       //              nome:registro.responsavel,
+		       //              email:registro.email,
+		       //              senha:registro.senha,
+		       //              status:1,
+	        // 			};
+	        // 			vm.getUsuario(vm.usuario.email).then(function (responseUser) {
+	        // 				if (responseUser.reg.length > 0) {
+	        // 					vm.usuario = responseUser.reg[0];
+	        // 					vm.getEmpresa(vm.usuario.id_empresa).then(function (responseEmp) {
+	        // 						vm.empresa = responseEmp.reg[0];
+	        // 						vm.empresaJaCad();
+	        // 					});
+	        // 				} else {
+	        // 					EmpresaService.create(vm.empresa).then(function (responseEmp) {
+	        // 						if (responseEmp.status == 'ok') {
+	        // 							vm.empresa.id_empresa = responseEmp.last_insert;
+	        // 							vm.usuario.id_empresa = responseEmp.last_insert;
+	        // 							if (vm.usuario.id_usuario) {
+	        // 								newContato();
+	        // 							} else {
+	        // 								vm.newUser().then(function (responseNewUser) {
+	        // 									if (responseNewUser.status == 'ok') {
+	        // 										vm.usuario.id_usuario = responseNewUser.last_insert;
+	        // 										newContato();
+	        // 									}
+	        // 								});
+	        // 							}
+	        // 						}
+	        // 					});
+	        // 				}
+	        // 			});
+	        // 		}
+        	// 	}
+        	// }
+        	// 
+
         	vm.registrar = function (registro,valid) {
         		if (valid) {
-        			vm.salvando = true;
-	        		if (vm.empresa.id_empresa) {
-	        			if (vm.usuario.id_usuario) {
-	        				newContato();
-	        			}
-	        		} else {
-	        			vm.empresa = {
-		                    nome:registro.nome,
-		                    responsavel:registro.responsavel,
-		                    email:registro.email,
-		                    cel:registro.cel,
-		                    status:1
-	        			};
-	        			vm.usuario = {
-		                    nome:registro.responsavel,
-		                    email:registro.email,
-		                    senha:registro.senha,
-		                    status:1,
-	        			};
-	        			vm.getUsuario(vm.usuario.email).then(function (responseUser) {
-	        				if (responseUser.reg.length > 0) {
-	        					vm.usuario = responseUser.reg[0];
-	        					vm.getEmpresa(vm.usuario.id_empresa).then(function (responseEmp) {
-	        						vm.empresa = responseEmp.reg[0];
-	        						vm.empresaJaCad();
-	        					});
-	        				} else {
-	        					EmpresaService.create(vm.empresa).then(function (responseEmp) {
-	        						if (responseEmp.status == 'ok') {
-	        							vm.empresa.id_empresa = responseEmp.last_insert;
-	        							vm.usuario.id_empresa = responseEmp.last_insert;
-	        							if (vm.usuario.id_usuario) {
-	        								newContato();
-	        							} else {
-	        								vm.newUser().then(function (responseNewUser) {
-	        									if (responseNewUser.status == 'ok') {
-	        										vm.usuario.id_usuario = responseNewUser.last_insert;
-	        										newContato();
-	        									}
-	        								});
-	        							}
-	        						}
-	        					});
-	        				}
-	        			});
-	        		}
+        			vm.empresa = {
+	                    nome:registro.nome,
+	                    responsavel:registro.responsavel,
+	                    email:registro.email,
+	                    status:1
+        			};
+        			vm.usuario = {
+	                    nome:registro.responsavel,
+	                    email:registro.email,
+	                    senha:registro.senha,
+	                    status:1,
+        			};
+        			vm.getUsuario(vm.usuario.email).then(function (responseUser) {
+        				if (responseUser.reg.length > 0) {
+        					vm.usuario = responseUser.reg[0];
+        					vm.getEmpresa(vm.usuario.id_empresa).then(function (responseEmp) {
+        						vm.empresa = responseEmp;
+        						vm.empresaJaCad();
+        					});
+        				} else {
+        					EmpresaService.create(vm.empresa).then(function (responseEmp) {
+        						if (responseEmp.status == 'ok') {
+        							vm.empresa.id_empresa = responseEmp.last_insert;
+        							vm.usuario.id_empresa = responseEmp.last_insert;
+    								vm.newUser().then(function (responseNewUser) {
+    									if (responseNewUser.status == 'ok') {
+    										vm.usuario.id_usuario = responseNewUser.last_insert;
+    										vm.setCookieUser();
+    										$state.go('confirmareg',{confirm:vm.empresa.email,idemp:vm.empresa.id_empresa});
+    									}
+    								});
+        						}
+        					});
+        				}
+        			});
+	        		
         		}
         	}
 
@@ -216,7 +258,7 @@
         		if (vm.empresa.cad_confirm) {
         			$state.go('login');
         		} else {
-        			$state.go('aguardconfirm');
+        			$state.go('confirmareg',{confirm:vm.empresa.email,idemp:vm.empresa.id_empresa});
         		}
         	}
 

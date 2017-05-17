@@ -5,9 +5,9 @@
         .module('app.dashboard')
         .controller('DashboardController', DashboardController);
 
-    DashboardController.$inject = ['config','$state','$q', '$uibModal', 'dataservice', 'DataserviseProvider', 'logger','EmpresaService', 'ReservaService','RecService','ResItensService','LicencasService'];
+    DashboardController.$inject = ['config','$state','$q', '$uibModal', 'dataservice', 'DataserviseProvider', 'logger','EmpresaService', 'ReservaService','RecService','ResItensService','LicencasService','LicencaFuncService'];
     /* @ngInject */
-    function DashboardController(config,$state,$q,$uibModal, dataservice, DataserviseProvider, logger,EmpresaService, ReservaService,RecService,ResItensService,LicencasService) {
+    function DashboardController(config,$state,$q,$uibModal, dataservice, DataserviseProvider, logger,EmpresaService, ReservaService,RecService,ResItensService,LicencasService,LicencaFuncService) {
         var vm = this;
         vm.news = {
             title: 'Base Sistema',
@@ -70,7 +70,9 @@
                 });
 
               } else {
-                  $state.go('licenca_paga');
+                DataserviseProvider.indexGeral.validade_licenca = 0;
+                var licenca = new LicencaFuncService.funcoes();
+                licenca.novaLicenca();
               }
             } else {
                 $state.go('licenca_teste');

@@ -5,9 +5,9 @@
         .module('cad.item')
         .controller('ItemController', ItemController);
 
-    ItemController.$inject = ['$q', '$uibModal', 'logger', 'ItemService', 'routerHelper','CategoriaService','SubCategoriaService'];
+    ItemController.$inject = ['$q', '$uibModal', 'logger', 'ItemService', 'routerHelper','CategoriaService','SubCategoriaService','DataserviseProvider','LicencaFuncService'];
     /* @ngInject */
-    function ItemController($q, $uibModal, logger, ItemService, routerHelper,CategoriaService,SubCategoriaService) {
+    function ItemController($q, $uibModal, logger, ItemService, routerHelper,CategoriaService,SubCategoriaService,DataserviseProvider,LicencaFuncService) {
         var vm = this;
 
         vm.title = 'Cadastro de Trajes';
@@ -26,6 +26,7 @@
           templateUrl: 'app/cadastros/item/templates/pesquisa.html',
           title: 'Pesquisa Avançada'
         }; 
+        vm.validadeLic = DataserviseProvider.indexGeral.validade_licenca;
         vm.permissao = ItemService.verificarPermissao;
         vm.getItem = getItem;
         vm.getCategorias = getCategorias;
@@ -58,6 +59,10 @@
               }
             });
         }
+        function novaLicenca() {
+            var licenca = new LicencaFuncService.funcoes();
+            licenca.novaLicenca();
+        }        
 
         function getItem() {
             ItemService.read(vm.consulta,getLimite()).then(function(data){
@@ -91,63 +96,72 @@
         }
 
         function newItem() {
-          if (vm.permissao(6)) {
-            var item = {};
-            item.id_empresa = 0;
-            item.id_loja = ItemService.getLoja.lojaAtual.id_loja;
-            item.status = 1;
-            var data = {
-              item:item,
-              categorias:vm.categorias,
-              subcategorias:vm.subcategorias,
-              lojas:vm.lojas,
-              action:'new',
-            };
-            var modalInstance = $uibModal.open({
-              templateUrl: 'app/cadastros/item/templates/item-cadastro.html',
-              controller: 'ItemModalController',
-              controllerAs: 'vm',
-              size: '',
-              backdrop:'static',
-              resolve: {
-                Data: function () {
-                  return data;
-                }
-              }              
-            });
-            
-            modalInstance.result.then(function (save) {
-              getItem();
-            });
+          if (vm.validadeLic > 0) {
+            if (vm.permissao(6)) {
+              var item = {};
+              item.id_empresa = 0;
+              item.id_loja = ItemService.getLoja.lojaAtual.id_loja;
+              item.status = 1;
+              var data = {
+                item:item,
+                categorias:vm.categorias,
+                subcategorias:vm.subcategorias,
+                lojas:vm.lojas,
+                action:'new',
+              };
+              var modalInstance = $uibModal.open({
+                templateUrl: 'app/cadastros/item/templates/item-cadastro.html',
+                controller: 'ItemModalController',
+                controllerAs: 'vm',
+                size: '',
+                backdrop:'static',
+                resolve: {
+                  Data: function () {
+                    return data;
+                  }
+                }              
+              });
+              
+              modalInstance.result.then(function (save) {
+                getItem();
+              });
+            }
+          } else {
+            novaLicenca();
           }
         }   
 
         function editItem(index) {
-          if (vm.permissao(7)) {
-          var data = {
-            item:index,
-            categorias:vm.categorias,
-            subcategorias:vm.subcategorias,
-            lojas:vm.lojas,
-            action:'edit',
-          };
-            var modalInstance = $uibModal.open({
-              templateUrl: 'app/cadastros/item/templates/item-cadastro.html',
-              controller: 'ItemModalController',
-              controllerAs: 'vm',
-              size: '',
-              backdrop:'static',
-              resolve: {
-                Data: function () {
-                  return data;
-                }
-              }              
-            });
-            
-            modalInstance.result.then(function (save) {
-              getItem();
-            });
+          if (vm.validadeLic > 0) {
+            if (vm.permissao(7)) {
+            var data = {
+              item:index,
+              categorias:vm.categorias,
+              subcategorias:vm.subcategorias,
+              lojas:vm.lojas,
+              action:'edit',
+            };
+              var modalInstance = $uibModal.open({
+                templateUrl: 'app/cadastros/item/templates/item-cadastro.html',
+                controller: 'ItemModalController',
+                controllerAs: 'vm',
+                size: '',
+                backdrop:'static',
+                resolve: {
+                  Data: function () {
+                    return data;
+                  }
+                }              
+              });
+              
+              modalInstance.result.then(function (save) {
+                getItem();
+              });
+            }
+          } else {
+            novaLicenca();
           }
+
         }
 
 

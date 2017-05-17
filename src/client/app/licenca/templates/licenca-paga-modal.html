@@ -6,7 +6,7 @@
 			      <i class="fa fa-times"></i>
 			    </button>
 			    <div class="col-md-8">
-			        <h6 ><i class="fa {{vm.icon}}" aria-hidden="true"></i> Compra nova licença</h6>
+			        <h6 ><i class="fa {{vm.icon}}" aria-hidden="true"></i> Central de licenças</h6>
 			    </div>
 		    </div>
 		</div>
@@ -14,8 +14,24 @@
 			<div class="row" >
 				<div class="col-xs-12">
 				    <div align="center" style="margin-bottom: 50px;">
-				    	<h1 class="orange">Escolha seu plano</h1>
-				    	<p class="text-muted"><i>Click em adiquirir plano para ser redirecionado a plataforma de pagamento</i></p>
+				    	<div ng-hide="vm.funcoes.validade > 0">
+				    		<h1 class="orange"> 
+				    			<i class="fa fa-hourglass-end"></i>
+				    			Sua licença expirou!
+				    		</h1>
+				    		<h1 > 
+				    			<small class="">
+				    				adquira uma nova licença para continuar a utilizar todas as funções do sistema.
+				    			</small>
+				    		</h1>
+				    	</div>
+				    	<div ng-show="vm.funcoes.validade > 0">
+				    		<h1 class="orange"> 
+				    			Escolha seu plano ideal!
+				    		</h1>
+				    	</div>
+
+				    	<p class="text-info"><i>Click em adiquirir licença para ser redirecionado a plataforma de pagamento</i></p>
 				    </div>
 				    <div class="col-xs-3 col-xs-offset-2" ng-repeat="p in vm.funcoes.planos | filter:{visivel:'1'}">
 				    	<div class="thumbnail">
