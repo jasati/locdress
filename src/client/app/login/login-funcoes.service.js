@@ -78,6 +78,9 @@
 	                        } else {
 	                            logger.info('Esse usuário está desativado, Entre em contato com o administrador.');
 	                            func.usuario.logando = false;
+		    					if ($state.current.name !== 'login'){
+		    						$state.go('login');
+		    					}
 	                        }
 	                    } else {
 	                        logger.warning("Usuário ou senha inválidos.");

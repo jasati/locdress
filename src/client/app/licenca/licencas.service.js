@@ -8,7 +8,7 @@
     /* @ngInject */
     function LicencasService($q,dataservice,DataserviseProvider,UtilsFunctions) {
         var campos = "el.id_licenca, el.id_empresa, el.id_plano, el.data_ativo, el.valida, p.descricao as plano, p.dias_lic, p.vitalicio,"+
-            "CASE WHEN (p.dias_lic - (CURRENT_DATE() - el.data_ativo)) >= 0 THEN (p.dias_lic - (CURRENT_DATE() - el.data_ativo)) ELSE 0 END AS qt_dias";
+            "date_add(el.data_ativo, interval p.dias_lic day) as vencimento";
         var inner_join = {
             0:"plano p ON el.id_plano = p.id_plano",
         };
@@ -44,7 +44,7 @@
             var servico = 'consulta';
             var consulta = "";
             if (prmConsulta.valido) {
-                consulta += " and CASE WHEN (p.dias_lic - (CURRENT_DATE() - el.data_ativo)) >= 0 THEN (p.dias_lic - (CURRENT_DATE() - el.data_ativo)) ELSE 0 END >= 0"
+                consulta += " and date_add(el.data_ativo, interval p.dias_lic day) > CURRENT_DATE()";
             }
             var dts = startDatasetDinamico();
             DataserviseProvider.setDataset(dts,'id_index_main','el.id_empresa');            
@@ -61,8 +61,9 @@
         function readValidade () {
             var msgErro = 'Falha na Consulta da licença';
             var servico = 'consulta';
-            var cp = 'el.id_empresa,p.vitalicio, SUM(CASE WHEN (p.dias_lic - (CURRENT_DATE() - el.data_ativo)) >= 0 THEN (p.dias_lic - (CURRENT_DATE() - el.data_ativo)) ELSE 0 END) AS dias_restante';
+            var cp = 'el.id_empresa,p.vitalicio, CASE WHEN CURRENT_DATE() > date_add(el.data_ativo, interval p.dias_lic day) THEN 0 ELSE 1 END as valida';
             var consulta = " and el.valida = 1";
+            consulta+=" and el.id_licenca = (SELECT id_licenca from emp_licencas where id_empresa = "+DataserviseProvider.indexGeral.id_emp+" order by id_licenca desc LIMIT 1)";
             var dts = startDatasetDinamico();
             DataserviseProvider.setDataset(dts,'id_index_main','el.id_empresa');            
             DataserviseProvider.setDataset(dts,'modulo','emp_licencas el');

@@ -54,9 +54,9 @@
 
         function verificarLicenca() {
           LicencasService.readValidade().then(function (lic) {
-            if (lic.reg[0].dias_restante != undefined) {
-              if (lic.reg[0].dias_restante > 0 || lic.reg[0].vitalicio == 1) {
-                DataserviseProvider.indexGeral.validade_licenca = lic.reg[0].dias_restante;
+            if (lic.qtde > 0 ) {
+              if (lic.reg[0].valida == 1 || lic.reg[0].vitalicio == 1) {
+                DataserviseProvider.indexGeral.validade_licenca = 1;
                 var promises = [
                   getEmpresa(),
                   dataPadrao(),

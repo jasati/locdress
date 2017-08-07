@@ -157,20 +157,13 @@
                                 <button type="button" class="btn btn-primary" data-ng-click="vm.novaLicenca()" ><i class="fa fa-dollar orange"></i> Comprar Licença</button>
                                 <div class="table-responsive">
                                     <table class="table table-striped">
-                                        <tfoot>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td><b>Restam <span class="label label-warning"> {{vm.validade}} </span> dias</b></td>
-                                            </tr>
-                                        </tfoot>
                                         <tbody>
                                             <tr ng-repeat="l in vm.licenca track by $index" class="orange">
                                                 <td><i class="fa fa-certificate"></i></td>
                                                 <td><b>{{l.plano}}</b></td>
                                                 <td><b>Ativado em : {{l.data_ativo | date:"dd/MM/yyyy"}}</b></td>
                                                 <td ng-hide="l.vitalicio"><b>Plano para {{l.dias_lic}} dias</b></td>
+                                                <td><b class="text-danger">Vencimento em : {{l.vencimento | date:"dd/MM/yyyy"}}</b></td>
                                             </tr>
                                         </tbody>
 

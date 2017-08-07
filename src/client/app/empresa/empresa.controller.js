@@ -76,7 +76,6 @@
             };
             LicencasService.read(data).then(function (resp) {
                 vm.licenca = resp.reg;
-                vm.validade = DataserviseProvider.indexGeral.validade_licenca;
             });
         }
 
